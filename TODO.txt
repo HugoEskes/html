@@ -1,0 +1,11 @@
+Data tabel voor gebruikers
+Data tabel voor skiliften
+Data tabel voor tijden
+WebAPI voor weer en sneeuwhoogte
+CSS design voor de pagina's
+
+Overzichtspagina (lift en weer)
+Inschrijfpagina
+Mail systeem
+Loginpagina
+Sign up pagina
