@@ -9,3 +9,4 @@ Inschrijfpagina
 Mail systeem
 Loginpagina
 Sign up pagina
+Contact footer
