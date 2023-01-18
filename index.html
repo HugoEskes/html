@@ -2,9 +2,50 @@
 <html>
     <style> 
     h1, h2, p {text-align: center}
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
     </style>
     <body>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+          <?php
+          $t = date("H");
+          if ($t < "20") {
+            echo "Fijne dag nog!";
+          } else{
+            echo "Slaap lekker!";
+          }
+          ?>
         <h1 style ="color: blue;"> Web wankers</h1>
         <p style="color:red;">Very nice</p>
+
+        <p>hier komt een plaatje</p>
+
+        
     </body>
 </html>
