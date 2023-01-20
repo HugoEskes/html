@@ -1,9 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<style>
+    h1, h2 {text-align: center}
+        ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333333;
+    }
+    
+    li {
+        float: left;
+    }
+    
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+    }
+    
+    li a:hover {
+        background-color: #111111;
+    }
+</style>
 </head>
 <body>
+<ul>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/Pagina's/Reserveren.html">Reserveren</a></li>
+    <li><a href="/Pagina's/Gemaaktereserveringen.html">Gemaakte reserveringen</a></li>
+    <li><a href="/Pagina's/About.html">About</a></li>
+    <li><a href="/Pagina's/Login.html">Login</a></li>
+    <li><a href="/Pagina's/Signup.html">Sign up</a></li>
+</ul>
+<br>
     <form action="login.php" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username">

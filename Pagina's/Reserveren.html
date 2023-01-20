@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<style>
+h1, h2 {text-align: center}
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+var subjectObject = {
+    "Sklift 1": {
+    "12:00": ["1", "2", "3", "4"],
+    "13:00": ["1"],
+    "14:00": ["1", "2", "3", "4", "5", "6"]    
+    },
+    "Skilift 2": {
+    "09:00": ["1", "2"],
+    "10:00": ["1", "2", "3", "4", "5", "6", "7", "8"]
+    }
+}
+window.onload = function() {
+    var subjectSel = document.getElementById("skilift");
+    var topicSel = document.getElementById("tijd");
+    var chapterSel = document.getElementById("personen");
+    for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+    }
+    subjectSel.onchange = function() {
+ //empty Chapters- and Topics- dropdowns
+chapterSel.length = 1;
+topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+        topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+    }
+    topicSel.onchange = function() {
+//empty Chapters dropdown
+chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+        chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+    }
+}
+</script>
+</head>
+
+<body>
+<ul>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/Pagina's/Reserveren.html">Reserveren</a></li>
+    <li><a href="/Pagina's/Gemaaktereserveringen.html">Gemaakte reserveringen</a></li>
+    <li><a href="/Pagina's/About.html">About</a></li>
+    <li><a href="/Pagina's/Login.html">Login</a></li>
+    <li><a href="/Pagina's/Signup.html">Sign up</a></li>
+    
+</ul>
+<br>
+<form name="reserveren" id="reserveren" action="/index.html">
+    Skilift: <select name="skilift" id="skilift">
+        <option value="" selected="selected">Selecteer skilift</option>
+    </select>
+    <br><br>
+    Tijd: <select name="tijd" id="tijd">
+        <option value="" selected="selected">Selecteer eerst de skilift</option>
+    </select>
+    <br><br>
+    Aantal personen: <select name="personen" id="personen">
+        <option value="" selected="selected">Selecteer eerst de tijd</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Reserveer"> 
+    </form>
+
+
+
+</body>
+
+</html>
