@@ -1,14 +1,57 @@
 <!DOCTYPE html>
 <html>
+  <head>
+  <title> Skilift home</title>
+  </head>
     <style> 
     h1, h2, p {text-align: center}
-    </style>
-    <body>
-        <h1 style ="color: blue;"> Web wankers</h1>
-        <p style="color:red;">Very nice</p>
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
 
-        <p>hier komt een plaatje</p>
-        
-        <image src:'th-3561577706.jpg' alt:="Capybara" width="460" height="345"></image>
-    </body>
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+</style>
+<body>
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/Pagina's/Reserveren.html">Reserveren</a></li>
+      <li><a href="/Pagina's/Gemaaktereserveringen.html">Gemaakte reserveringen</a></li>
+      <li><a href="/Pagina's/About.html">About</a></li>
+      <li><a href="/Pagina's/Login.html">Login</a></li>
+      <li><a href="/Pagina's/Signup.html">Sign up</a></li>
+      </ul>
+      <?php
+      $t = date("H");
+      if ($t < "20") {
+        echo "Fijne dag nog!";
+      } else{
+        echo "Slaap lekker!";
+      }
+      ?>
+    <h1 style ="color: blue;"> Web wankers!!</h1>
+    <p style="color:red;">Very nice</p>
+
+    <img src="Skilift.jpeg" alt="Skilift" >
+
+    
+</body>
 </html>
+
