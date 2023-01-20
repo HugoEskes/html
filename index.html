@@ -28,29 +28,29 @@ li a {
 li a:hover {
   background-color: #111111;
 }
-    </style>
-    <body>
-        <ul>
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/Pagina's/Reserveren.html">Reserveren</a></li>
-            <li><a href="/Pagina's/Signup.html">Sign up</a></li>
-            <li><a href="/Pagina's/Login.html">Login</a></li>
-            <li><a href="/Pagina's/About.html">About</a></li>
-            <li><a href="/Pagina's/Gemaaktereserveringen.html">Gemaakte reserveringen</a></li>
-          </ul>
-          <?php
-          $t = date("H");
-          if ($t < "20") {
-            echo "Fijne dag nog!";
-          } else{
-            echo "Slaap lekker!";
-          }
-          ?>
-        <h1 style ="color: blue;"> Web wankers!!</h1>
-        <p style="color:red;">Very nice</p>
+</style>
+<body>
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/Pagina's/Reserveren.html">Reserveren</a></li>
+      <li><a href="/Pagina's/Gemaaktereserveringen.html">Gemaakte reserveringen</a></li>
+      <li><a href="/Pagina's/About.html">About</a></li>
+      <li><a href="/Pagina's/Login.html">Login</a></li>
+      <li><a href="/Pagina's/Signup.html">Sign up</a></li>
+      </ul>
+      <?php
+      $t = date("H");
+      if ($t < "20") {
+        echo "Fijne dag nog!";
+      } else{
+        echo "Slaap lekker!";
+      }
+      ?>
+    <h1 style ="color: blue;"> Web wankers!!</h1>
+    <p style="color:red;">Very nice</p>
 
-        <img src="Skilift.jpeg" alt="Skilift" >
+    <img src="Skilift.jpeg" alt="Skilift" >
 
-        
-    </body>
+    
+</body>
 </html>
