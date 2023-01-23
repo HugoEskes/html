@@ -10,3 +10,43 @@ Mail systeem
 Loginpagina
 Sign up pagina
 Contact footer
+
+
+TODO na Iris's design:
+Pagina's (html & CSS):
+- Reserve
+- About   \
+- Contact /
+Samen (misschien)
+
+- My Sk. I. P.
+ - Account
+ - My reservations
+ - Log Out
+- Login
+- Signup
+
+Homepagina:
+
+Knoppen (HTML & Javascript):
+ - Weerknop (API)  \
+ - Sneeuwknop (API)/
+ - Samen (misschien als info pagina)
+Infotekst
+
+Eenmaal ingelogd andere pagina (HTML):
+Admin Pagina
+ - Skiliften toevoegen
+ - Overzicht reserveringen
+
+Design fixen CSS)
+ - Links naar pagina's (skiliftjes)
+ - Algemene opmaak
+ 
+ 
+ Database:
+ - Aangemaakt
+ - Koppelen (samen met login & signup pagina)
+ - Reserveren
+
+
