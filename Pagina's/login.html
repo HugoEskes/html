@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Overzicht skiliftreserveringen</title>
-<style> 
+<title>Log In</title>
+<style>
 /* Create a top navigation bar with a black background color  */
 .topnav {
   background-color: #333;
@@ -54,5 +54,16 @@
     <a href="/Pagina's/signup.html" class="split"></i>Sign up</a>
     <a href="/Pagina's/login.html" class="split"><i class="fa fa-fw fa-user"></i>Log in</a>
 </div>
+<br>
+    <form action="login.php" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <input type="submit" value="Login">
+    </form>
+<p> Nog geen account? <a href="/Pagina's/signup.html"> Meld je aan! </a></p>
 </body>
 </html>
