@@ -44,37 +44,31 @@
   }
 }
 
- /* Dropdown Button */
- .dropbtn {
-  background-color: #ffffff;
-  color: rgb(145, 216, 203);
-  padding: 16px;
+/* De knop rechts 'My Ski. I. P.*/
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 27px;
   font-size: 16px;
-  position: absolute;
-  left: 1100px;
-  width: 175px;
-  height: 90px;
-  border: 3px solid rgb(234, 218, 75);
+  border: none;
+  cursor: pointer;
 }
 
-
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: sticky;
+  position: relative;
   display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
-  position: relative;
-  background-color: #f1f1f1;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
@@ -82,14 +76,9 @@
   display: block;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
-
-/* Show the dropdown menu on hover */
+.dropdown-content a:hover {background-color: #f1f1f1;}
 .dropdown:hover .dropdown-content {display: block;}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #000000;} 
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>
 </head>
 
@@ -104,11 +93,11 @@
     
   </div>
 
-  <div class="dropdown">
-    <button class="dropbtn">My Ski.I.P.</Ski></button>
+  <div class="dropdown"style="float:right;">
+    <button class="dropbtn"> <i class="fa fa-fw fa-user"> </i>My Ski. I. P.</button>
     <div class="dropdown-content">
-      <a href="/Pagina's/signup.html" class="split"></i>Sign up</a>
-      <a href="/Pagina's/login.html" class="split"><i class="fa fa-fw fa-user"></i>Log in</a>
+      <a href="/Pagina's/login.html"></i>Login</a>
+      <a href="/Pagina's/signup.html">Signup</a>
     </div>
   </div>
 
