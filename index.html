@@ -2,7 +2,28 @@
 <html>
 <head>
 <title>Home</title>
-
+<script>
+  /* When the user clicks on the button, 
+  toggle between hiding and showing the dropdown content */
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbutton')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+  
+</script>
 <style> 
 /* Create a top navigation bar with a black background color  */
 .topnav {
@@ -34,7 +55,7 @@
   overflow: hidden;
 }
 .active {
-  background-color: #04AA6D;
+  background-color: #7c9cd1;
 }
 
 @media screen and (max-width: 500px) {
@@ -44,41 +65,31 @@
   }
 }
 
- /* Dropdown Button */
- .dropbtn {
+/* De knop rechts 'My Ski. I. P.*/
+.dropbtn {
   background-color: #04AA6D;
   color: white;
-  padding: 16px;
+  padding: 27px;
   font-size: 16px;
   border: none;
+  cursor: pointer;
 }
 
-.dropbtn {
-  position: absolute;
-  right: -10px;
-  width: 120px;
-  height: 80px;
-  border: 3px solid blue;
-}
-
-
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  right: 0;
+  background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
@@ -86,18 +97,58 @@
   display: block;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
-
-/* Show the dropdown menu on hover */
+.dropdown-content a:hover {background-color: #f1f1f1;}
 .dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;} 
+/* Dropdown Button */
+.dropbutton {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbutton:hover, .dropbutton:focus {
+  background-color: #2980B9;
+}
+
+.dropdown_weather {
+  float: right;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown_weather-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown_weather-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown_weather a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
 </style>
 </head>
 
 <body>
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="topnav">
     <a class="active" href="/index.html"><i class="fa fa-fw fa-home"></i>Home</a>
@@ -108,19 +159,28 @@
     
   </div>
 
-  <div class="dropdown">
-    <button class="dropbtn">My Ski.I.P.</Ski></button>
+  <div class="dropdown"style="float:right;">
+    <button class="dropbtn"> <i class="fa fa-fw fa-user"> </i>My Ski. I. P.</button>
     <div class="dropdown-content">
-      <a href="/Pagina's/signup.html" class="split"></i>Sign up</a>
-      <a href="/Pagina's/login.html" class="split"><i class="fa fa-fw fa-user"></i>Log in</a>
+      <a href="/Pagina's/login.html"></i>Login</a>
+      <a href="/Pagina's/signup.html">Signup</a>
     </div>
   </div>
+
+  
 
     <h1 style ="color: rgb(153, 139, 207);">Welcome to Ski.I.P.</h1>
     <p style="color:rgb(76, 215, 81);">Come sit in our gondola</p>
 
     <img src="Skilift.jpeg" alt="Skilift" >
-
+  <br>
+    <div class="dropdown_weather">
+      <button onclick="myFunction()" class="dropbutton">Weather</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a>Het fucking weer</a>
+      </div>
+    </div>
+    
     
 </body>
 </html>
