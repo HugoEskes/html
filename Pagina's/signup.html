@@ -56,27 +56,44 @@
     <a href="/Pagina's/login.html" class="split"><i class="fa fa-fw fa-user"></i>Log in</a>
 </div>
 <br>
-    <form action="signup.php" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <br>
-        <label for="last name">Last name:</label>
-        <input type="text" id="name" name="Last name">
-        <br>
-        <label for="email">E-mail:</label>
-        <input type="text" id="email" name="email">
-        <br>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <label for="confirm password">Confirm password:</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <input type="submit" value="Aanmelden">
-    </form>
-<p> Heb je al een account? <a href="/Pagina's/login.html"> Log in! </a></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Register</h2>
+        <p>please fill in this form to create an account.</p>
+        <form action="signup.php" method="post">
+          <div class="form-group"> 
+            <label>Full Name</label>
+            <input type="text" name="name" class="form-control" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label>E-mail Adress</label>
+            <input type="text" name="email" class="form-control" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" name="password" class="form-control" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label>Confirm password:</label>
+            <input type="password" name="password" class="form-control" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+          </div>
+          <p>Already have an account? <a href="login.php">Login here</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
