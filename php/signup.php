@@ -11,5 +11,5 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 $sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
 mysqli_query($connection, $sql);
-header('location=index.html');
+header('location: index.html');
 ?>
