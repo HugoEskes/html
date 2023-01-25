@@ -44,7 +44,7 @@ if(($password == $cpassword) && $exists==false)
 
     //informatie in de database zetten
     $sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
-    mysqli_query($connection, $sql)
+    mysqli_query($connection, $sql);
 
     // gebruiker naar homepagina sturen
     header("location: /../index.html");
