@@ -1,8 +1,8 @@
 <?php
 include "connection.php";
 
-$firstname = mysqli_real_escape_string($connection, htmlspecialchars($POST['firstname']));
-$lastname = mysqli_real_escape_string($connection, htmlspecialchars($POST['lastname']));
+$firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
+$lastname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['lastname']));
 $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
 $username = mysqli_real_escape_string($connection, htmlspecialchars($_POST['username']));
 $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
