@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+
+<body>
+<div id="weather"></div>
+<script>
+// replace 'API_KEY' and 'CITY_NAME' with your own values
+const apiKey = 'e9f92296cedb52e0eb45cd7b4d3bf82b';
+const url = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=e9f92296cedb52e0eb45cd7b4d3bf82b';
+
+fetch('https://api.openweathermap.org/data/3.0/onecall?lat=52.374&lon=4.8897&appid=e9f92296cedb52e0eb45cd7b4d3bf82b')
+  .then(response => response.json())
+  .then(data => {
+    const weather = data.weather[0].description;
+    const temperature = data.main.temp;
+
+    document.getElementById('weather').innerHTML = `The weather in Amsterdam is ${weather} and the temperature is ${temperature}`;
+  })
+  .catch(error => console.log(error));
+</script>
+
+</body>
+</html>
