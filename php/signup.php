@@ -21,18 +21,18 @@ $num = mysqli_num_rows($result);
 
 if($num!=0)
 {
-    $exists="Username not available";
+    echo "Username not available";
 }
 
 
 // Checken of het email al in gebruik is
 $sql = "Select * from gebruikers where email='$email'";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($connection, $sql);
 $num = mysqli_num_rows($result);
 
 if($num!=0)
 {
-    $exists="This emailaddress is already in use";
+    echo "This emailaddress is already in use";
 }
 
 
