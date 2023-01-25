@@ -109,6 +109,7 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
+  border-radius: 50%;
 }
 
 .dropbutton:hover, .dropbutton:focus {
@@ -128,6 +129,7 @@
   min-width: 160px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  right: 0;
   z-index: 1;
 }
 
@@ -141,6 +143,7 @@
 .dropdown_weather a:hover {background-color: #ddd;}
 
 .show {display: block;}
+
 
 
 </style>
@@ -177,7 +180,7 @@
     <div class="dropdown_weather">
       <button onclick="myFunction()" class="dropbutton">Weather</button>
       <div id="myDropdown" class="dropdown-content">
-        <a>Het fucking weer</a>
+        <a href="/Pagina's/weather.html">Het fucking weer</a>
       </div>
     </div>
     
