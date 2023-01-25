@@ -46,6 +46,6 @@ if(($password == $cpassword) && $exists==false)
     $sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
     
     // gebruiker naar homepagina sturen
-    header("location: /../Pagina's/index.html");
+    header("location: /../index.html");
     }
 ?>
