@@ -47,6 +47,6 @@ if(($password == $cpassword) && $exists==false)
     mysqli_query($connection, $sql);
 
     // gebruiker naar homepagina sturen
-    header("location: /../index.html");
+    header('location: /../index.html');
     }
 ?>
