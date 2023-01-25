@@ -16,7 +16,7 @@ $cpassword = mysqli_real_escape_string($connection, htmlspecialchars($_POST['cpa
 
 // Checken of de gebruikernaam al bestaat
 $sql = "Select * from gebruikers where username='$username'";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($connection, $sql);
 $num = mysqli_num_rows($result);
 
 if($num!=0)
