@@ -7,6 +7,8 @@ $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']
 $username = mysqli_real_escape_string($connection, htmlspecialchars($_POST['username']));
 $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
 
-$sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$password')";
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+$sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
 mysqli_query($connection, $sql);
 ?>
