@@ -1,8 +1,9 @@
 <?php
 
-$exists = false;
-$showError = false;
-$showAlert = false;
+$emailcorrect = true;
+$usernamecorrect = true;
+$passwordsmatch = true;
+$passwordstrong = true;
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   include "../php/connection.php";
@@ -46,6 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if($num!=0)
     {
     alert("Username not available");
+    $usernamecorrect = false;
     }
 
 
@@ -57,12 +59,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if($num!=0)
     {
     alert("This emailaddress is already in use");
+    $emailcorrect = false;
     }
 
+  // checken of de wachtwoorden overeen komen
+  if($password != $cpassword)
+  {
+    alert("Passwords don't match");
+    $passwordsmatch = false;
+  }
+
+  // checken of het wachtwoord sterk genoeg is
+  if(password_strength_test($password)==false)
+  {
+    alert("Password is not strong enough");
+    $passwordstrong = false;
+  }
 
   // Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
   //
-  if(($password == $cpassword) && password_strength_test($password)==true)
+  if($usernamecorrect && $emailcorrect && $passwordsmatch && $passwordstrong)
     {
     // wachtwoord versleutelen
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -72,13 +88,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_query($connection, $sql);
 
     // gebruiker naar homepagina sturen
-    header('location: /../index.html');
+    alert("Je account is aangemaakt!");
     }
-  // Als de wachtwoorden niet overeen komen wordt dit aangegeven
-  else 
-    {
-    alert("Passwords don't match");
-    }
+
 } 
 ?>
 
@@ -184,5 +196,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
   </div>
+<script>
+// Get the password input field
+var password = document.getElementById("Password");
+
+// Listen for changes to the password field
+password.addEventListener("input", function() {
+    // Get the password value
+    var passwordValue = password.value;
+
+    // Check the password against validation rules
+    if (passwordValue.length < 8) {
+        // Password is too short
+        password.setCustomValidity("Password must be at least 8 characters long.");
+    } else if (!/[A-Z]/.test(passwordValue)) {
+        // Password does not contain an uppercase letter
+        password.setCustomValidity("Password must contain at least one uppercase letter.");
+    } else if (!/[a-z]/.test(passwordValue)) {
+        // Password does not contain a lowercase letter
+        password.setCustomValidity("Password must contain at least one lowercase letter.");
+    } else if (!/\d/.test(passwordValue)) {
+        // Password does not contain a digit
+        password.setCustomValidity("Password must contain at least one digit.");
+    } else {
+        // Password is valid
+        password.setCustomValidity("");
+    }
+  });
+  </script> 
 </body>
 </html>
