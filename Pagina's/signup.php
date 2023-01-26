@@ -4,41 +4,65 @@ $exists = false;
 $showError = false;
 $showAlert = false;
 
-include "../php/connection.php";
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+  include "../php/connection.php";
 
-// Alle informatie ophalen
-$firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
-$lastname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['lastname']));
-$email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
-$username = mysqli_real_escape_string($connection, htmlspecialchars($_POST['username']));
-$password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
-$cpassword = mysqli_real_escape_string($connection, htmlspecialchars($_POST['cpassword']));
+  // alert functie aanmaken
+  function alert($msg) 
+    {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
 
-// Checken of de gebruikernaam al bestaat
-$sql = "Select * from gebruikers where gebruikersnaam='$username'";
-$result = mysqli_query($connection, $sql);
-$num = mysqli_num_rows($result);
+  function password_strength_test($password)
+    {
+    $uppercase    = preg_match('@[A-Z]@', $password);
+    $lowercase    = preg_match('@[a-z]@', $password);
+    $number       = preg_match('@[0-9]@', $password);
+    $specialchars = preg_match('@[^\w]@', $password);
 
-if($num!=0)
-{
-    echo "Username not available";
-}
+    if (!$uppercase || !$lowercase || !$number || !$specialchars || strlen($password) < 8) 
+      {
+      return false;
+      }
+    else 
+      {
+      return true;
+      } 
+    }
+
+  // Alle informatie ophalen
+  $firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
+  $lastname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['lastname']));
+  $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
+  $username = mysqli_real_escape_string($connection, htmlspecialchars($_POST['username']));
+  $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
+  $cpassword = mysqli_real_escape_string($connection, htmlspecialchars($_POST['cpassword']));
+
+  // Checken of de gebruikernaam al bestaat
+  $sql = "Select * from gebruikers where gebruikersnaam='$username'";
+  $result = mysqli_query($connection, $sql);
+  $num = mysqli_num_rows($result);
+
+  if($num!=0)
+    {
+    alert("Username not available");
+    }
 
 
-// Checken of het email al in gebruik is
-$sql = "Select * from gebruikers where email='$email'";
-$result = mysqli_query($connection, $sql);
-$num = mysqli_num_rows($result);
+  // Checken of het email al in gebruik is
+  $sql = "Select * from gebruikers where email='$email'";
+  $result = mysqli_query($connection, $sql);
+  $num = mysqli_num_rows($result);
 
-if($num!=0)
-{
-    echo "This emailaddress is already in use";
-}
+  if($num!=0)
+    {
+    alert("This emailaddress is already in use");
+    }
 
 
-// Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
-//
-if(($password == $cpassword) && $exists==false)
+  // Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
+  //
+  if(($password == $cpassword) && password_strength_test($password)==true)
     {
     // wachtwoord versleutelen
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -50,11 +74,12 @@ if(($password == $cpassword) && $exists==false)
     // gebruiker naar homepagina sturen
     header('location: /../index.html');
     }
-// Als de wachtwoorden niet overeen komen wordt dit aangegeven
-else 
+  // Als de wachtwoorden niet overeen komen wordt dit aangegeven
+  else 
     {
-    echo "Passwords don't match";
+    alert("Passwords don't match");
     }
+} 
 ?>
 
 <!DOCTYPE html>
