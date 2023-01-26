@@ -4,7 +4,7 @@ $exists = false;
 $showError = false;
 $showAlert = false;
 
-include "/../php/connection.php";
+include "../php/connection.php";
 
 // Alle informatie ophalen
 $firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
