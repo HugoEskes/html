@@ -4,7 +4,7 @@ $exists = false;
 $showError = false;
 $showAlert = false;
 
-include "connection.php";
+include "/../php/connection.php";
 
 // Alle informatie ophalen
 $firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
@@ -111,7 +111,7 @@ else
     <a href="/Pagina's/reserve.html">Reserve</a>
     <a href="/Pagina's/myreservations.html">My Reservations</a>
     <a href="/Pagina's/about.html"><i class="fa fa-fw fa-envelope"></i>About</a>
-    <a href="/Pagina's/signup.html" class="split"></i>Sign up</a>
+    <a href="/Pagina's/signup.php" class="split"></i>Sign up</a>
     <a href="/Pagina's/login.html" class="split"><i class="fa fa-fw fa-user"></i>Log in</a>
 </div>
 <br>
