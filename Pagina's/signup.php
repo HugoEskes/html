@@ -4,80 +4,82 @@ $exists = false;
 $showError = false;
 $showAlert = false;
 
-include "../php/connection.php";
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+  include "../php/connection.php";
 
-// alert functie aanmaken
-function alert($msg) 
-  {
-  echo "<script type='text/javascript'>alert('$msg');</script>";
-  }
-
-function password_strength_test($password)
-  {
-  $uppercase    = preg_match('@[A-Z]@', $password);
-  $lowercase    = preg_match('@[a-z]@', $password);
-  $number       = preg_match('@[0-9]@', $password);
-  $specialchars = preg_match('@[^\w]@', $password);
-
-  if (!$uppercase || !$lowercase || !$number || !$specialchars || strlen($password) < 8) 
+  // alert functie aanmaken
+  function alert($msg) 
     {
-    return false;
+    echo "<script type='text/javascript'>alert('$msg');</script>";
     }
+
+  function password_strength_test($password)
+    {
+    $uppercase    = preg_match('@[A-Z]@', $password);
+    $lowercase    = preg_match('@[a-z]@', $password);
+    $number       = preg_match('@[0-9]@', $password);
+    $specialchars = preg_match('@[^\w]@', $password);
+
+    if (!$uppercase || !$lowercase || !$number || !$specialchars || strlen($password) < 8) 
+      {
+      return false;
+      }
+    else 
+      {
+      return true;
+      } 
+    }
+
+  // Alle informatie ophalen
+  $firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
+  $lastname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['lastname']));
+  $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
+  $username = mysqli_real_escape_string($connection, htmlspecialchars($_POST['username']));
+  $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
+  $cpassword = mysqli_real_escape_string($connection, htmlspecialchars($_POST['cpassword']));
+
+  // Checken of de gebruikernaam al bestaat
+  $sql = "Select * from gebruikers where gebruikersnaam='$username'";
+  $result = mysqli_query($connection, $sql);
+  $num = mysqli_num_rows($result);
+
+  if($num!=0)
+    {
+    alert("Username not available");
+    }
+
+
+  // Checken of het email al in gebruik is
+  $sql = "Select * from gebruikers where email='$email'";
+  $result = mysqli_query($connection, $sql);
+  $num = mysqli_num_rows($result);
+
+  if($num!=0)
+    {
+    alert("This emailaddress is already in use");
+    }
+
+
+  // Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
+  //
+  if(($password == $cpassword) && password_strength_test($password)==true)
+    {
+    // wachtwoord versleutelen
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    //informatie in de database zetten
+    $sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
+    mysqli_query($connection, $sql);
+
+    // gebruiker naar homepagina sturen
+    header('location: /../index.html');
+    }
+  // Als de wachtwoorden niet overeen komen wordt dit aangegeven
   else 
     {
-    return true;
-    } 
-  }
-
-// Alle informatie ophalen
-$firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
-$lastname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['lastname']));
-$email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
-$username = mysqli_real_escape_string($connection, htmlspecialchars($_POST['username']));
-$password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
-$cpassword = mysqli_real_escape_string($connection, htmlspecialchars($_POST['cpassword']));
-
-// Checken of de gebruikernaam al bestaat
-$sql = "Select * from gebruikers where gebruikersnaam='$username'";
-$result = mysqli_query($connection, $sql);
-$num = mysqli_num_rows($result);
-
-if($num!=0)
-  {
-  alert("Username not available");
-  }
-
-
-// Checken of het email al in gebruik is
-$sql = "Select * from gebruikers where email='$email'";
-$result = mysqli_query($connection, $sql);
-$num = mysqli_num_rows($result);
-
-if($num!=0)
-  {
-  alert("This emailaddress is already in use");
-  }
-
-
-// Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
-//
-if(($password == $cpassword) && password_strength_test($password)==true)
-  {
-  // wachtwoord versleutelen
-  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-  //informatie in de database zetten
-  $sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
-  mysqli_query($connection, $sql);
-
-  // gebruiker naar homepagina sturen
-  header('location: /../index.html');
-  }
-// Als de wachtwoorden niet overeen komen wordt dit aangegeven
-else 
-  {
-  alert("Passwords don't match");
-  }
+    alert("Passwords don't match");
+    }
+} 
 ?>
 
 <!DOCTYPE html>
