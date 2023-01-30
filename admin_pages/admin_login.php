@@ -1,7 +1,7 @@
 <?php
 
-include "php/connection.php";
-include "php/config.php";
+include "../php/connection.php";
+include "../php/config.php";
 
 $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
 $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
