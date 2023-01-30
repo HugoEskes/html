@@ -74,14 +74,14 @@
         <div id="blog-carousel" class="carousel slide overlay-bottom" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="img/skilift-7-1500x1004.jpg" alt="Image">
+                    <img class="w-100" src="../img/skilift-7-1500x1004.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <h2 class="text-primary font-weight-medium m-0">Reserve your</h2>
                         <h1 class="display-1 text-white m-0">SKILIFT</h1>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="img/eueac3uf.jpg" alt="Image">
+                    <img class="w-100" src="../img/eueac3uf.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <h2 class="text-primary font-weight-medium m-0">Reserve your</h2>
                         <h1 class="display-1 text-white m-0">SKILIFT</h1>
@@ -112,7 +112,7 @@
                   <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Unique views</h5>
                   <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Front row seat on the slopes</h5>
                   <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Time seems to fly</h5>
-                  <a href="" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Reserve your place now!</a>
+                  <a href="admin_reservations.php" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Look at all the made reservations.</a>
               </div>
               <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
                   <div class="position-relative h-100">
@@ -140,7 +140,7 @@
               <div class="col-lg-6 mb-5">
                     <div class="row align-items-center">
                         <div class="col-sm-5">
-                            <img class="img-fluid mb-3 mb-sm-0" src="img/service-4.jpg" alt="">
+                            <img class="img-fluid mb-3 mb-sm-0" src="../img/service-4.jpg" alt="">
                         </div>
                         <div class="col-sm-7">
                             <h4><i class="fa fa-table service-icon"></i>Skip the queue</h4>
@@ -151,7 +151,7 @@
                 <div class="col-lg-6 mb-5">
                     <div class="row align-items-center">
                         <div class="col-sm-5">
-                            <img class="img-fluid mb-3 mb-sm-0" src="img/service-1.jpg" alt="">
+                            <img class="img-fluid mb-3 mb-sm-0" src="../img/service-1.jpg" alt="">
                         </div>
                         <div class="col-sm-7">
                             <h4><i class="fa fa-check service-icon"></i>Fast reserving</h4>
@@ -162,7 +162,7 @@
                 <div class="col-lg-6 mb-5">
                     <div class="row align-items-center">
                         <div class="col-sm-5">
-                            <img class="img-fluid mb-3 mb-sm-0" src="img/service-2.jpg" alt="">
+                            <img class="img-fluid mb-3 mb-sm-0" src="../img/service-2.jpg" alt="">
                         </div>
                         <div class="col-sm-7">
                             <h4><i class="fa fa-award service-icon"></i>Excellent views</h4>
@@ -173,7 +173,7 @@
                 <div class="col-lg-6 mb-5">
                     <div class="row align-items-center">
                         <div class="col-sm-5">
-                            <img class="img-fluid mb-3 mb-sm-0" src="img/service-3.jpg" alt="">
+                            <img class="img-fluid mb-3 mb-sm-0" src="../img/service-3.jpg" alt="">
                         </div>
                         <div class="col-sm-7">
                             <h4><i class="fa fa-award service-icon"></i>Safety first</h4>
@@ -224,19 +224,19 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <script src="../mail/jqBootstrapValidation.min.js"></script>
+    <script src="../mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
