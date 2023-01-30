@@ -24,9 +24,82 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.min.css" rel="stylesheet">
+    <style>
+        .modal {
+          display: none; 
+          position: fixed; 
+          z-index: 1; 
+          left: 0;
+          top: 0;
+          width: 100%; 
+          height: 100%; 
+          overflow: auto; 
+          background-color: rgb(0,0,0); 
+          background-color: rgba(0,0,0,0.4);
+        }
+        
+        .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto; 
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%; 
+        }
+        
+        .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="privacy-policy-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Your privacy policy text goes here.</p>
+          <button id="accept-policy">Accept</button>
+          <button id="decline-policy">Decline</button>
+        </div>
+      </div>
+  
+      <script>
+        const modal = document.getElementById("privacy-policy-modal");
+        const acceptBtn = document.getElementById("accept-policy");
+        const declineBtn = document.getElementById("decline-policy");
+        const span = document.getElementsByClassName("close")[0];
+        
+        modal.style.display = "block";
+        
+        acceptBtn.onclick = function() {
+          localStorage.setItem("policyAccepted", true);
+          modal.style.display = "none";
+        }
+        
+        declineBtn.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+    
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
@@ -54,6 +127,7 @@
         </nav>
     </div>
     <!-- Navbar End -->
+    
 
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5">
