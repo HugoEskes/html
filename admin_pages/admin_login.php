@@ -1,12 +1,10 @@
 <?php
+require_once '../php/connection.php';
 
-include "../php/connection.php";
-include "../php/config.php";
+$email = $_POST['email'];
+$password = $_POST['password'];
 
-$email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
-$password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
-
-// Retrieve user information from the "admin" table
+// Retrieve user information from the "admins" table
 $sql = "SELECT * FROM admins WHERE email='$email'";
 $result = mysqli_query($connection, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -20,14 +18,14 @@ $_SESSION['adminID'] = $row['adminID'];
 $_SESSION['name'] = $row['name'];
 
 // Redirect to a welcome page
-header("Location: admin_index.php");
+header("Location: welcome.php");
 } else {
 // Login failed
 // Display an error message
 echo "Login failed. Email or password is incorrect.";
 }
 
-mysqli_close($conn);
+mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
