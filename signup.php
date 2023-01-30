@@ -163,6 +163,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 <!-- Page Header End -->
 
+<!-- Signup page start -->
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -202,11 +203,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
           </div>
-          <p>Already have an account? <a href="/Pagina's/login.html">Login here</a></p>
+          <p>Already have an account? <a href="login.php">Login here</a></p>
         </form>
       </div>
     </div>
   </div>
+<!-- Signup page End -->
 
 <!-- Footer Start -->
 <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">

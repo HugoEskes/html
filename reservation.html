@@ -49,7 +49,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
                         <div class="dropdown-menu text-capitalize">
                             <a href="login.html" class="dropdown-item">Login</a>
-                            <a href="signup.html" class="dropdown-item">Signup</a>
+                            <a href="signup.php" class="dropdown-item">Signup</a>
                         </div>
                     </div>
                     
@@ -81,7 +81,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 my-5 my-lg-0">
                         <div class="row">
-                            <div class="col-md-6 pb-5">
+                            <div class="col-md-12 pb-5">
                                 <div id="map" style="height:400px;width:100%;"></div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
         </div>
     </div>
     <!-- Reservation End -->
-
+    
     <!-- Footer Start -->
     <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">
         <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
@@ -181,29 +181,23 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
+    <!-- Google API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7tTtgSMOA_yFVqkh1zFZrpvouCorDXvE&callback=initMap"></script>
+
     <script>
-
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
-    center: {lat: 37.7749, lng: -122.4194}
-  });
-  
-  function loadMap() {
-    var script = document.createElement("script");
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC7tTtgSMOA_yFVqkh1zFZrpvouCorDXvE&callback=initMap";
-    script.defer = true;
-    script.async = true;
-    document.head.appendChild(script);
-  }
-  window.onload = loadMap;
-
-  var marker = new google.maps.Marker({
-    position: {lat: 37.7749, lng: -122.4194},
-    map: map
-  });
-}
-    </script> 
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 45.892417, lng: 7.540064 },
+            zoom: 8
+          });
+        
+        var marker = new google.maps.Marker({
+    position: {lat: 45.892417, lng: 7.540064},
+    map: map,
+    title: 'Pian della Volpe ski lift '
+});
+        }
+      </script>
 </body>
 
 </html>
