@@ -10,13 +10,14 @@ $result = mysqli_query($connection, $sql);
 $row = mysqli_fetch_assoc($result);
 
 // Check if email and password match
-if ($row['email'] == $email && $row['password'] == $password) {
+if ($row['email'] == $email && $row['wachtwoord'] == $password) {
 // Login success
 // Start a session and store the user's information
 session_start();
 $_SESSION['adminID'] = $row['adminID'];
-$_SESSION['name'] = $row['name'];
+$_SESSION['naam'] = $row['naam'];
 $_SESSION['email'] = $row['email'];
+$_SESSION['admin'] = true;
 
 // Redirect to the welcome page
 header("Location: admin_pages/admin_index.php");
