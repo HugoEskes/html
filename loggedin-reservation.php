@@ -51,9 +51,9 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="reservation.html" class="nav-item nav-link active">Reserve</a>
-                    <a href="about.html" class="nav-item nav-link">About us</a>
+                    <a href="loggedin-index.php" class="nav-item nav-link">Home</a>
+                    <a href="loggedin-reservation.php" class="nav-item nav-link active">Reserve</a>
+                    <a href="loggedin-about.php" class="nav-item nav-link">About us</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
                         <div class="dropdown-menu text-capitalize">
