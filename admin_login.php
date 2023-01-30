@@ -1,5 +1,6 @@
 <?php
 require_once 'php/connection.php';
+require_once "php/session.php";
 
 $email = $_POST['email'];
 $password = $_POST['password'];
