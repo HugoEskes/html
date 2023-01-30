@@ -1,9 +1,9 @@
 <?php
 
 define('DBSERVER', 'localhost');
-define('DBUSERNAME', 'root');
-define('DBPASSWORD', '');
-define('DBNAME', 'gebruikers');
+define('DBUSERNAME', 'hugoe');
+define('DBPASSWORD', 'EDNZxAfEptklmtplrOmgeGquRAuvhNHw');
+define('DBNAME', 'Skilift website');
 
 $db = mysqli_connect(DBSERVER, DBUSERNAME, DBPASSWORD, DBNAME);
 
