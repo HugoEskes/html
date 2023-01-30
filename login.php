@@ -20,7 +20,7 @@ $username_err = $password_err = $login_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check if username is empty
-    if(empty(trim($_POST["username"]))){
+    if(empty(trim($_POST["gebruikersnaam"]))){
         $username_err = "Please enter username.";
     } else{
         $username = trim($_POST["username"]);
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, gebruikersnaam, password FROM gebruikers WHERE gebruikersnaam = ?";
+        $sql = "SELECT id, username, password FROM gebruikers WHERE gebruikersnaam = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
