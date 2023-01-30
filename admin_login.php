@@ -2,30 +2,32 @@
 require_once 'php/connection.php';
 require_once "php/session.php";
 
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-// Retrieve user information from the "admins" table
-$sql = "SELECT * FROM admins WHERE email='$email'";
-$result = mysqli_query($connection, $sql);
-$row = mysqli_fetch_assoc($result);
-
-// Check if email and password match
-if ($row['email'] == $email && $row['wachtwoord'] == $password) {
-// Login success
-// Start a session and store the user's information
-session_start();
-$_SESSION['adminID'] = $row['adminID'];
-$_SESSION['naam'] = $row['naam'];
-$_SESSION['email'] = $row['email'];
-$_SESSION['admin'] = true;
-
-// Redirect to the welcome page
-header("Location: admin_pages/admin_index.php");
-} else {
-// Login failed
-// Display an error message
-echo "Login failed. Email or password is incorrect.";
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    // Retrieve user information from the "admins" table
+    $sql = "SELECT * FROM admins WHERE email='$email'";
+    $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($result);
+    
+    // Check if email and password match
+    if ($row['email'] == $email && $row['wachtwoord'] == $password) {
+    // Login success
+    // Start a session and store the user's information
+    session_start();
+    $_SESSION['adminID'] = $row['adminID'];
+    $_SESSION['naam'] = $row['naam'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['admin'] = true;
+    
+    // Redirect to the welcome page
+    header("Location: admin_pages/admin_index.php");
+    } else {
+    // Login failed
+    // Display an error message
+    echo "Login failed. Email or password is incorrect.";
+    }
 }
 
 mysqli_close($connection);
@@ -187,7 +189,7 @@ mysqli_close($connection);
 // Validate the form data before submitting to the server.
 function validateForm() {
 var email = document.forms["loginForm"]["email"].value;
-var password = document.forms["loginForm"]["password"].value;
+var password = document.forms["loginForm"]["wachtwoord"].value;
 
 // Check if email and password are filled
 if (email == "" || password == "") {
@@ -200,4 +202,3 @@ return true;
 
 </body>
 </html>
-
