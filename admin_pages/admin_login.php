@@ -104,7 +104,7 @@ mysqli_close($conn);
                 <div class="col-md-12">
                     <h2>Admin Login</h2>
                     <p>Please fill in your email and password.</p>
-                    <form action="login.php" method="post">
+                    <form action="admin_login.php" method="post" onsubmit="return validateForm()">
                         <div class="form-group">
                             <label>Email Address</label>
                             <input type="email" name="email" class="form-control" required />
@@ -180,6 +180,21 @@ mysqli_close($conn);
   if (new URLSearchParams(window.location.search).has("not_logged_in")) {
     alert("You need to log in to access this page");
   }
+</script>
+
+<script>
+// Validate the form data before submitting to the server.
+function validateForm() {
+var email = document.forms["loginForm"]["email"].value;
+var password = document.forms["loginForm"]["password"].value;
+
+// Check if email and password are filled
+if (email == "" || password == "") {
+    alert("Email and password are required.");
+    return false;
+}
+return true;
+}
 </script>
 
 </body>
