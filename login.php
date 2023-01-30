@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
                         <div class="dropdown-menu text-capitalize">
-                            <a href="login.html" class="dropdown-item active">Login</a>
+                            <a href="login.php" class="dropdown-item active">Login</a>
                             <a href="signup.php" class="dropdown-item">Signup</a>
                         </div>
                     </div>
