@@ -78,7 +78,9 @@
         const declineBtn = document.getElementById("decline-policy");
         const span = document.getElementsByClassName("close")[0];
         
+        if (!localStorage.getItem("policyAccepted")) {
         modal.style.display = "block";
+      }
         
         acceptBtn.onclick = function() {
           localStorage.setItem("policyAccepted", true);
