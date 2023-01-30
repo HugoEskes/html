@@ -1,97 +1,40 @@
 <?php
- 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
-}
- 
-// Include config file and connection
-require_once "php/config.php";
-require_once "php/session.php";
- 
-// Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Check if username is empty
-    if(empty(trim($_POST["gebruikersnaam"]))){
-        $username_err = "Please enter username.";
-    } else{
-        $username = trim($_POST["username"]);
-    }
-    
-    // Check if password is empty
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    
-    // Validate credentials
-    if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
-        $sql = "SELECT id, username, password FROM admins WHERE gebruikersnaam = ?";
-        
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            
-            // Set parameters
-            $param_username = $username;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Store result
-                mysqli_stmt_store_result($stmt);
-                
-                // Check if username exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                    if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
-                            session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["adminID"] = $id;
-                            $_SESSION["gebruikersnaam"] = $username;                            
-                            
-                            // Redirect user to welcome page
-                            header("location: admin_index.php");
-                        } else{
-                            // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password.";
-                        }
-                    }
-                } else{
-                    // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password.";
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
 
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
-    }
-    
-    // Close connection
-    mysqli_close($link);
+include "php/connection.php";
+include "php/config.php";
+
+$email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
+$password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
+
+// Retrieve user information from the "admin" table
+$sql = "SELECT * FROM admins WHERE email='$email'";
+$result = mysqli_query($connection, $sql);
+$row = mysqli_fetch_assoc($result);
+
+// Check if email and password match
+if ($row['email'] == $email && $row['password'] == $password) {
+// Login success
+// Start a session and store the user's information
+session_start();
+$_SESSION['adminID'] = $row['adminID'];
+$_SESSION['name'] = $row['name'];
+
+// Redirect to a welcome page
+header("Location: admin_index.php");
+} else {
+// Login failed
+// Display an error message
+echo "Login failed. Email or password is incorrect.";
 }
+
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Admin Login</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -107,11 +50,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="../css/style.min.css" rel="stylesheet">
     </head>
     <body>
         <!-- Navbar Start -->
@@ -125,14 +68,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="reservation.html" class="nav-item nav-link">Reserve</a>
-                    <a href="about.html" class="nav-item nav-link">About us</a>
+                    <a href="../index.html" class="nav-item nav-link">Home</a>
+                    <a href="../reservation.html" class="nav-item nav-link">Reserve</a>
+                    <a href="../about.html" class="nav-item nav-link">About us</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
                         <div class="dropdown-menu text-capitalize">
-                            <a href="login.php" class="dropdown-item active">Login</a>
-                            <a href="signup.php" class="dropdown-item">Signup</a>
+                            <a href="../login.php" class="dropdown-item">Login</a>
+                            <a href="../signup.php" class="dropdown-item">Signup</a>
                         </div>
                     </div>
                     
@@ -218,19 +161,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="lib/tempusdominus/js/moment.min.js"></script>
-<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="../lib/easing/easing.min.js"></script>
+<script src="../lib/waypoints/waypoints.min.js"></script>
+<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../lib/tempusdominus/js/moment.min.js"></script>
+<script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
 <!-- Contact Javascript File -->
-<script src="mail/jqBootstrapValidation.min.js"></script>
-<script src="mail/contact.js"></script>
+<script src="../mail/jqBootstrapValidation.min.js"></script>
+<script src="../mail/contact.js"></script>
 
 <!-- Template Javascript -->
-<script src="js/main.js"></script>
+<script src="../js/main.js"></script>
 
 <script>
   // Check if the user was not logged in when redirected to the login page
