@@ -18,7 +18,7 @@ $_SESSION['adminID'] = $row['adminID'];
 $_SESSION['name'] = $row['name'];
 
 // Redirect to a welcome page
-header("Location: welcome.php");
+header("Location: admin_login.php");
 } else {
 // Login failed
 // Display an error message
