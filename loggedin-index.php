@@ -124,7 +124,7 @@
                 <div class="navbar-nav ml-auto p-4">
                     <a href="loggedin-index.php" class="nav-item nav-link active">Home</a>
                     <a href="loggedin-reservation.php" class="nav-item nav-link">Reserve</a>
-                    <a href="loggedin-about.html" class="nav-item nav-link">About</a>
+                    <a href="loggedin-about.php" class="nav-item nav-link">About</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
                         <div class="dropdown-menu text-capitalize">
