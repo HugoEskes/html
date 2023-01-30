@@ -59,7 +59,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
                         <div class="dropdown-menu text-capitalize">
                             <a href="admin_user.php" class="dropdown-item">Account</a>
-                            <a href="../logout.php" class="dropdown-item">Logout</a>
+                            <a href="../php/logout.php" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                     
