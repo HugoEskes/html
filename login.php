@@ -1,9 +1,59 @@
+<?php
+
+require_once "config.php";
+require_once "session.php";
+
+$error = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    // validate if email is empty
+    if (empty($email)) {
+        $error .= '<p class="error">Please enter email.</p>';
+    }
+
+    // validate if password is empty
+    if (empty($password)) {
+        $error .= '<p class="error">Please enter your password.</p>';
+    }
+
+    if (empty($error)) {
+        if($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
+            $query->bind_param('s', $email);
+            $query->execute();
+            $row = $query->fetch();
+            if ($row) {
+                if (password_verify($password, $row['password'])) {
+                    $_SESSION["userid"] = $row['id'];
+                    $_SESSION["user"] = $row;
+
+                    // Redirect the user to welcome page
+                    header("location: welcome.php");
+                    exit;
+                } else {
+                    $error .= '<p class="error">The password is not valid.</p>';
+                }
+            } else {
+                $error .= '<p class="error">No User exist with that email address.</p>';
+            }
+        }
+        $query->close();
+    }
+    // Close connection
+    mysqli_close($db);
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+    <head>
     <meta charset="utf-8">
-    <title>Signup</title>
+    <title>Login</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -24,11 +74,10 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <!-- Navbar Start -->
-    <div class="container-fluid p-0 nav-bar">
+    </head>
+    <body>
+        <!-- Navbar Start -->
+        <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
             <a href="index.html" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P</h1>
@@ -44,8 +93,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
                         <div class="dropdown-menu text-capitalize">
-                            <a href="login.html" class="dropdown-item">Login</a>
-                            <a href="signup.html" class="dropdown-item active">Signup</a>
+                            <a href="login.html" class="dropdown-item active">Login</a>
+                            <a href="signup.php" class="dropdown-item">Signup</a>
                         </div>
                     </div>
                     
@@ -55,9 +104,48 @@
     </div>
     <!-- Navbar End -->
 
+    <!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+    <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
+        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Login</h1>
+        <div class="d-inline-flex mb-lg-5">
+            <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
+            <p class="m-0 text-white px-2">/</p>
+            <p class="m-0 text-white">Login</p>
+        </div> 
+    </div>
+</div>
+<!-- Page Header End -->
 
-    <!-- Footer Start -->
-    <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">
+<!-- Login page Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Login</h2>
+                    <p>Please fill in your email and password.</p>
+                    <form action="login.php" method="post">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" class="form-control" required />
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                        <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
+                    </form>
+                </div>
+            </div>
+        </div> 
+<!-- Login page end -->
+
+<!-- Footer Start -->
+<div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">
         <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Get In Touch</h4>
@@ -85,27 +173,6 @@
     </div>
     <!-- Footer End -->
 
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-</body>
-
+    </body>
 </html>
+
