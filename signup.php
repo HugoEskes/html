@@ -148,7 +148,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </div>
     <!-- Navbar End -->
-
+<br>
   <div class="container">
     <div class="row">
       <div class="col-md-12">
