@@ -7,7 +7,7 @@
     header("Location: ../login.php");
   }
   if (!isset($_SESSION['admin'])) {
-    header("Location: ../admin_login.php");
+    header("Location: ../login.php");
   }
   // User is logged in, display a welcome message
   echo "Welcome, " . $_SESSION['naam'] . "!";
@@ -116,7 +116,7 @@
               </div>
               <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
                   <div class="position-relative h-100">
-                      <img class="position-absolute w-100 h-100" src="img/matterhorn.png" style="object-fit: cover;">
+                      <img class="position-absolute w-100 h-100" src="../img/matterhorn.png" style="object-fit: cover;">
                   </div>
               </div>
               <div class="col-lg-4 py-0 py-lg-5">
