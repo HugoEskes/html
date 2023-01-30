@@ -51,6 +51,7 @@
                 <div class="navbar-nav ml-auto p-4">
                     <a href="admin_index.php" class="nav-item nav-link active">Home</a>
                     <a href="admin_reservations.php" class="nav-item nav-link">Reservations</a>
+                    <a href="admin_users.php" class="nav-item nav-link">Other users</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
                         <div class="dropdown-menu text-capitalize">
@@ -103,12 +104,9 @@
           </div>
           <div class="row">
               <div class="col-lg-4 py-0 py-lg-5">
-                  <h5 class="mb-3">Oprah Winfrey once said: 'Skiing is the next best thing to having wings'</h5>
-                  <p>We have to disagree with her on that. There is only one thing better than skiing, and it's the long invigorating journey up the mountain in one of our gondola's. </p>
-                  <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Unique views</h5>
-                  <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Front row seat on the slopes</h5>
-                  <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Time seems to fly</h5>
-                  <a href="admin_reservations.php" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Look at all the made reservations.</a>
+                  <h5 class="mb-3">You can now look at all the made reservations!</h5>
+                  <p>How amazing is that!</p>
+                  <a href="admin_reservations.php" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">All the made reservations.</a>
               </div>
               <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
                   <div class="position-relative h-100">
@@ -116,9 +114,9 @@
                   </div>
               </div>
               <div class="col-lg-4 py-0 py-lg-5">
-                  <h5 class="mb-3">If you want to lift yourself up, lift up someone else!</h5>
-                  <p>It is our mission to make skiing a more pleasant experience for you. We strive for the best and nothing less. Go straight to our about page to learn more.</p>
-                  <a href="" class="btn btn-primary font-weight-bold py-2 px-4 mt-2">Get to know us and our quest</a>
+                  <h5 class="mb-3">Take a look at all the other profiles</h5>
+                  <p>You can also delete some of them!</p>
+                  <a href="admin_users.php" class="btn btn-primary font-weight-bold py-2 px-4 mt-2">All the other users</a>
               </div>
           </div>
       </div>
