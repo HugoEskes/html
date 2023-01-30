@@ -129,6 +129,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
                         <div class="dropdown-menu text-capitalize">
                             <a href="loggedin-account.html" class="dropdown-item">Account</a>
+                            <a href="loggedin-myreservations.php" class="dropdown-item">My Reservations</a>
                             <a href="php/logout.php" class="dropdown-item">Log out</a>
                         </div>
                     </div>
