@@ -1,5 +1,5 @@
 <?php
-require_once '../php/connection.php';
+require_once 'php/connection.php';
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -16,9 +16,10 @@ if ($row['email'] == $email && $row['password'] == $password) {
 session_start();
 $_SESSION['adminID'] = $row['adminID'];
 $_SESSION['name'] = $row['name'];
+$_SESSION['email'] = $row['email'];
 
-// Redirect to a welcome page
-header("Location: admin_login.php");
+// Redirect to the welcome page
+header("Location: admin_pages/admin_index.php");
 } else {
 // Login failed
 // Display an error message
@@ -48,11 +49,11 @@ mysqli_close($connection);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../css/style.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
     </head>
     <body>
         <!-- Navbar Start -->
@@ -66,14 +67,14 @@ mysqli_close($connection);
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="../index.html" class="nav-item nav-link">Home</a>
-                    <a href="../reservation.html" class="nav-item nav-link">Reserve</a>
-                    <a href="../about.html" class="nav-item nav-link">About us</a>
+                    <a href="index.html" class="nav-item nav-link">Home</a>
+                    <a href="reservation.html" class="nav-item nav-link">Reserve</a>
+                    <a href="about.html" class="nav-item nav-link">About us</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
                         <div class="dropdown-menu text-capitalize">
-                            <a href="../login.php" class="dropdown-item">Login</a>
-                            <a href="../signup.php" class="dropdown-item">Signup</a>
+                            <a href="login.php" class="dropdown-item">Login</a>
+                            <a href="signup.php" class="dropdown-item">Signup</a>
                         </div>
                     </div>
                     
@@ -159,19 +160,19 @@ mysqli_close($connection);
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="../lib/easing/easing.min.js"></script>
-<script src="../lib/waypoints/waypoints.min.js"></script>
-<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="../lib/tempusdominus/js/moment.min.js"></script>
-<script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
-<script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
 <!-- Contact Javascript File -->
-<script src="../mail/jqBootstrapValidation.min.js"></script>
-<script src="../mail/contact.js"></script>
+<script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script>
 
 <!-- Template Javascript -->
-<script src="../js/main.js"></script>
+<script src="js/main.js"></script>
 
 <script>
   // Check if the user was not logged in when redirected to the login page
