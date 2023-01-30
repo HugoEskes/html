@@ -3,8 +3,8 @@ require_once 'php/connection.php';
 require_once "php/session.php";
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
+    $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
     
     // Retrieve user information from the "admins" table
     $sql = "SELECT * FROM admins WHERE email='$email'";
