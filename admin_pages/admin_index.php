@@ -4,7 +4,7 @@
     header("Location: ../login.php");
   }
   if (!isset($_SESSION['admin'])) {
-    header("Location: ../login.php")
+    header("Location: ../login.php");
   }
   echo "<script>alert('Welcome, " . $_SESSION['naam'] . "!');</script>";
 ?>
