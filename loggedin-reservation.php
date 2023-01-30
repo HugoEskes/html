@@ -1,10 +1,10 @@
 <?php
-//session_start();
+session_start();
 
-//if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   // User is not logged in, redirect to login page with a flag indicating the user was not logged in
-//  header('Location: login.php?not_logged_in=1');
-//}
+  header('Location: login.php?not_logged_in=1');
+}
 ?>
 
 <!DOCTYPE html>
