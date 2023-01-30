@@ -232,6 +232,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
-    </body>
+
+<script>
+  // Check if the user was not logged in when redirected to the login page
+  if (new URLSearchParams(window.location.search).has("not_logged_in")) {
+    alert("You need to log in to access this page");
+  }
+</script>
+
+</body>
 </html>
 
