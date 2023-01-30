@@ -34,93 +34,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.min.css" rel="stylesheet">
-    <style>
-        .modal {
-          display: none; 
-          position: fixed; 
-          z-index: 1; 
-          left: 0;
-          top: 0;
-          width: 100%; 
-          height: 100%; 
-          overflow: auto; 
-          background-color: rgb(0,0,0); 
-          background-color: rgba(0,0,0,0.4);
-        }
-        
-        .modal-content {
-          background-color: #fefefe;
-          margin: 15% auto; 
-          padding: 20px;
-          border: 1px solid #888;
-          width: 80%; 
-        }
-        
-        .close {
-          color: #aaa;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
-        }
-        
-        .close:hover,
-        .close:focus {
-          color: black;
-          text-decoration: none;
-          cursor: pointer;
-        }
-    </style>
+    <link href="../css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <div id="privacy-policy-modal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Your privacy policy text goes here.</p>
-          <button id="accept-policy">Accept</button>
-          <button id="decline-policy">Decline</button>
-        </div>
-      </div>
-  
-      <script>
-        const modal = document.getElementById("privacy-policy-modal");
-        const acceptBtn = document.getElementById("accept-policy");
-        const declineBtn = document.getElementById("decline-policy");
-        const span = document.getElementsByClassName("close")[0];
-        
-        if (!localStorage.getItem("policyAccepted")) {
-        modal.style.display = "block";
-      }
-        
-        acceptBtn.onclick = function() {
-          localStorage.setItem("policyAccepted", true);
-          modal.style.display = "none";
-        }
-        
-        declineBtn.onclick = function() {
-          modal.style.display = "none";
-        }
-        
-        span.onclick = function() {
-          modal.style.display = "none";
-        }
-        
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-      </script>
-      
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="admin_index.php" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -128,14 +53,13 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="reservation.html" class="nav-item nav-link">Reserve</a>
-                    <a href="about.html" class="nav-item nav-link">About us</a>
+                    <a href="admin_index.php" class="nav-item nav-link active">Home</a>
+                    <a href="admin_reservations.php" class="nav-item nav-link">Reservations</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
                         <div class="dropdown-menu text-capitalize">
-                            <a href="login.php" class="dropdown-item">Log In</a>
-                            <a href="signup.php" class="dropdown-item">Sign Up</a>
+                            <a href="admin_user.php" class="dropdown-item">Account</a>
+                            <a href="../logout.php" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                     
