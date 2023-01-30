@@ -23,7 +23,7 @@ if (!isset($_SESSION["userid"]) || $_SESSION["userid"] !== true) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Hello, <strong><?php echo $_SESSION["name"]; ?></strong>. Welcome to demo site.</h1>
+                    <h1>Hello, <strong><?php echo $_SESSION["name"]; ?></strong>. Welcome to Ski I.P.</h1>
                 </div>
                 <p>
                     <a href="logout.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Log Out</a>
