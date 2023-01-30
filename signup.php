@@ -139,7 +139,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
                         <div class="dropdown-menu text-capitalize">
                             <a href="login.html" class="dropdown-item">Login</a>
-                            <a href="/Pagina's/signup.php" class="dropdown-item active">Signup</a>
+                            <a href="signup.php" class="dropdown-item active">Signup</a>
                         </div>
                     </div>
                     
@@ -245,10 +245,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
 
-<script>
+<script language="JavaScript">
 
-
-  
 // Get the password input field
 var password = document.getElementById("Password");
 
@@ -275,6 +273,6 @@ password.addEventListener("input", function() {
         password.setCustomValidity("");
     }
   });
-  </script> 
+</script> 
 </body>
 </html>
