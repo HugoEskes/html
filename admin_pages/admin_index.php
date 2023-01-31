@@ -4,8 +4,6 @@
     // User is not logged in, redirect to login page with a flag indicating the user was not logged in
     header('Location: ../admin_login.php?not_logged_in=1');
   }
-
-  echo "<script>alert('Welcome, " . $_SESSION['naam'] . "!');</script>";
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +30,7 @@
     <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="../css/style.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -49,14 +48,8 @@
                     <a href="admin_index.php" class="nav-item nav-link active">Home</a>
                     <a href="admin_reservations.php" class="nav-item nav-link">Reservations</a>
                     <a href="admin_users.php" class="nav-item nav-link">Other users</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
-                        <div class="dropdown-menu text-capitalize">
-                            <a href="admin_user.php" class="dropdown-item">Account</a>
-                            <a href="../php/logout.php" class="dropdown-item">Logout</a>
-                        </div>
-                    </div>
-                    
+                    <a href="admin_account.php" class="nav-item nav-link">Account</a>
+                    <a href="../php/logout.php" class="nav-item nav-link">Logout</a>
                 </div>
             </div>
         </nav>
