@@ -30,46 +30,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       } 
     }
 
-    // Checken of de gebruikernaam al bestaat
-    function username_available($connection, $username) {
-      $sql = "Select * from gebruikers where gebruikersnaam='$username'";
-      $result = mysqli_query($connection, $sql);
-      $num = mysqli_num_rows($result);
-  
-      if($num!=0)
-        {
-        return false;
-        }
-      }
-  
-  
-    // Checken of het email al in gebruik is
-    function email_available($connection, $email) {
-      $sql = "Select * from gebruikers where email='$email'";
-      $result = mysqli_query($connection, $sql);
-      $num = mysqli_num_rows($result);
-  
-      if($num!=0)
-        {
-        return false;
-        }
-        }
-
-      if(isset($_POST["email"])) {
-        $email = $_POST["email"];
-        $sql = "Select * from gebruikers where email='$email'";
-        $result = mysqli_query($connection, $sql);
-        $num = mysqli_num_rows($result);
-    
-        if($num!=0)
-          {
-          echo false;
-          }
-          
-        else{
-          echo true;
-        }
-      }
   // Alle informatie ophalen
   $firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
   $lastname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['lastname']));
@@ -78,8 +38,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
   $cpassword = mysqli_real_escape_string($connection, htmlspecialchars($_POST['cpassword']));
 
+  // Checken of de gebruikernaam al bestaat
+  $sql = "Select * from gebruikers where gebruikersnaam='$username'";
+  $result = mysqli_query($connection, $sql);
+  $num = mysqli_num_rows($result);
+
+  if($num!=0)
+    {
+    alert("Username not available");
+    $usernamecorrect = false;
+    }
+
+
+  // Checken of het email al in gebruik is
+  $sql = "Select * from gebruikers where email='$email'";
+  $result = mysqli_query($connection, $sql);
+  $num = mysqli_num_rows($result);
+
+  if($num!=0)
+    {
+    alert("This emailaddress is already in use");
+    $emailcorrect = false;
+    }
+
+  // checken of de wachtwoorden overeen komen
+  if($password != $cpassword)
+  {
+    alert("Passwords don't match");
+    $passwordsmatch = false;
+  }
+
   // Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
-  if($usernamecorrect && $emailcorrect)
+  //
+  if($usernamecorrect && $emailcorrect && $passwordsmatch)
     {
     // wachtwoord versleutelen
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -89,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_query($connection, $sql);
 
     // gebruiker naar homepagina sturen
-    alert("Je account is aangemaakt!");
+    alert("Your account has been created!");
     header("Location: login.php");
     }
 
@@ -126,7 +117,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <!-- Navbar Start -->
-
 <div class="container-fluid p-0 nav-bar">
     <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
         <a href="index.html" class="navbar-brand px-lg-4 m-0">
@@ -139,9 +129,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="navbar-nav ml-auto p-4">
                 <a href="index.html" class="nav-item nav-link">Home</a>
                 <a href="reservation.html" class="nav-item nav-link">Reserve</a>
-                <a href="about.html" class="nav-item nav-link">About us</a>
-                <a href="login.php" class="dropdown-item">Login</a>
-                <a href="signup.php" class="dropdown-item active">Signup</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
+                    <div class="dropdown-menu text-capitalize">
+                        <a href="login.php" class="dropdown-item">Log In</a>
+                        <a href="signup.php" class="dropdown-item active">Sign Up</a>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </nav>
@@ -151,11 +147,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Signup</h1>
+        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Sign Up</h1>
         <div class="d-inline-flex mb-lg-5">
             <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
             <p class="m-0 text-white px-2">/</p>
-            <p class="m-0 text-white">Signup</p>
+            <p class="m-0 text-white">Sign Up</p>
         </div> 
     </div>
 </div>
@@ -201,7 +197,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
           </div>
-          <p>Already have an account? <a href="login.php">Login here</a></p>
+          <p>Already have an account? <a href="login.php">Log in here</a></p>
         </form>
       </div>
     </div>
@@ -294,16 +290,6 @@ password.addEventListener("input", function() {
     }
   });
 
-  $.ajax({
-  type: "POST",
-  url: "signup.php",
-  data: {email: "John"},
-  success: function(response) {
-    var email_result = response;
-  }
-  });
-
-
 // Get the email input field
 var email = document.getElementById("email");
 
@@ -316,9 +302,6 @@ email.addEventListener("input", function() {
     if (validateEmail(emailValue) == false) {
         // Email is not valid
         email.setCustomValidity("Please use a valid Email address");
-    } else if (!email_result) {
-        // Email is already in use
-        email.setCustomValidity("This email is already in use.");
     } else {
         // Email is valid
         email.setCustomValidity("");
