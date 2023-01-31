@@ -11,7 +11,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_assoc($result);
     
-    if empty($result) {
+    if (empty($result)) {
         echo 'Login failed. Email not in our system.';
     }
     // Check if email and password match
