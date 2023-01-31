@@ -59,11 +59,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["gebruikerID"] = $id;
-                            $_SESSION["gebruikersnaam"] = $username; 
+                            $_SESSION["username"] = $username; 
                             $_SESSION["admin"] = false;                        
                             
                             // Redirect user to welcome page
-                            header("location: loggedin-index.php");
+                            header("location: php/loggedin-index.php");
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
