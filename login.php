@@ -1,7 +1,20 @@
 <?php
+
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
+  // User is not logged in, redirect to login page with a flag indicating the user was not logged in
+  header('location: loggedin-index.php');
+}
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
+ // User is not logged in, redirect to login page with a flag indicating the user was not logged in
+ header('Location: adminpages/admin_index.php');
+}
+
+
 require_once 'php/connection.php';
 require_once "php/session.php";
  
+
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
