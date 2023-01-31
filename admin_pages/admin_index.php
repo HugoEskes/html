@@ -4,8 +4,6 @@
     // User is not logged in, redirect to login page with a flag indicating the user was not logged in
     header('Location: ../admin_login.php?not_logged_in=1');
   }
-
-  echo "<script>alert('Welcome, " . $_SESSION['naam'] . "!');</script>";
 ?>
 
 <!DOCTYPE html>
