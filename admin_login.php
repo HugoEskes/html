@@ -111,7 +111,7 @@ mysqli_close($connection);
             <h2>Admin Login</h2>
             <p>Please fill in your email and password.</p>
             <form action="admin_login.php" method="post" onsubmit="return validateForm()">
-                <div class="form-group">
+                
                     <label>Email Address</label>
                     <input type="email" id='email' name="email" >
                 </div>
