@@ -113,12 +113,12 @@ mysqli_close($connection);
                     <form action="admin_login.php" method="post" onsubmit="return validateForm()">
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" name="email" required />
+                            <input type="email" name="email" class="form-control" data-validation-required-message="Please enter your email" required />
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" required>
+                            <input type="password" name="password" class="form-control" data-validation-required-message="Please enter your password" required>
                         </div>
                         <br>
                         <div class="form-group">
