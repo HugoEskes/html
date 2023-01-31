@@ -183,7 +183,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           <br>
           <div class="form-group">
             <label>E-mail Address</label>
-            <input type="text" id="Email" name="email" class="form-control" required>
+            <input type="text" id="email" name="email" class="form-control" required>
           </div>
           <br>
           <div class="form-group">
@@ -264,6 +264,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <script language="JavaScript">
 
+function validateEmail(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
 // Get the password input field
 var password = document.getElementById("Password");
 
@@ -288,6 +293,25 @@ password.addEventListener("input", function() {
     } else {
         // Password is valid
         password.setCustomValidity("");
+    }
+  });
+
+// Get the email input field
+var email = document.getElementById("email");
+
+// Listen for changes to the email field
+email.addEventListener("input", function() {
+    // Get the email value
+    var emailValue = email.value;
+
+    // Check the email against validation rules
+    if (validateEmail == false) {
+        // Email is not valid
+        email.setCustomValidity("Please use a valid Email address");
+    } else {
+        // Email is valid
+        email.setCustomValidity("");
+    
     }
   });
 </script> 
