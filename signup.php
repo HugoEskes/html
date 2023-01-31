@@ -5,31 +5,24 @@ $usernamecorrect = true;
 $passwordsmatch = true;
 $passwordstrong = true;
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST") 
+{
   include "php/connection.php";
 
   // alert functie aanmaken
-  function alert($msg) 
-    {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-    }
+  if(isset($_POST["name"]) && isset($_POST["age"])) 
+  {
+    $email = $_POST["email"];
+    $sql = "Select * from gebruikers where email='$email'";
+    $result = mysqli_query($connection, $sql);
+    $num = mysqli_num_rows($result);
 
-  function password_strength_test($password)
-    {
-    $uppercase    = preg_match('@[A-Z]@', $password);
-    $lowercase    = preg_match('@[a-z]@', $password);
-    $number       = preg_match('@[0-9]@', $password);
-
-    if (!$uppercase || !$lowercase || !$number || strlen($password) < 8) 
+    if($num!=0)
       {
-      return false;
+      echo true;
       }
-    else 
-      {
-      return true;
-      } 
-    }
-
+  }
+  
   // Alle informatie ophalen
   $firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
   $lastname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['lastname']));
@@ -45,26 +38,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if($num!=0)
     {
-    alert("Username not available");
     $usernamecorrect = false;
-    }
-
-
-  // Checken of het email al in gebruik is
-  $sql = "Select * from gebruikers where email='$email'";
-  $result = mysqli_query($connection, $sql);
-  $num = mysqli_num_rows($result);
-
-  if($num!=0)
-    {
-    alert("This emailaddress is already in use");
-    $emailcorrect = false;
     }
 
   // checken of de wachtwoorden overeen komen
   if($password != $cpassword)
   {
-    alert("Passwords don't match");
     $passwordsmatch = false;
   }
 
@@ -80,11 +59,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_query($connection, $sql);
 
     // gebruiker naar homepagina sturen
-    alert("Your account has been created!");
     header("Location: login.php");
     }
 
-} 
+}
 ?>
 
 <!DOCTYPE html>
