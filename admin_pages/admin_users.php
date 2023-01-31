@@ -75,35 +75,7 @@
 </div>
 <!-- Navbar End -->
 
-<?php
 
-require_once '..\php\connection.php';
-// Check connection
-if (!$connection) {
-   die("Connection failed: " . mysqli_connect_error());
-}
-
-// Select query
-$select_query = "SELECT * FROM gebruikers";
-$result = mysqli_query($connection, $select_query);
-
-echo "<table>";
-echo "<tr><th>ID</th><th>Name</th><th>Email</th></tr>";
-
-// Loop through the result set
-while ($row = mysqli_fetch_assoc($result)) {
- echo "<tr>";
- echo "<td>" . $row['gebruikerID'] . "</td>";
- echo "<td>" . $row['gebruikersnaam'] . "</td>";
- echo "<td>" . $row['email'] . "</td>";
- echo "</tr>";
-}
-
-echo "</table>";
-
-// Close the database connection
-mysqli_close($connection);
-?>
 
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
@@ -118,6 +90,43 @@ mysqli_close($connection);
 </div>
 <!-- Page Header End -->
 
+<?php
+
+require_once '../php/connection.php';
+// Check connection
+if (!$connection) {
+   die("Connection failed: " . mysqli_connect_error());
+}
+
+// Select query
+$select_query = "SELECT * FROM gebruikers";
+$result = mysqli_query($connection, $select_query);
+
+echo "<table>";
+echo "<tr><th>ID</th><th>Name</th><th>Email</th><th>Action</th></tr>";
+
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<tr>";
+  echo "<td>" . $row['gebruikerID'] . "</td>";
+  echo "<td>" . $row['gebruikersnaam'] . "</td>";
+  echo "<td>" . $row['email'] . "</td>";
+  echo "<td>";
+  echo "<form action='edit.php' method='post'>";
+  echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
+  echo "<input type='text' name='name' value='" . $row['gebruikersnaam'] . "'>";
+  echo "<input type='text' name='email' value='" . $row['email'] . "'>";
+  echo "<input type='submit' name='edit' value='Edit'>";
+  echo "</form>";
+  echo "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+// Close the database connection
+mysqli_close($connection);
+?>
 
 <!-- Footer Start -->
 <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">

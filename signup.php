@@ -7,7 +7,6 @@ $passwordstrong = true;
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   include "php/connection.php";
-  include "php/config.php";
 
   // alert functie aanmaken
   function alert($msg) 
