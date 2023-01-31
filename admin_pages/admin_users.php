@@ -108,7 +108,7 @@ echo "<tr><th>ID</th><th>Name</th><th>Email</th><th>Action</th></tr>";
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
-  echo "<td>" . $row['gebruikersID'] . "</td>";
+  echo "<td>" . $row['gebruikerID'] . "</td>";
   echo "<td>" . $row['gebruikersnaam'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
   echo "<td>";
