@@ -40,7 +40,6 @@
         border-collapse: collapse;
         align-items: center;
         margin: 0 auto;
-        width: 100%;
         height: 100%;
       }
       th, td {
