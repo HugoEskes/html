@@ -38,6 +38,7 @@
       table, th, td {
         border: 1px solid black;
         border-collapse: collapse;
+        align: center;
       }
       th, td {
         padding: 5px;
