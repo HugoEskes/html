@@ -40,7 +40,6 @@
         border-collapse: collapse;
         align-items: center;
         margin: 0 auto;
-        width: 100%;
         height: 100%;
       }
       th, td {
@@ -70,14 +69,8 @@
                 <a href="admin_index.php" class="nav-item nav-link">Home</a>
                 <a href="admin_reservations.php" class="nav-item nav-link">Reservations</a>
                 <a href="admin_users.php" class="nav-item nav-link active">Other users</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
-                    <div class="dropdown-menu text-capitalize">
-                        <a href="admin_user.php" class="dropdown-item">Account</a>
-                        <a href="../php/logout.php" class="dropdown-item">Logout</a>
-                    </div>
-                </div>
-                
+                <a href="admin_account.php" class="nav-item nav-link">Account</a>
+                <a href="../php/logout.php" class="nav-item nav-link">Logout</a>
             </div>
         </div>
     </nav>

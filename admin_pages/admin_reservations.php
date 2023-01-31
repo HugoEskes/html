@@ -33,33 +33,27 @@
 </head>
 
 <body>
-    <!-- Navbar Start -->
-    <div class="container-fluid p-0 nav-bar">
-        <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="admin_index.php" class="navbar-brand px-lg-4 m-0">
-                <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
-            </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav ml-auto p-4">
-                    <a href="admin_index.php" class="nav-item nav-link">Home</a>
-                    <a href="admin_reservations.php" class="nav-item nav-link active">Reservations</a>
-                    <a href="admin_users.php" class="nav-item nav-link">Other users</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
-                        <div class="dropdown-menu text-capitalize">
-                            <a href="admin_user.php" class="dropdown-item">Account</a>
-                            <a href="../php/logout.php" class="dropdown-item">Logout</a>
-                        </div>
-                    </div>
-                    
-                </div>
+<!-- Navbar Start -->
+<div class="container-fluid p-0 nav-bar">
+    <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+        <a href="admin_index.php" class="navbar-brand px-lg-4 m-0">
+            <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto p-4">
+                <a href="admin_index.php" class="nav-item nav-link">Home</a>
+                <a href="admin_reservations.php" class="nav-item nav-link active">Reservations</a>
+                <a href="admin_users.php" class="nav-item nav-link">Other users</a>
+                <a href="admin_account.php" class="nav-item nav-link">Account</a>
+                <a href="../php/logout.php" class="nav-item nav-link">Logout</a>
             </div>
-        </nav>
-    </div>
-    <!-- Navbar End -->
+        </div>
+    </nav>
+</div>
+<!-- Navbar End -->
 
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
