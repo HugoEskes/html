@@ -5,28 +5,24 @@
     die("Connection failed: " . mysqli_connect_error());
   }
   
-
-  if (isset($_POST['gebruikers'])) {
+  if (isset($_POST['delete'])) {
     // Get the form data
     $id = $_POST['gebruikerID'];
-    $name = $_POST['gebruikersnaam'];
-    $email = $_POST['email'];
     
-    // Update query
-    $update_query = "UPDATE gebruikers SET gebruikersnaam='$name', email='$email' WHERE gebruikerID='$id'";
-    $result = mysqli_query($connection, $update_query);
+    // Delete query
+    $delete_query = "DELETE FROM gebruikers WHERE gebruikerID='$id'";
+    $result = mysqli_query($connection, $delete_query);
     
-    // Check if update was successful
+    // Check if delete was successful
     if ($result) {
       // Redirect the user back to the main page
       header('Location: admin_users.php');
       exit;
     } else {
-      echo "Error updating record: " . mysqli_error($connection);
+      echo "Error deleting record: " . mysqli_error($connection);
     }
   }
   
   // Close the database connection
   mysqli_close($connection);
-  
-  ?>
+?>
