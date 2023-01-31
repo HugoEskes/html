@@ -1,7 +1,7 @@
 <?php
 require_once 'php/connection.php';
 require_once "php/session.php";
-// include 'php/admin-rights.php'; 
+
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));

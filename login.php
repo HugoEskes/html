@@ -20,11 +20,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Check if email and password match
-    if ($row['email'] == $email && $row['wachtwoord'] == $hashed_password) {
+    if ($row['email'] == $email && password_verify($hashed_password, $row['wachtwoord'])) {
     // Login success
     // Start a session and store the user's information
     session_start();
-    $_SESSION['gebruikersID'] = $row['gebruikersID'];
+    $_SESSION['gebruikerID'] = $row['gebruikerID'];
     $_SESSION['gebruikersnaam'] = $row['gebruikersnaam'];
     $_SESSION['email'] = $row['email'];
     $_SESSION['admin'] = False;
