@@ -264,6 +264,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <script language="JavaScript">
 
+// functie voor het checken of de email kan kloppen ('tekst'@'tekst'.'kleine tekst')
 function validateEmail(email) {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
@@ -305,7 +306,7 @@ email.addEventListener("input", function() {
     var emailValue = email.value;
 
     // Check the email against validation rules
-    if (validateEmail == false) {
+    if (validateEmail == true) {
         // Email is not valid
         email.setCustomValidity("Please use a valid Email address");
     } else {
