@@ -118,9 +118,9 @@ if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="reservation.html" class="nav-item nav-link">Reserve</a>
-                    <a href="about.html" class="nav-item nav-link">About us</a>
+                    <a href="index.php" class="nav-item nav-link active">Home</a>
+                    <a href="reservation.php" class="nav-item nav-link">Reserve</a>
+                    <a href="about.php" class="nav-item nav-link">About us</a>
                     <a href="login.php" class="nav-item nav-link">Log In</a>
                     <a href="signup.php" class="nav-item nav-link">Sign Up</a>
                 </div>

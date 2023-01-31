@@ -1,9 +1,20 @@
+<?php
+session_start();
+if (isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == true) {
+    // User is logged in, redirect to loggedin about page
+    header('Location: loggedin-about.php');
+  }
+if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
+    // User is logged in, redirect to admin index page
+    header('Location: admin_pages/admin_index.php');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>About</title>
+    <title>About us</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -53,11 +64,11 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
         <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">About</h1>
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">About us</h1>
             <div class="d-inline-flex mb-lg-5">
                 <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
                 <p class="m-0 text-white px-2">/</p>
-                <p class="m-0 text-white">About</p>
+                <p class="m-0 text-white">About us</p>
             </div>
         </div>
     </div>
