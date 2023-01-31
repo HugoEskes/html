@@ -8,6 +8,6 @@ session_start();
 echo "<script>alert('Welcome, " . $_SESSION['naam'] . "!');</script>";
 
 
-header('refresh:2; url=admin_index.php');
+header('refresh:0.5; url=admin_index.php');
 
 ?>
