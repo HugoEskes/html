@@ -38,11 +38,16 @@
       table, th, td {
         border: 1px solid black;
         border-collapse: collapse;
+        align: center;
       }
       th, td {
         padding: 5px;
         text-align: left;
       }
+      .dropdown:hover {
+        display: block;
+      }
+
     </style>
 </head>
 
@@ -80,11 +85,11 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">All Reservations</h1>
+        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">All Users</h1>
         <div class="d-inline-flex mb-lg-5">
             <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
             <p class="m-0 text-white px-2">/</p>
-            <p class="m-0 text-white">All Reservations</p>
+            <p class="m-0 text-white">All Users</p>
         </div>
     </div>
 </div>
@@ -93,6 +98,7 @@
 <?php
 
 require_once '../php/connection.php';
+
 // Check connection
 if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
@@ -112,11 +118,9 @@ while ($row = mysqli_fetch_assoc($result)) {
   echo "<td>" . $row['gebruikersnaam'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
   echo "<td>";
-  echo "<form action='edit.php' method='post'>";
+  echo "<form action='delete.php' method='post'>";
   echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
-  echo "<input type='text' name='name' value='" . $row['gebruikersnaam'] . "'>";
-  echo "<input type='text' name='email' value='" . $row['email'] . "'>";
-  echo "<input type='submit' name='edit' value='Edit'>";
+  echo "<input type='submit' name='delete' value='Delete'>";
   echo "</form>";
   echo "</td>";
   echo "</tr>";
@@ -126,6 +130,7 @@ echo "</table>";
 
 // Close the database connection
 mysqli_close($connection);
+
 ?>
 
 <!-- Footer Start -->
