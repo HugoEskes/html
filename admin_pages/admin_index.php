@@ -50,13 +50,14 @@
                     <a href="admin_reservations.php" class="nav-item nav-link">Reservations</a>
                     <a href="admin_users.php" class="nav-item nav-link">Other users</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
-                        <div class="dropdown-menu text-capitalize">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Ski. I. P.
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a href="admin_user.php" class="dropdown-item">Account</a>
                             <a href="../php/logout.php" class="dropdown-item">Logout</a>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </nav>
