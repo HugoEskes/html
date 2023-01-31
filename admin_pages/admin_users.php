@@ -44,6 +44,10 @@
         padding: 5px;
         text-align: left;
       }
+      .dropdown:hover {
+        display: block;
+      }
+
     </style>
 </head>
 
