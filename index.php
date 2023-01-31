@@ -6,7 +6,7 @@
   }
 if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
     // User is logged in, redirect to admin index page
-    header('Location: admin-pages/admin_index.php');
+    header('Location: admin_pages/admin_index.php');
   }
 ?>
 <!DOCTYPE html>
