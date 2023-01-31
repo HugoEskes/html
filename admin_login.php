@@ -106,12 +106,12 @@ mysqli_close($connection);
 
 <!-- Login page Start -->
 <div class="container">
-    <div class="row">
+
         <div class="col-md-12">
             <h2>Admin Login</h2>
             <p>Please fill in your email and password.</p>
             <form action="admin_login.php" method="post" onsubmit="return validateForm()">
-                
+                <div class="form-group">
                     <label>Email Address</label>
                     <input type="email" id='email' name="email" >
                 </div>
@@ -128,7 +128,7 @@ mysqli_close($connection);
                 <p>Not an admin?<a href="login.php"> Login here</a></p>
             </form>
         </div>
-    </div>
+    
 </div> 
 <!-- Login page end -->
 
