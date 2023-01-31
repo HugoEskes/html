@@ -24,6 +24,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['naam'] = $row['naam'];
     $_SESSION['email'] = $row['email'];
     $_SESSION['admin'] = true;
+    $_SESSION['logged_in'] = true;
     
     // Redirect to the welcome page
     header("Location: admin_pages/welcome.php");
