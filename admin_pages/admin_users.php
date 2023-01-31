@@ -77,7 +77,7 @@
 
 <?php
 
-require_once '..\php\connection.php'
+require_once '..\php\connection.php';
 // Check connection
 if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
