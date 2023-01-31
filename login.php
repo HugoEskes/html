@@ -16,11 +16,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         echo 'Login failed. Email not in our system.';
     }
 
-    //wachtwordt versleutelend
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
     // Check if email and password match
-    if ($row['email'] == $email && password_verify($hashed_password, $row['wachtwoord'])) {
+    if ($row['email'] == $email && password_verify($password, $row['wachtwoord'])) {
     // Login success
     // Start a session and store the user's information
     session_start();
