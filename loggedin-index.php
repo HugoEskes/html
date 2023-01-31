@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  // User is not logged in, redirect to login page with a flag indicating the user was not logged in
+  header('Location: login.php?not_logged_in=1');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,11 +110,11 @@
           }
         }
       </script>
-    
+      
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="loggedin-index.html" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -113,14 +122,15 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="reservation.html" class="nav-item nav-link">Reserve</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="loggedin-index.php" class="nav-item nav-link active">Home</a>
+                    <a href="loggedin-reservation.php" class="nav-item nav-link">Reserve</a>
+                    <a href="loggedin-about.php" class="nav-item nav-link">About us</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
                         <div class="dropdown-menu text-capitalize">
-                            <a href="login.php" class="dropdown-item">Log In</a>
-                            <a href="signup.php" class="dropdown-item">Sign Up</a>
+                            <a href="loggedin-account.html" class="dropdown-item">Account</a>
+                            <a href="loggedin-myreservations.php" class="dropdown-item">My Reservations</a>
+                            <a href="php/logout.php" class="dropdown-item">Log out</a>
                         </div>
                     </div>
                     
@@ -129,7 +139,6 @@
         </nav>
     </div>
     <!-- Navbar End -->
-    
 
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5">
@@ -160,36 +169,36 @@
     </div>
     <!-- Carousel End -->
 
-    <!-- Quick links Start -->
-<div class="container-fluid py-5">
-    <div class="container">
-        <div class="section-title">
-            <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;"></h4>
-            <h1 class="display-4 text text-primary">Quick links</h1>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 py-0 py-lg-5">
-                <h5 class="mb-3">Oprah Winfrey once said: 'Skiing is the next best thing to having wings'</h5>
-                <p>We have to disagree with her on that. There is only one thing better than skiing, and it's the long invigorating journey up the mountain in one of our gondola's. </p>
-                <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Unique views</h5>
-                <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Front row seat on the slopes</h5>
-                <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Time seems to fly</h5>
-                <a href="/reservation.html" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Reserve your place now!</a>
-            </div>
-            <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
-                <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100" src="img/matterhorn.png" style="object-fit: cover;">
-                </div>
-            </div>
-            <div class="col-lg-4 py-0 py-lg-5">
-                <h5 class="mb-3">If you want to lift yourself up, lift up someone else!</h5>
-                <p>It is our mission to make skiing a more pleasant experience for you. We strive for the best and nothing less. Go straight to our about page to learn more.</p>
-                <a href="/about.html" class="btn btn-primary font-weight-bold py-2 px-4 mt-2">Get to know us and our quest</a>
-            </div>
-        </div>
-    </div>
-</div>
-  <!-- Quick links End -->
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+      <div class="container">
+          <div class="section-title">
+              <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;"></h4>
+              <h1 class="display-4 text text-primary">Quick links</h1>
+          </div>
+          <div class="row">
+              <div class="col-lg-4 py-0 py-lg-5">
+                  <h5 class="mb-3">Oprah Winfrey once said: 'Skiing is the next best thing to having wings'</h5>
+                  <p>We have to disagree with her on that. There is only one thing better than skiing, and it's the long invigorating journey up the mountain in one of our gondola's. </p>
+                  <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Unique views</h5>
+                  <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Front row seat on the slopes</h5>
+                  <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Time seems to fly</h5>
+                  <a href="" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Reserve your place now!</a>
+              </div>
+              <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
+                  <div class="position-relative h-100">
+                      <img class="position-absolute w-100 h-100" src="img/matterhorn.png" style="object-fit: cover;">
+                  </div>
+              </div>
+              <div class="col-lg-4 py-0 py-lg-5">
+                  <h5 class="mb-3">If you want to lift yourself up, lift up someone else!</h5>
+                  <p>It is our mission to make skiing a more pleasant experience for you. We strive for the best and nothing less. Go straight to our about page to learn more.</p>
+                  <a href="" class="btn btn-primary font-weight-bold py-2 px-4 mt-2">Get to know us and our quest</a>
+              </div>
+          </div>
+      </div>
+  </div>
+    <!-- About End -->
 
 
     <!-- Service Start -->
@@ -302,4 +311,3 @@
 </body>
 
 </html>
-

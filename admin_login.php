@@ -1,97 +1,43 @@
-<?php 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
-}
- 
-// Include config file and connection
-require_once "php/config.php";
+<?php
+require_once 'php/connection.php';
 require_once "php/session.php";
- 
-// Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Check if username is empty
-    if(empty(trim($_POST["gebruikersnaam"]))){
-        $username_err = "Please enter username.";
-    } else{
-        $username = trim($_POST["username"]);
-    }
-    
-    // Check if password is empty
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    
-    // Validate credentials
-    if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
-        $sql = "SELECT id, username, password FROM gebruikers WHERE gebruikersnaam = ?";
-        
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            
-            // Set parameters
-            $param_username = $username;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Store result
-                mysqli_stmt_store_result($stmt);
-                
-                // Check if username exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                    if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
-                            session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["gebruikerID"] = $id;
-                            $_SESSION["gebruikersnaam"] = $username; 
-                            $_SESSION["admin"] = false;                        
-                            
-                            // Redirect user to welcome page
-                            header("location: loggedin-index.php");
-                        } else{
-                            // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password.";
-                        }
-                    }
-                } else{
-                    // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password.";
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
 
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
-    }
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
+    $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
     
-    // Close connection
-    mysqli_close($link);
+    // Retrieve user information from the "admins" table
+    $sql = "SELECT * FROM admins WHERE email='$email'";
+    $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($result);
+    
+    // Check if email and password match
+    if ($row['email'] == $email && $row['wachtwoord'] == $password) {
+    // Login success
+    // Start a session and store the user's information
+    session_start();
+    $_SESSION['adminID'] = $row['adminID'];
+    $_SESSION['naam'] = $row['naam'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['admin'] = true;
+    
+    // Redirect to the welcome page
+    header("Location: admin_pages/admin_index.php");
+    } else {
+    // Login failed
+    // Display an error message
+    echo "Login failed. Email or password is incorrect.";
+    }
 }
+
+mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Admin Login</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -131,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
                         <div class="dropdown-menu text-capitalize">
-                            <a href="login.php" class="dropdown-item active">Login</a>
+                            <a href="login.php" class="dropdown-item">Login</a>
                             <a href="signup.php" class="dropdown-item">Signup</a>
                         </div>
                     </div>
@@ -145,11 +91,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Login</h1>
+        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Admin Login</h1>
         <div class="d-inline-flex mb-lg-5">
             <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
             <p class="m-0 text-white px-2">/</p>
-            <p class="m-0 text-white">Login</p>
+            <p class="m-0 text-white">Admin Login</p>
         </div> 
     </div>
 </div>
@@ -159,9 +105,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Login</h2>
+                    <h2>Admin Login</h2>
                     <p>Please fill in your email and password.</p>
-                    <form action="login.php" method="post">
+                    <form action="admin_login.php" method="post" onsubmit="return validateForm()">
                         <div class="form-group">
                             <label>Email Address</label>
                             <input type="email" name="email" class="form-control" required />
@@ -176,7 +122,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                         </div>
                         <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
-                        <p>Are you an admin? <a href="admin_login.php"> Login here</a></p>
+                        <p>Not an admin?<a href="login.php"> Login here</a></p>
                     </form>
                 </div>
             </div>
@@ -239,6 +185,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   }
 </script>
 
+<script>
+// Validate the form data before submitting to the server.
+function validateForm() {
+var email = document.forms["loginForm"]["email"].value;
+var password = document.forms["loginForm"]["wachtwoord"].value;
+
+// Check if email and password are filled
+if (email == "" || password == "") {
+    alert("Email and password are required.");
+    return false;
+}
+return true;
+}
+</script>
+
 </body>
 </html>
-
