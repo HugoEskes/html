@@ -105,7 +105,7 @@ mysqli_close($connection);
 <!-- Page Header End -->
 
 <!-- Login page Start -->
-
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <h2>Admin Login</h2>
@@ -129,7 +129,7 @@ mysqli_close($connection);
             </form>
         </div>
     </div>
-
+</div> 
 <!-- Login page end -->
 
 <!-- Footer Start -->
