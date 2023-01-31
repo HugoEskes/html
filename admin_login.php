@@ -13,7 +13,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $row = mysqli_fetch_assoc($result);
     
     if (empty($result)) {
-        echo 'Login failed. Email not in our system.';
+        echo "<script>alert(Login failed. Email not in our system.)</script>";
     }
     // Check if email and password match
     if ($row['email'] == $email && $row['wachtwoord'] == $password) {
@@ -28,10 +28,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     
     // Redirect to the welcome page
     header("Location: admin_pages/welcome.php");
-    } else {
+    } 
+    else {
     // Login failed
     // Display an error message
-    echo "Login failed. Email or password is incorrect.";
+    echo "<script>alert(Login failed. Email or password is incorrect.)</script>";
     }
 }
 
