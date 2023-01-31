@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close('/var/www/html/login.php');
+    mysqli_close($link);
 }
 ?>
 
