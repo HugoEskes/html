@@ -27,7 +27,7 @@
     <style>
         .modal {
           display: none; 
-          position: relative; 
+          position: fixed; 
           z-index: 2; 
           left: 0;
           top: 0;
@@ -65,39 +65,30 @@
 <body>
     <div id="privacy-policy-modal" class="modal">
         <div class="modal-content">
-          <span class="close">&times;</span>
+          
           <p>Your privacy policy text goes here.</p>
           <button id="accept-policy">Accept</button>
-          <button id="decline-policy">Decline</button>
+          
         </div>
       </div>
   
       <script>
         const modal = document.getElementById("privacy-policy-modal");
         const acceptBtn = document.getElementById("accept-policy");
-        const declineBtn = document.getElementById("decline-policy");
-        const span = document.getElementsByClassName("close")[0];
+
         
         
+        modal.style.display = "block";
+      
         
         acceptBtn.onclick = function() {
           localStorage.setItem("policyAccepted", true);
           modal.style.display = "none";
         }
         
-        declineBtn.onclick = function() {
-          modal.style.display = "none";
-        }
         
-        span.onclick = function() {
-          modal.style.display = "none";
-        }
         
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
+        
       </script>
       
     <!-- Navbar Start -->
