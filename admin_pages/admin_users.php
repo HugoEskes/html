@@ -1,25 +1,14 @@
 <?php
   session_start();
+  
   if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
     // User is not logged in, redirect to login page with a flag indicating the user was not logged in
     header('Location: ../admin_login.php?not_logged_in=1');
 }
-require_once 'php/connection.php';
-require_once "php/session.php";
-    // Check connection
-if (!$connection) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-// Select all users
-$sql = "SELECT * FROM gebruikers";
-$result = mysqli_query($connection, $sql);
-
-// Fetch the result set as an associative array
-$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-
 ?>
+    
+ 
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +34,16 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 <link href="../css/style.min.css" rel="stylesheet">
+<style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 5px;
+        text-align: left;
+      }
+    </style>
 </head>
 
 <body>
@@ -76,6 +75,37 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </div>
 <!-- Navbar End -->
 
+<?php
+// Connect to the database
+$db = mysqli_connect('localhost', 'hugoe', 'EDNZxAfEptklmtplrOmgeGquRAuvhNHw', 'gebruikers');
+
+// Check connection
+if (!$db) {
+   die("Connection failed: " . mysqli_connect_error());
+}
+
+// Select query
+$select_query = "SELECT * FROM gebruikers";
+$result = mysqli_query($db, $select_query);
+
+echo "<table>";
+echo "<tr><th>ID</th><th>Name</th><th>Email</th></tr>";
+
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result)) {
+ echo "<tr>";
+ echo "<td>" . $row['id'] . "</td>";
+ echo "<td>" . $row['name'] . "</td>";
+ echo "<td>" . $row['email'] . "</td>";
+ echo "</tr>";
+}
+
+echo "</table>";
+
+// Close the database connection
+mysqli_close($db);
+?>
+
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
@@ -89,49 +119,6 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </div>
 <!-- Page Header End -->
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($users as $user): ?>
-      <tr>
-        <td><?php echo $user['gebruikerID']; ?></td>
-        <td><?php echo $user['gebruikersnaam']; ?></td>
-        <td><?php echo $user['email']; ?></td>
-        <td>
-          <button onclick="deleteUser(<?php echo $user['gebruikerID']; ?>)">Delete</button>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
-
-<td>
-  <button onclick="deleteUser(<?php echo $user['id']; ?>)">Delete</button>
-</td>
-
-<?php
-if (isset($_POST['gebruikersID'])) {
-  $id = $_POST['gebruikersID'];
-
-  // Delete the user
-  $sql = "DELETE FROM gebruikers WHERE gebruikersID = ?";
-  $stmt = mysqli_prepare($conn, $sql
-?>
-<script>
-function deleteUser(id) {
-  if (confirm("Are you sure you want to delete this user?")) {
-    // Send an AJAX request to delete the user
-    // ...
-  }
-}
-</script>
 
 <!-- Footer Start -->
 <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">
