@@ -11,6 +11,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_assoc($result);
     
+    if (empty($result)) {
+        echo 'Login failed. Email not in our system.';
+    }
     // Check if email and password match
     if ($row['email'] == $email && $row['wachtwoord'] == $password) {
     // Login success
@@ -110,12 +113,12 @@ mysqli_close($connection);
                     <form action="admin_login.php" method="post" onsubmit="return validateForm()">
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" name="email" class="form-control" required />
+                            <input type="email" name="email" required />
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control" required>
+                            <input type="password" name="password" required>
                         </div>
                         <br>
                         <div class="form-group">
