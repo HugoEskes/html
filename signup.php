@@ -7,7 +7,6 @@ $passwordstrong = true;
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   include "php/connection.php";
-  include "php/config.php";
 
   // alert functie aanmaken
   function alert($msg) 
@@ -264,7 +263,7 @@ function validateEmail(email) {
 }
 
 // Get the password input field
-var password = document.getElementById("Password");
+var password = document.getElementById("password");
 
 // Listen for changes to the password field
 password.addEventListener("input", function() {
