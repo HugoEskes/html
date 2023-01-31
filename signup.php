@@ -132,7 +132,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
                     <div class="dropdown-menu text-capitalize">
-                        <a href="login.html" class="dropdown-item">Login</a>
+                        <a href="login.php" class="dropdown-item">Login</a>
                         <a href="signup.php" class="dropdown-item active">Signup</a>
                     </div>
                 </div>
@@ -329,6 +329,9 @@ cpassword.addEventListener("input", function() {
     
     }
   });
+
+
+  
 </script> 
 </body>
 </html>
