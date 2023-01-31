@@ -1,12 +1,12 @@
 <?php
   session_start();
   if (isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == true) {
-    // User is  logged in, redirect to loggedin index page
+    // User is logged in, redirect to loggedin index page
     header('Location: loggedin-index.php');
   }
 if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
-    // User is  logged in, redirect to admin index page
-    header('Location: admin_pages/admin-index.php');
+    // User is logged in, redirect to admin index page
+    header('Location: admin-pages/admin_index.php');
   }
 ?>
 <!DOCTYPE html>
