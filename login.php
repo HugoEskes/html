@@ -25,7 +25,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['gebruikersnaam'] = $row['gebruikersnaam'];
     $_SESSION['email'] = $row['email'];
     $_SESSION['admin'] = False;
-    $_SESSION['logged_in'] = true
+    $_SESSION['logged_in'] = true;
     
     // Redirect to the welcome page
     header("Location: loggedin-index.php");
