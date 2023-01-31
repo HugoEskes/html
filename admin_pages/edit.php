@@ -5,14 +5,15 @@
     die("Connection failed: " . mysqli_connect_error());
   }
   
-  if (isset($_POST['edit'])) {
+
+  if (isset($_POST['gebruikers'])) {
     // Get the form data
     $id = $_POST['gebruikerID'];
     $name = $_POST['gebruikersnaam'];
     $email = $_POST['email'];
     
     // Update query
-    $update_query = "UPDATE gebruikers SET name='$name', email='$email' WHERE id='$id'";
+    $update_query = "UPDATE gebruikers SET gebruikersnaam='$name', email='$email' WHERE gebruikerID='$id'";
     $result = mysqli_query($connection, $update_query);
     
     // Check if update was successful
