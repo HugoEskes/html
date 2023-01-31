@@ -80,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_query($connection, $sql);
 
     // gebruiker naar homepagina sturen
-    alert("Je account is aangemaakt!");
+    alert("Your account has been created!");
     header("Location: login.php");
     }
 
