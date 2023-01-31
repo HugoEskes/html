@@ -312,6 +312,8 @@ email.addEventListener("input", function() {
     if (validateEmail(emailValue) == false) {
         // Email is not valid
         email.setCustomValidity("Please use a valid Email address");
+    } else if (email_result){
+        email.setCustomValidity("Email is already in use")
     } else {
         // Email is valid
         email.setCustomValidity("");
