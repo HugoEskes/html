@@ -93,6 +93,7 @@
 <?php
 
 require_once '../php/connection.php';
+
 // Check connection
 if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
@@ -112,11 +113,9 @@ while ($row = mysqli_fetch_assoc($result)) {
   echo "<td>" . $row['gebruikersnaam'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
   echo "<td>";
-  echo "<form action='edit.php' method='post'>";
+  echo "<form action='delete.php' method='post'>";
   echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
-  echo "<input type='text' name='name' value='" . $row['gebruikersnaam'] . "'>";
-  echo "<input type='text' name='email' value='" . $row['email'] . "'>";
-  echo "<input type='submit' name='edit' value='Edit'>";
+  echo "<input type='submit' name='delete' value='Delete'>";
   echo "</form>";
   echo "</td>";
   echo "</tr>";
@@ -126,6 +125,7 @@ echo "</table>";
 
 // Close the database connection
 mysqli_close($connection);
+
 ?>
 
 <!-- Footer Start -->
