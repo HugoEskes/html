@@ -27,8 +27,8 @@
     <style>
         .modal {
           display: none; 
-          position: fixed; 
-          z-index: 1; 
+          position: relative; 
+          z-index: 2; 
           left: 0;
           top: 0;
           width: 100%; 
@@ -78,9 +78,7 @@
         const declineBtn = document.getElementById("decline-policy");
         const span = document.getElementsByClassName("close")[0];
         
-        if (!localStorage.getItem("policyAccepted")) {
-        modal.style.display = "block";
-      }
+        
         
         acceptBtn.onclick = function() {
           localStorage.setItem("policyAccepted", true);
