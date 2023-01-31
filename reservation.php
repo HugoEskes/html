@@ -47,7 +47,7 @@ if (session_status() !== PHP_SESSION_NONE) {
 <!-- Navbar Start -->
 <div class="container-fluid p-0 nav-bar">
     <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-        <a href="index.html" class="navbar-brand px-lg-4 m-0">
+        <a href="index.php" class="navbar-brand px-lg-4 m-0">
             <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -55,9 +55,9 @@ if (session_status() !== PHP_SESSION_NONE) {
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav ml-auto p-4">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="reservation.html" class="nav-item nav-link active">Reserve</a>
-                <a href="about.html" class="nav-item nav-link">About us</a>
+                <a href="index.php" class="nav-item nav-link">Home</a>
+                <a href="reservation.php" class="nav-item nav-link active">Reserve</a>
+                <a href="about.php" class="nav-item nav-link">About us</a>
                 <a href="login.php" class="nav-item nav-link">Log In</a>
                 <a href="signup.php" class="nav-item nav-link">Sign Up</a>
             </div>
