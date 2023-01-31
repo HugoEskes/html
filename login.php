@@ -17,7 +17,7 @@ $username_err = $password_err = $login_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check if username is empty
-    if(empty(trim($_POST["gebruikersnaam"]))){
+    if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
     } else{
         $username = trim($_POST["username"]);
@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($connection);
 }
 ?>
 
