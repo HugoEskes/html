@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if (isset($_SESSION['admin']) || $_SESSION['admin'] !== false) {
+  if (isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== false) {
     // User is  logged in, redirect to loggedin index page with a flag indicating the user was not logged in
     header('Location: loggedin-index.php');
   }
