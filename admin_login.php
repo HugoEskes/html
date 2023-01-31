@@ -105,31 +105,31 @@ mysqli_close($connection);
 <!-- Page Header End -->
 
 <!-- Login page Start -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Admin Login</h2>
-                    <p>Please fill in your email and password.</p>
-                    <form action="admin_login.php" method="post" onsubmit="return validateForm()">
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" name="email" class="form-control" >
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" >
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-                        </div>
-                        <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
-                        <p>Not an admin?<a href="login.php"> Login here</a></p>
-                    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Admin Login</h2>
+            <p>Please fill in your email and password.</p>
+            <form action="admin_login.php" method="post" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id='email' name="email" >
                 </div>
-            </div>
-        </div> 
+                <br>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id='password' name="password">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                </div>
+                <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
+                <p>Not an admin?<a href="login.php"> Login here</a></p>
+            </form>
+        </div>
+    </div>
+</div> 
 <!-- Login page end -->
 
 <!-- Footer Start -->
