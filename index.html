@@ -63,31 +63,36 @@
 </head>
 
 <body>
-    <div id="privacy-policy-modal" class="modal">
+    <div class="modal">
         <div class="modal-content">
-          
-          <p>Your privacy policy text goes here.</p>
-          <button id="accept-policy">Accept</button>
+          <h2>Privacy Statement</h2>
+          <p>This website uses cookies to enhance your experience. By continuing to browse this site, you agree to our use of cookies.</p>
+          <button id="accept-button" class="close-button">Accept</button>
           
         </div>
       </div>
-  
+    
       <script>
-        const modal = document.getElementById("privacy-policy-modal");
-        const acceptBtn = document.getElementById("accept-policy");
-
-        
-        
-        modal.style.display = "block";
-      
-        
-        acceptBtn.onclick = function() {
-          localStorage.setItem("policyAccepted", true);
-          modal.style.display = "none";
+        function showModal() {
+            if (!localStorage.getItem("policyAccepted100"))
+            {
+                document.querySelector(".modal").style.display = "block";
+                document.body.style.overflow = "hidden";
+                document.body.style.pointerEvents = "none";
+            }
+          
         }
-        
-        
-        
+    
+        function hideModal() {
+          document.querySelector(".modal").style.display = "none";
+          document.body.style.overflow = "auto";
+          document.body.style.pointerEvents = "auto";
+          localStorage.setItem("policyAccepted100", true);
+          
+        }
+    
+        document.addEventListener("DOMContentLoaded", showModal);
+        document.querySelector("#accept-button").addEventListener("click", hideModal,);
         
       </script>
       

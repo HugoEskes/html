@@ -38,12 +38,19 @@
       table, th, td {
         border: 1px solid black;
         border-collapse: collapse;
-        align: center;
+        align-items: center;
+        margin: 0 auto;
+        height: 100%;
       }
       th, td {
         padding: 5px;
         text-align: left;
       }
+      .dropdown:hover {
+        display: block;
+      }
+
+
     </style>
 </head>
 
