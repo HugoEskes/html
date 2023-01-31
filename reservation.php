@@ -1,7 +1,7 @@
 <?php
   session_start();
   if (isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == true) {
-    // User is logged in, redirect to loggedin index page
+    // User is logged in, redirect to loggedin reservation page
     header('Location: loggedin-reservation.php');
   }
 if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
