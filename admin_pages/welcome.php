@@ -6,6 +6,6 @@ session_start();
   }
 else {
   echo "<script>alert('Welcome, " . $_SESSION['naam'] . "!');</script>";
-  header('Location: admin_index.php')
+  header('Location: admin_index.php');
 }
   ?>
