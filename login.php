@@ -1,92 +1,44 @@
-<?php 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
-}
- 
-// Include config file and connection
-require_once "php/config.php";
+<?php
+require_once 'php/connection.php';
 require_once "php/session.php";
  
-// Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Check if username is empty
-    if(isset($_POST["username"])){
-        $username = trim($_POST["username"]);
-    } else {
-        $username_err = "Please enter a username.";
-    }
-    
-    
-    // Check if password is empty
-    if(isset($_POST["password"])){
-        $password = trim($_POST["password"]);
-    } else {
-        $password_err = "Please enter a password.";
-    }
-    
-    
-    // Validate credentials
-    if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
-        $sql = "SELECT id, username, password FROM gebruikers WHERE gebruikersnaam = ?";
-        
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            
-            // Set parameters
-            $param_username = $username;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Store result
-                mysqli_stmt_store_result($stmt);
-                
-                // Check if username exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                    if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
-                            session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["gebruikerID"] = $id;
-                            $_SESSION["username"] = $username; 
-                            $_SESSION["admin"] = false;                        
-                            
-                            // Redirect user to welcome page
-                            header("location: php/welcome.php");
-                        } else{
-                            // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password.";
-                        }
-                    }
-                } else{
-                    // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password.";
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
 
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
-    }
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
+    $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
     
-    // Close connection
-    mysqli_close($link);
+    // Retrieve user information from the "gebruikers" table
+    $sql = "SELECT * FROM gebruikers WHERE email='$email'";
+    $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($result);
+    
+    if (empty($result)) {
+        echo 'Login failed. Email not in our system.';
+    }
+
+    //wachtwordt versleutelend
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
+    // Check if email and password match
+    if ($row['email'] == $email && $row['wachtwoord'] == $password) {
+    // Login success
+    // Start a session and store the user's information
+    session_start();
+    $_SESSION['gebruikersID'] = $row['gebruikersID'];
+    $_SESSION['gebruikersnaam'] = $row['gebruikersnaam'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['admin'] = False;
+    
+    // Redirect to the welcome page
+    header("Location: index.html");
+    } else {
+    // Login failed
+    // Display an error message
+    echo "Login failed. Email or password is incorrect.";
+    }
 }
+
+mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
