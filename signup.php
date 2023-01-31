@@ -81,6 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // gebruiker naar homepagina sturen
     alert("Je account is aangemaakt!");
+    header("Location: login.php");
     }
 
 } 
@@ -331,7 +332,7 @@ cpassword.addEventListener("input", function() {
   });
 
 
-  
+
 </script> 
 </body>
 </html>
