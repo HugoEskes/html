@@ -113,7 +113,7 @@ while ($row = mysqli_fetch_assoc($result)) {
   echo "<td>" . $row['email'] . "</td>";
   echo "<td>";
   echo "<form action='edit.php' method='post'>";
-  echo "<input type='hidden' name='id' value='" . $row['gebruikersID'] . "'>";
+  echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
   echo "<input type='text' name='name' value='" . $row['gebruikersnaam'] . "'>";
   echo "<input type='text' name='email' value='" . $row['email'] . "'>";
   echo "<input type='submit' name='edit' value='Edit'>";
