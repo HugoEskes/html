@@ -18,9 +18,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     //wachtwordt versleutelend
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    
+
     // Check if email and password match
-    if ($row['email'] == $email && $row['wachtwoord'] == $password) {
+    if ($row['email'] == $email && $row['wachtwoord'] == $hashed_password) {
     // Login success
     // Start a session and store the user's information
     session_start();
