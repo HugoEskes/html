@@ -12,7 +12,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $row = mysqli_fetch_assoc($result);
     
     if empty($result) {
-        echo 'Login failed. Email not in our system.'
+        echo 'Login failed. Email not in our system.';
     }
     // Check if email and password match
     if ($row['email'] == $email && $row['wachtwoord'] == $password) {
