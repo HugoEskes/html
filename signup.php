@@ -129,12 +129,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="navbar-nav ml-auto p-4">
                 <a href="index.html" class="nav-item nav-link">Home</a>
                 <a href="reservation.html" class="nav-item nav-link">Reserve</a>
-                <a href="about.html" class="nav-item nav-link">About us</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
                     <div class="dropdown-menu text-capitalize">
-                        <a href="login.php" class="dropdown-item">Login</a>
-                        <a href="signup.php" class="dropdown-item active">Signup</a>
+                        <a href="login.php" class="dropdown-item">Log In</a>
+                        <a href="signup.php" class="dropdown-item active">Sign Up</a>
                     </div>
                 </div>
                 
@@ -147,11 +147,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Signup</h1>
+        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Sign Up</h1>
         <div class="d-inline-flex mb-lg-5">
             <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
             <p class="m-0 text-white px-2">/</p>
-            <p class="m-0 text-white">Signup</p>
+            <p class="m-0 text-white">Sign Up</p>
         </div> 
     </div>
 </div>
@@ -197,7 +197,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
           </div>
-          <p>Already have an account? <a href="login.php">Login here</a></p>
+          <p>Already have an account? <a href="login.php">Log in here</a></p>
         </form>
       </div>
     </div>
