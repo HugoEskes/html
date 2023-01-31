@@ -69,16 +69,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $passwordsmatch = false;
   }
 
-  // checken of het wachtwoord sterk genoeg is
-  if(password_strength_test($password)==false)
-  {
-    alert("Password is not strong enough");
-    $passwordstrong = false;
-  }
-
   // Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
   //
-  if($usernamecorrect && $emailcorrect && $passwordsmatch && $passwordstrong)
+  if($usernamecorrect && $emailcorrect && $passwordsmatch)
     {
     // wachtwoord versleutelen
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -198,7 +191,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           <br>
           <div class="form-group">
             <label>Confirm password:</label>
-            <input type="password" name="cpassword" class="form-control" required>
+            <input type="password" id="cpassword" name="cpassword" class="form-control" required>
           </div>
           <br>
           <div class="form-group">
@@ -312,6 +305,28 @@ email.addEventListener("input", function() {
     } else {
         // Email is valid
         email.setCustomValidity("");
+    
+    }
+  });
+
+
+  // Get the cpassword input field
+var cpassword = document.getElementById("cpassword");
+
+// Listen for changes to the cpassword field
+cpassword.addEventListener("input", function() {
+    // Get the cpassword value
+    var cpasswordValue = cpassword.value;
+
+    // Get the password value
+    var passwordValue = document.getElementById("password").value;
+    // Check if the passwords are the same
+    if (cpasswordValue !== passwordValue) {
+        // Notify that the passwords are not the same
+        cpassword.setCustomValidity("The passwords do not match");
+    } else {
+        // The passwords are the same
+        cpassword.setCustomValidity("");
     
     }
   });
