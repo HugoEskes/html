@@ -294,14 +294,7 @@ password.addEventListener("input", function() {
     }
   });
 
-  $.ajax({
-  type: "POST",
-  url: "signup.php",
-  data: {email: "John"},
-  success: function(response) {
-    var email_result = response;
-  }
-  });
+
 
 
 // Get the email input field
@@ -311,7 +304,14 @@ var email = document.getElementById("email");
 email.addEventListener("input", function() {
     // Get the email value
     var emailValue = email.value;
-
+    $.ajax({
+      type: "POST",
+      url: "signup.php",
+      data: {email: emailValue},
+      success: function(response) {
+        var email_result = response;
+      }
+      });
     // Check the email against validation rules
     if (validateEmail(emailValue) == false) {
         // Email is not valid
