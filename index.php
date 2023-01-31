@@ -1,13 +1,15 @@
 <?php
-  session_start();
-  if (isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == true) {
-    // User is logged in, redirect to loggedin index page
-    header('Location: loggedin-index.php');
+if (session_status() !== PHP_SESSION_NONE) {
+    session_start();
+    if (isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == true) {
+        // User is logged in, redirect to loggedin index page
+        header('Location: loggedin-index.php');
+    }
+    if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
+        // User is logged in, redirect to admin index page
+        header('Location: admin_pages/admin_index.php');
   }
-if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
-    // User is logged in, redirect to admin index page
-    header('Location: admin_pages/admin_index.php');
-  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +112,7 @@ if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="index.php" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -255,18 +257,6 @@ if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
                 <p><i class="fa fa-map-marker-alt mr-2"></i>Science Park 904, Amsterdam</p>
                 <p><i class="fa fa-phone-alt mr-2"></i>+31 6 12345678</p>
                 <p class="m-0"><i class="fa fa-envelope mr-2"></i>Skiliftreservations@gmail.com</p>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Newsletter</h4>
-                <p>Sign up for our newsletter to receive valuable updates about our skilift and our slopes.</p>
-                <div class="w-100">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Your Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">

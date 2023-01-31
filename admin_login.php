@@ -24,6 +24,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['naam'] = $row['naam'];
     $_SESSION['email'] = $row['email'];
     $_SESSION['admin'] = true;
+    $_SESSION['logged_in'] = true;
     
     // Redirect to the welcome page
     header("Location: admin_pages/welcome.php");
@@ -67,7 +68,7 @@ mysqli_close($connection);
         <!-- Navbar Start -->
         <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="index.php" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -75,17 +76,11 @@ mysqli_close($connection);
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="reservation.html" class="nav-item nav-link">Reserve</a>
-                    <a href="about.html" class="nav-item nav-link">About us</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
-                        <div class="dropdown-menu text-capitalize">
-                            <a href="login.php" class="dropdown-item">Login</a>
-                            <a href="signup.php" class="dropdown-item">Signup</a>
-                        </div>
-                    </div>
-                    
+                    <a href="index.php" class="nav-item nav-link">Home</a>
+                    <a href="reservation.php" class="nav-item nav-link">Reserve</a>
+                    <a href="about.php" class="nav-item nav-link">About us</a>
+                    <a href="login.php" class="nav-item nav-link">Login</a>
+                    <a href="signup.php" class="nav-item nav-link">Signup</a>
                 </div>
             </div>
         </nav>
@@ -141,18 +136,6 @@ mysqli_close($connection);
                 <p><i class="fa fa-map-marker-alt mr-2"></i>Science Park 904, Amsterdam</p>
                 <p><i class="fa fa-phone-alt mr-2"></i>+31 6 12345678</p>
                 <p class="m-0"><i class="fa fa-envelope mr-2"></i>Skiliftreservations@gmail.com</p>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Newsletter</h4>
-                <p>Amet elitr vero magna sed ipsum sit kasd sea elitr lorem rebum</p>
-                <div class="w-100">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Your Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
