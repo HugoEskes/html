@@ -1,11 +1,10 @@
 <?php
   session_start();
-  if (!isset($_SESSION['email'])) {
-    header("Location: ../login.php");
+  if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+    // User is not logged in, redirect to login page with a flag indicating the user was not logged in
+    header('Location: ../admin_login.php?not_logged_in=1');
   }
-  if (!isset($_SESSION['admin'])) {
-    header("Location: ../login.php");
-  }
+
   echo "<script>alert('Welcome, " . $_SESSION['naam'] . "!');</script>";
 ?>
 
@@ -32,8 +31,6 @@
     <!-- Libraries Stylesheet -->
     <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/style.min.css" rel="stylesheet">
 </head>
 
@@ -190,18 +187,6 @@
                 <p><i class="fa fa-phone-alt mr-2"></i>+31 6 12345678</p>
                 <p class="m-0"><i class="fa fa-envelope mr-2"></i>Skiliftreservations@gmail.com</p>
             </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Newsletter</h4>
-                <p>Sign up for our newsletter to receive valuable updates about our skilift and our slopes.</p>
-                <div class="w-100">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Your Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
             <p class="mb-2 text-white">Copyright &copy; <a class="font-weight-bold" href="#">Domain</a>. All Rights Reserved.</a></p>
@@ -217,17 +202,12 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/easing/easing.min.js"></script>
     <script src="../lib/waypoints/waypoints.min.js"></script>
     <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="../lib/tempusdominus/js/moment.min.js"></script>
     <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="../mail/jqBootstrapValidation.min.js"></script>
-    <script src="../mail/contact.js"></script>
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>

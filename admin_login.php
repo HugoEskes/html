@@ -1,6 +1,7 @@
 <?php
 require_once 'php/connection.php';
 require_once "php/session.php";
+include 'php/admin-rights.php'; 
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
@@ -11,6 +12,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_assoc($result);
     
+    if (empty($result)) {
+        echo 'Login failed. Email not in our system.';
+    }
     // Check if email and password match
     if ($row['email'] == $email && $row['wachtwoord'] == $password) {
     // Login success
@@ -102,31 +106,31 @@ mysqli_close($connection);
 <!-- Page Header End -->
 
 <!-- Login page Start -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Admin Login</h2>
-                    <p>Please fill in your email and password.</p>
-                    <form action="admin_login.php" method="post" onsubmit="return validateForm()">
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" name="email" class="form-control" required />
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" required>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-                        </div>
-                        <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
-                        <p>Not an admin?<a href="login.php"> Login here</a></p>
-                    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Admin Login</h2>
+            <p>Please fill in your email and password.</p>
+            <form action="admin_login.php" method="post" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id='email' name="email" >
                 </div>
-            </div>
-        </div> 
+                <br>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id='password' name="password">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                </div>
+                <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
+                <p>Not an admin?<a href="login.php"> Login here</a></p>
+            </form>
+        </div>
+    </div>
+</div> 
 <!-- Login page end -->
 
 <!-- Footer Start -->
@@ -163,17 +167,12 @@ mysqli_close($connection);
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/waypoints/waypoints.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="lib/tempusdominus/js/moment.min.js"></script>
 <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
 <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-<!-- Contact Javascript File -->
-<script src="mail/jqBootstrapValidation.min.js"></script>
-<script src="mail/contact.js"></script>
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
