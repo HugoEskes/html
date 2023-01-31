@@ -305,7 +305,6 @@ email.addEventListener("input", function() {
     } else {
         // Email is valid
         email.setCustomValidity("");
-    
     }
   });
 
@@ -313,13 +312,14 @@ email.addEventListener("input", function() {
   // Get the cpassword input field
 var cpassword = document.getElementById("cpassword");
 
+  // Get the password value
+var passwordValue = document.getElementById("password").value;
+
 // Listen for changes to the cpassword field
 cpassword.addEventListener("input", function() {
     // Get the cpassword value
     var cpasswordValue = cpassword.value;
 
-    // Get the password value
-    var passwordValue = document.getElementById("password").value;
     // Check if the passwords are the same
     if (cpasswordValue !== passwordValue) {
         // Notify that the passwords are not the same
