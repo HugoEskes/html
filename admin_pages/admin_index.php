@@ -4,8 +4,6 @@
     // User is not logged in, redirect to login page with a flag indicating the user was not logged in
     header('Location: ../admin_login.php?not_logged_in=1');
   }
-
-  echo "<script>alert('Welcome, " . $_SESSION['naam'] . "!');</script>";
 ?>
 
 <!DOCTYPE html>
@@ -50,9 +48,8 @@
                     <a href="admin_index.php" class="nav-item nav-link active">Home</a>
                     <a href="admin_reservations.php" class="nav-item nav-link">Reservations</a>
                     <a href="admin_users.php" class="nav-item nav-link">Other users</a>
-                    <a href="admin_user.php" class="nav-item nav-link">Account</a>
+                    <a href="admin_account.php" class="nav-item nav-link">Account</a>
                     <a href="../php/logout.php" class="nav-item nav-link">Logout</a>
-                    
                 </div>
             </div>
         </nav>

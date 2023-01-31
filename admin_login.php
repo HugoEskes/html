@@ -26,7 +26,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['admin'] = true;
     
     // Redirect to the welcome page
-    header("Location: admin_pages/admin_index.php");
+    header("Location: admin_pages/welcome.php");
     } else {
     // Login failed
     // Display an error message
