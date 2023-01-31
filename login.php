@@ -1,4 +1,17 @@
 <?php
+
+if (session_status() !== PHP_SESSION_NONE) {
+    session_start();
+    if (isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == true) {
+        // User is logged in, redirect to loggedin reservation page
+        header('Location: loggedin-reservation.php');
+    }
+    if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
+        // User is logged in, redirect to admin index page
+        header('Location: admin_pages/admin_index.php');
+  }
+}
+
 require_once 'php/connection.php';
 require_once "php/session.php";
  
