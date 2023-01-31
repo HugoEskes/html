@@ -76,17 +76,16 @@
 <!-- Navbar End -->
 
 <?php
-// Connect to the database
-$db = mysqli_connect('localhost', 'hugoe', 'EDNZxAfEptklmtplrOmgeGquRAuvhNHw', 'gebruikers');
 
+require_once '..\php\connection.php'
 // Check connection
-if (!$db) {
+if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
 
 // Select query
 $select_query = "SELECT * FROM gebruikers";
-$result = mysqli_query($db, $select_query);
+$result = mysqli_query($connection, $select_query);
 
 echo "<table>";
 echo "<tr><th>ID</th><th>Name</th><th>Email</th></tr>";
@@ -94,8 +93,8 @@ echo "<tr><th>ID</th><th>Name</th><th>Email</th></tr>";
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
  echo "<tr>";
- echo "<td>" . $row['id'] . "</td>";
- echo "<td>" . $row['name'] . "</td>";
+ echo "<td>" . $row['gebruikerID'] . "</td>";
+ echo "<td>" . $row['gebruikersnaam'] . "</td>";
  echo "<td>" . $row['email'] . "</td>";
  echo "</tr>";
 }
@@ -103,7 +102,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 echo "</table>";
 
 // Close the database connection
-mysqli_close($db);
+mysqli_close($connection);
 ?>
 
 <!-- Page Header Start -->
