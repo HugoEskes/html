@@ -282,6 +282,13 @@ if (session_status() !== PHP_SESSION_NONE) {
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- Welkom pop up voor admins -->
+    <?php
+    if ($_GET['status'] == 'welcome_admin') {
+        echo("<script type='text/JavaScript'> alert('Welcome! You are logged in as an admin'); </script>");
+    }
+    ?>
 </body>
 
 </html>
