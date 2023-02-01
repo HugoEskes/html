@@ -6,58 +6,36 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: login.php?not_logged_in=1');
 }
 
-$userID = $_SESSION['gebruikerID'];
-$voornaam = $_SESSION['voornaam'];
-$achternaam = $_SESSION['achternaam'];
-$username = $_SESSION['gebruikersnaam'];
-$email = $_SESSION['email'];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $voornaam = $_POST["voornaam"];
+  $achternaam = $_POST["achternaam"];
+  $gebruikersnaam = $_POST["gebruikersnaam"];
+  $email = $_POST["email"];
+  $gebruikerID = $_SESSION["gebruikerID"];
+  $conn = new mysqli("host", "username", "password", "database");
+  $stmt = $conn->prepare("UPDATE gebruikers SET voornaam = ?, achternaam = ?, gebruikersnaam = ?, email = ? WHERE gebruikerID = ?");
+  $stmt->bind_param("ssssi", $voornaam, $achternaam, $gebruikersnaam, $email, $gebruikerID);
+  $stmt->execute();
+  $conn->close();
+  header("Location: loggedin-account.php");
+} else {
+  $gebruikerID = $_SESSION["gebruikerID"];
+  require_once '/php/connecction.php'
+  $stmt = $connection->prepare("SELECT voornaam, achternaam, gebruikersnaam, email FROM gebruikers WHERE gebruikerID = ?");
+  $stmt->bind_param("i", $gebruikerID);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  if ($result->num_rows === 1) {
+    $row = $result->fetch_assoc();
+    $voornaam = $row["voornaam"];
+    $achternaam = $row["achternaam"];
+    $gebruikersnaam = $row["gebruikersnaam"];
+    $email = $row["email"];
+  }
+  $connection->close();
+}
 
-    if (isset($_POST['submit'])) {
-      require_once 'php/connection.php';
-      if (!$connection) {
-        die("Connection failed: " . mysqli_connect_error());
-      }
 
-      $newName = $_POST['voornaam'];
-      $newLastname = $_POST['achternaam'];
-      $newUsername = $_POST['gebruikersnaam'];
-      $newEmail = $_POST['email'];
-      $newPassword = $_POST['wachtwoord'];
-
-      // Confirm current password
-      $query = "SELECT wachtwoord FROM gebruikers WHERE gebruikerID = '$userID'";
-      $result = mysqli_query($connection, $query);
-      if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($_POST['huidig_wachtwoord'], $row['wachtwoord'])) {
-          // Update password if it has been changed
-          if ($newPassword) {
-            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-            $query = "UPDATE gebruikers SET wachtwoord = '$newPassword' WHERE gebruikerID = '$userID'";
-            if (!mysqli_query($connection, $query)) {
-              echo "Error updating password: " . mysqli_error($connection);
-            }
-          }
-
-          // Update username and email
-          $query = "UPDATE gebruikers SET voornaam = '$newName', achternaam = '$newLastname', gebruikersnaam = '$newUsername', email = '$newEmail' WHERE gebruikerID = '$userID'";
-          if (mysqli_query($connection, $query)) {
-            $_SESSION['voornaam'] = $newName;
-            $_SESSION['achternaam'] = $newLastname;
-            $_SESSION['gebruikersnaam'] = $newUsername;
-            $_SESSION['email'] = $newEmail;
-            echo "Record updated successfully";
-          } else {
-            echo "Error updating record: " . mysqli_error($connection);
-          }
-        } else {
-          echo "Incorrect password";
-        }
-      } else {
-        echo "User not found";
-      }
-      mysqli_close($connection);
-    }
 ?>
 
 <!DOCTYPE html>
@@ -125,27 +103,12 @@ $email = $_SESSION['email'];
 <!-- Page Header End -->
 
 
-<form action="loggedin-account.php" method="post" id="update-form">
-    <input type="hidden" name="gebruikerID" value="<?php echo $_SESSION['gebruikerID']; ?>">
-    <label for="voornaam">Voornaam:</label>
-    <input type="text" id="voornaam" name="voornaam" value="<?php echo $_SESSION['voornaam']; ?>">
-    <br>
-    <label for="achternaam">Achternaam:</label>
-    <input type="text" id="achternaam" name="achternaam" value="<?php echo $_SESSION['achternaam']; ?>">
-    <br>
-    <label for="gebruikersnaam">Gebruikersnaam:</label>
-    <input type="text" id="gebruikersnaam" name="gebruikersnaam" value="<?php echo $_SESSION['gebruikersnaam']; ?>">
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="<?php echo $_SESSION['email']; ?>">
-    <br>
-    <label for="huidig_wachtwoord">Huidig wachtwoord:</label>
-    <input type="password" id="huidig_wachtwoord" name="huidig_wachtwoord">
-    <br>
-    <label for="nieuw_wachtwoord">Nieuw wachtwoord:</label>
-    <input type="password" id="nieuw_wachtwoord" name="nieuw_wachtwoord">
-    <br>
-    <input type="submit" name="submit" value="Submit">
+<form id="update-form">
+  <input type="text" id="voornaam" value="<?php echo $voornaam; ?>">
+  <input type="text" id="achternaam" value="<?php echo $achternaam; ?>">
+  <input type="text" id="gebruikersnaam" value="<?php echo $gebruikersnaam; ?>">
+  <input type="email" id="email" value="<?php echo $email; ?>">
+  <input type="submit" value="Update">
 </form>
 
 
@@ -186,18 +149,18 @@ $email = $_SESSION['email'];
 <script src="js/main.js"></script>
 
 <script>
-    document.getElementById("update-form").addEventListener("submit", function(event) {
-        event.preventDefault();
-        var formData = new FormData(this);
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "update-account.php", true);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                alert("Account updated successfully!");
-            }
-        };
-        xhr.send(formData);
-    });
+document.getElementById("update-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  var voornaam = document.getElementById("voornaam").value;
+  var achternaam = document.getElementById("achternaam").value;
+  var gebruikersnaam = document.getElementById("gebruikersnaam").value;
+  var email = document.getElementById("email").value;
+  if (voornaam === "" || achternaam === "" || gebruikersnaam === "" || email === "") {
+    alert("All fields are required");
+  } else {
+    // Submit the form
+  }
+});
 </script>
 
 </body>
