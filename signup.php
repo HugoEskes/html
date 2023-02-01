@@ -18,11 +18,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
     if($num!=0)
       {
-      echo "1";
+      echo 1;
       }
     else
       {
-      echo "0";
+      echo 0;
       }
   }
   
