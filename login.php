@@ -25,7 +25,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $sql = "SELECT * FROM gebruikers WHERE email='$email'";
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_assoc($result);
-    
+    echo ($row);
     if (empty($result)) {
         header('login.php?status=incorrect');
         exit;
