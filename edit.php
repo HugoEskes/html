@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
   $update_query = "UPDATE gebruikers SET voornaam = '$updated_voornaam', achternaam = '$updated_achternaam', gebruikersnaam = '$updated_gebruikersnaam', email = '$updated_email', wachtwoord = '$updated_wachtwoord' WHERE gebruikerID = '$id'";
 
   if (mysqli_query($connection, $update_query)) {
-    echo "<script>alert('" . $_SESSION['naam'] . ", your data has been succesfully changed!');</script>";
+    echo "<script>alert('" . $updated_voornaam . ", your data has been succesfully changed!');</script>";
     header("refresh:0.5; url = loggedin-account.php");
   } else {
     echo "Error updating data: " . mysqli_error($connection);
