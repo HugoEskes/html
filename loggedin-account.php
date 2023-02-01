@@ -133,12 +133,12 @@ require_once 'php/connection.php';
 if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
-$_SESSION['voornaam'] = $voornaam;
-$_SESSION['achternaam'] = $achternaam;
-$_SESSION['gebruikerID'] = $gebruikerID;
-$_SESSION['gebruikersnaam'] = $gebruikersnaam;
-$_SESSION['email'] = $email;
-$_SESSION['wachtwoord'] = $wachtwoord;
+$voornaam = $_SESSION['voornaam'];
+$achternaam = $_SESSION['achternaam'];
+$gebruikerID = $_SESSION['gebruikerID'];
+$gebruikersnaam = $_SESSION['gebruikersnaam'];
+$email = $_SESSION['email'];
+$wachtwoord = $_SESSION['wachtwoord'];
 
 // Select query
 $select_query = "SELECT * FROM gebruikers WHERE gerbruikerID = $gebruikerID";
