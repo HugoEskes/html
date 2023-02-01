@@ -287,7 +287,7 @@ email.addEventListener("input", function() {
 
     $.ajax({
       type: "GET",
-      data: {email_ajax: emailValue},
+      data: {email_ajax: email.value},
       success: function(data) {
         if ( data * 1 ) {
           email_result = true
@@ -303,7 +303,7 @@ email.addEventListener("input", function() {
         // Email is not valid
         email.setCustomValidity("Please use a valid Email address"); 
     } 
-    if (email_result){
+    else if (email_result){
         email.setCustomValidity("Email is already in use")
     } else {
         // Email is valid
