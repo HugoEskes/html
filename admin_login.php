@@ -110,7 +110,7 @@ mysqli_close($connection);
             <form action="admin_login.php" method="post" onsubmit="return validateForm()">
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" id='email' name="email" >
+                    <input type="text" id='email' name="email" >
                 </div>
                 <br>
                 <div class="form-group">
