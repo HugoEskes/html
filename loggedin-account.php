@@ -107,33 +107,6 @@ $gebruikersnaam = $_SESSION['gebruikersnaam'];
 $email = $_SESSION['email'];
 $wachtwoord = $_SESSION['wachtwoord'];
 
-
-// Select query
-$select_query = "SELECT * FROM gebruikers WHERE gebruikerID = '$gebruikerID'";
-$result = mysqli_query($connection, $select_query);
-
-echo "<table>";
-echo "<tr><th>Name</th><th>Last Name</th><th>ID</th><th>Username</th><th>Email</th><th>Password</th><th>Action</th></tr>";
-
-
-  echo "<tr>";
-  echo "<td>" . $voornaam . "</td>";
-  echo "<td>" . $achternaam . "</td>";
-  echo "<td>" . $gebruikerID . "</td>";
-  echo "<td>" . $gebruikersnaam . "</td>";
-  echo "<td>" . $email . "</td>";
-  echo "<td>" . $wachtwoord . "</td>";
-  echo "<td>";
-  echo "<form action='edit.php' method='post'>";
-  echo "<input type='hidden' name='id' value='" . $gebruikerID . "'>";
-  echo "<input type='submit' name='edit' value='Edit'>";
-  echo "</form>";
-  echo "</td>";
-  echo "</tr>";
-
-
-echo "</table>";
-
 // Close the database connection
 mysqli_close($connection);
 
