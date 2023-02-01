@@ -125,7 +125,7 @@ $email = $_SESSION['email'];
 <!-- Page Header End -->
 
 
-<form id="update-form">
+<form action="loggedin-account.php" method="post" id="update-form">
     <input type="hidden" name="gebruikerID" value="<?php echo $_SESSION['gebruikerID']; ?>">
     <label for="voornaam">Voornaam:</label>
     <input type="text" id="voornaam" name="voornaam" value="<?php echo $_SESSION['voornaam']; ?>">
