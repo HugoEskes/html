@@ -284,11 +284,7 @@ var email = document.getElementById("email");
 email.addEventListener("input", function() {
     // Get the email value
     var emailValue = email.value
-    // Check the email against validation rules
-    if (validateEmail(emailValue) == false ) {
-        // Email is not valid
-        email.setCustomValidity("Please use a valid Email address"); 
-    } 
+
     $.ajax({
       type: "GET",
       data: {email_ajax: emailValue},
@@ -300,6 +296,13 @@ email.addEventListener("input", function() {
         }
       }   
       });
+
+
+    // Check the email against validation rules
+    if (validateEmail(emailValue) == false ) {
+        // Email is not valid
+        email.setCustomValidity("Please use a valid Email address"); 
+    } 
     if (email_result){
         email.setCustomValidity("Email is already in use")
     } else {
