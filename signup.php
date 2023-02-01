@@ -286,7 +286,7 @@ email.addEventListener("input", function() {
     var emailValue = email.value
 
     $.ajax({
-      type: "GET",
+      type: "POST",
       data: {email_ajax: email.value},
       dataType: "html",
       success: function(data) {
