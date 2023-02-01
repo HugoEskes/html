@@ -186,6 +186,13 @@ mysqli_close($connection);
   }
 </script>
 
+<!-- Berichtgeving voor nieuwe gebruikers -->
+<?php
+if ($_GET['status'] == 'incorrect') {
+    echo("<script type='text/JavaScript'> alert('Your account has been created! Please log in to continue'); </script>");
+}
+?>
+
 </body>
 </html>
 
