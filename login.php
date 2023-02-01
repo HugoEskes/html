@@ -49,7 +49,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } else {
     // Login failed
     // Display an error message
-    echo "Login failed. Email or password is incorrect.";
+    header("login.php?incorrect");
     }
 }
 
@@ -190,6 +190,10 @@ mysqli_close($connection);
 <?php
 if ($_GET['status'] == 'new_user') {
     echo("<script type='text/JavaScript'> alert('Your account has been created! Please log in to continue'); </script>");
+}
+
+if ($_GET['status'] == 'incorrect') {
+    echo("<script type='text/JavaScript'> alert('Email or password incorrect'); </script>");
 }
 ?>
 
