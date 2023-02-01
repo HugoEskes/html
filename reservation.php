@@ -64,7 +64,7 @@ if (session_status() !== PHP_SESSION_NONE) {
             <div class="navbar-nav ml-auto p-4">
                 <a href="index.php" class="nav-item nav-link">Home</a>
                 <a href="reservation.php" class="nav-item nav-link active">Reserve</a>
-                <a href="about.php" class="nav-item nav-link">About us</a>
+                <a href="about.php" class="nav-item nav-link">About</a>
                 <a href="login.php" class="nav-item nav-link">Log In</a>
                 <a href="signup.php" class="nav-item nav-link">Sign Up</a>
             </div>

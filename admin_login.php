@@ -107,10 +107,10 @@ mysqli_close($connection);
         <div class="col-md-12">
             <h2>Admin Login</h2>
             <p>Please fill in your email and password.</p>
-            <form action="admin_login.php" method="post" onsubmit="return validateForm()">
+            <form action="admin_login.php" name="loginForm" method="post" onsubmit="return validateForm()">
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" id='email' name="email" >
+                    <input type="text" id='email' name="email" >
                 </div>
                 <br>
                 <div class="form-group">
@@ -122,7 +122,7 @@ mysqli_close($connection);
                     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                 </div>
                 <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
-                <p>Not an admin?<a href="login.php"> Login here</a></p>
+                <p>Not an admin?<a href="login.php"> Log in here</a></p>
             </form>
         </div>
     </div>
@@ -181,6 +181,8 @@ if (email == "" || password == "") {
 }
 return true;
 }
+
+
 </script>
 
 </body>
