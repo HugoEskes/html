@@ -34,8 +34,19 @@ if (isset($_POST['submit'])) {
   $updated_email = $_POST['email'];
   $updated_wachtwoord = $_POST['wachtwoord'];
 
+  if (empty($updated_wachtwoord)) {
+    $update_query = "UPDATE gebruikers SET voornaam = '$updated_voornaam', achternaam = '$updated_achternaam', gebruikersnaam = '$updated_gebruikersnaam', email = '$updated_email' WHERE gebruikerID = '$id'";
+    if (mysqli_query($connection, $update_query)) {
+      echo "<script>alert('" . $updated_voornaam . ", your data has been succesfully changed!');</script>";
+      header("refresh:0.5; url = loggedin-account.php");
+    } else {
+      echo "Error updating data: " . mysqli_error($connection);
+    }
+  }
+  else {
+  $hashed_wachtwoord = password_hash($updated_wachtwoord, PASSWORD_DEFAULT);
   // Update query
-  $update_query = "UPDATE gebruikers SET voornaam = '$updated_voornaam', achternaam = '$updated_achternaam', gebruikersnaam = '$updated_gebruikersnaam', email = '$updated_email', wachtwoord = '$updated_wachtwoord' WHERE gebruikerID = '$id'";
+  $update_query = "UPDATE gebruikers SET voornaam = '$updated_voornaam', achternaam = '$updated_achternaam', gebruikersnaam = '$updated_gebruikersnaam', email = '$updated_email', wachtwoord = '$hashed_wachtwoord' WHERE gebruikerID = '$id'";
 
   if (mysqli_query($connection, $update_query)) {
     echo "<script>alert('" . $updated_voornaam . ", your data has been succesfully changed!');</script>";
@@ -44,7 +55,7 @@ if (isset($_POST['submit'])) {
     echo "Error updating data: " . mysqli_error($connection);
   }
 }
-
+}
 // Close the database connection
 mysqli_close($connection);
 

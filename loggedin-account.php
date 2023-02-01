@@ -123,7 +123,7 @@ mysqli_close($connection);
     <input type="text" name="email" value="<?php echo $email; ?>">
     <br>
     <label>Password:</label>
-    <input type="password" name="wachtwoord" value="<?php echo $wachtwoord; ?>">
+    <input type="password" name="wachtwoord" value="">
     <br>
     <input type="submit" name="submit" value="Update">
   </form>
