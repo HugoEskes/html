@@ -132,7 +132,7 @@ if (session_status() !== PHP_SESSION_NONE) {
                                 </div>
                                 
                                 <div>
-                                    <button class="btn btn-primary btn-block font-weight-bold py-3" onclick="login();" type="submit">Book Now</button>
+                                    <button href='login.php' class="btn btn-primary btn-block font-weight-bold py-3" onclick="login();" type="submit">Book Now</button>
                                 </div>
                             </form>
                         </div>
