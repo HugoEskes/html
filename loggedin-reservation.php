@@ -94,14 +94,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                             <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
                             <form class="mb-5">
                                 <div class="form-group">
-                                    <input type="text" class="form-control bg-transparent border-primary p-4" placeholder="Name"
-                                        required="required" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control bg-transparent border-primary p-4" placeholder="Email"
-                                        required="required" />
-                                </div>
-                                <div class="form-group">
                                     <div class="date" id="date" data-target-input="nearest">
                                         <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
