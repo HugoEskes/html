@@ -107,7 +107,7 @@ mysqli_close($connection);
         <div class="col-md-12">
             <h2>Admin Login</h2>
             <p>Please fill in your email and password.</p>
-            <form action="admin_login.php" name="loginForm" method="post" onsubmit="return validateForm()">
+            <form action="admin_login.php" name="loginForm" method="post">
                 <div class="form-group">
                     <label>Email Address</label>
                     <input type="text" id='email' name="email" >
@@ -171,15 +171,15 @@ mysqli_close($connection);
 <script>
 // Validate the form data before submitting to the server.
 function validateForm() {
-var email = document.forms["loginForm"]["email"].value;
-var password = document.forms["loginForm"]["wachtwoord"].value;
-
-// Check if email and password are filled
-if (email == "" || password == "") {
-    alert("Email and password are required.");
-    return false;
-}
-return true;
+    var email = document.forms["loginForm"]["email"].value;
+    var password = document.forms["loginForm"]["wachtwoord"].value;
+    alert("validateForm bereikt")
+    // Check if email and password are filled
+    if (email.value.length == 0 || password.value.length == 0) {
+        alert("Email and password are required.");
+        return false;
+    }
+    return true;
 }
 
 
