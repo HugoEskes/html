@@ -288,12 +288,13 @@ email.addEventListener("input", function() {
     $.ajax({
       type: "GET",
       data: {email_ajax: email.value},
+      dataType: "html",
       success: function(data) {
         alert(data)
         if ( data * 1 ) {
-          email_result = true
+          email_in_use = true
         } else {
-          email_result = false
+          email_in_use = false
         }
       }   
       });
@@ -304,7 +305,7 @@ email.addEventListener("input", function() {
         // Email is not valid
         email.setCustomValidity("Please use a valid Email address"); 
     } 
-    else if (email_result){
+    else if (email_in_use){
         email.setCustomValidity("Email is already in use")
     } else {
         // Email is valid
