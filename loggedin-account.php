@@ -140,8 +140,9 @@ $gebruikersnaam = $_SESSION['gebruikersnaam'];
 $email = $_SESSION['email'];
 $wachtwoord = $_SESSION['wachtwoord'];
 
+
 // Select query
-$select_query = "SELECT * FROM gebruikers WHERE gerbruikerID = $gebruikerID";
+$select_query = "SELECT * FROM gebruikers WHERE gerbruikerID = '$gebruikerID'";
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
