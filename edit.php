@@ -39,6 +39,7 @@ if (isset($_POST['submit'])) {
 
   if (mysqli_query($connection, $update_query)) {
     echo "Data updated successfully.";
+    header("url = loggedin-account.php")
   } else {
     echo "Error updating data: " . mysqli_error($connection);
   }
