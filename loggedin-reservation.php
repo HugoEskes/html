@@ -6,6 +6,14 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: login.php?not_logged_in=1');
 }
 
+
+$start = strtotime('9:00am');
+$end = strtotime('6:00pm');
+for ($i = $start; $i <= $end; $i += 1200) {
+  $time = date('g:i a', $i);
+  echo "<option value='$time'>$time</option>";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +110,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                     <div class="time" id="time" data-target-input="nearest">
                                         <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Time" data-target="#time" data-toggle="datetimepicker"/>
                                     </div>
+                                </div>
+                                <div>
+                                    <select name="time_slot">
+                                        <option value="">Select a time slot</option> 
                                 </div>
                                 <div class="form-group">
                                     <select class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
