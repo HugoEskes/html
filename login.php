@@ -27,7 +27,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $row = mysqli_fetch_assoc($result);
     
     if (empty($result)) {
-        echo 'Login failed. Email not in our system.';
+        header('login.php?status=incorrect');
+        exit;
     }
 
     // Check if email and password match
@@ -50,6 +51,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     // Login failed
     // Display an error message
     header("login.php?incorrect");
+    exit;
     }
 }
 
