@@ -281,6 +281,7 @@ email.addEventListener("input", function() {
       dataType: "html",
       success: function(data) {
         if ( data * 1 ) {
+          alert('als je dit ziet ben je de lul')
           email.setCustomValidity("Email is already in use");
         } else {
           email.setCustomValidity("");
