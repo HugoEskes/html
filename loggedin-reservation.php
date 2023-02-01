@@ -6,6 +6,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: login.php?not_logged_in=1');
 }
 
+$user_ID = $SESSION_['gebruikersID']
+
+
 ?>
 
 <!DOCTYPE html>
