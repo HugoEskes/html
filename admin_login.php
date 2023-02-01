@@ -13,7 +13,7 @@ if (!empty($email) && !empty($password)) {
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_assoc($result);
     
-    if ($row['email'] == $email) {
+    if if (!empty($result)) {
         if (password_verify($password, $row['wachtwoord'])) {
             // Login success
             session_start();
