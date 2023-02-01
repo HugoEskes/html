@@ -127,7 +127,7 @@ $email = $_SESSION['email'];
 
 <?php
 
-require_once '../php/connection.php';
+require_once 'php/connection.php';
 
 // Check connection
 if (!$connection) {
