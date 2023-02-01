@@ -166,7 +166,7 @@ $select_query = "SELECT * FROM gebruikers WHERE gebruikerID = '$gebruikerID'";
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>Name</th><th>Last Name</th><th>ID</th><th>Username</th><th>Email</th><th>Action</th></tr>";
+echo "<tr><th>Name</th><th>Last Name</th><th>ID</th><th>Username</th><th>Email</th><th>Action</th><th>Password</th></tr>";
 
 // Loop through the result set
 
@@ -176,6 +176,7 @@ echo "<tr><th>Name</th><th>Last Name</th><th>ID</th><th>Username</th><th>Email</
   echo "<td>" . $gebruikerID . "</td>";
   echo "<td>" . $gebruikersnaam . "</td>";
   echo "<td>" . $email . "</td>";
+  echo "<td>" . $wachtwoord . "</td>";
   echo "<td>";
   echo "<form action='delete.php' method='post'>";
   echo "<input type='hidden' name='id' value='" . $gebruikerID . "'>";
