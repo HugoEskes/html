@@ -85,9 +85,9 @@ if(isset($_POST['reset'])) {
     <!-- Page Header End -->
 
 <!-- Form Begin-->
-<form name="forgot-form" onsubmit="return validateForm()">
-   <input type="email" name="email" placeholder="Email">
-   <input type="submit" name="submit" value="Submit">
+<form name="reset-form" onsubmit="return validateForm()">
+   <input type="password" name="password" placeholder="Password">
+   <input type="submit" name="reset" value="Reset">
 </form>
 <!-- Form End -->
 
@@ -129,9 +129,9 @@ if(isset($_POST['reset'])) {
 
 <script>
 function validateForm() {
-   var email = document.forms["forgot-form"]["email"].value;
-   if(email == "") {
-      alert("Email is required");
+   var password = document.forms["reset-form"]["password"].value;
+   if(password == "") {
+      alert("Password is required");
       return false;
    }
    return true;
