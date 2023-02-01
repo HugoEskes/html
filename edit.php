@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
 
   if (mysqli_query($connection, $update_query)) {
     echo "<script>alert('" . $_SESSION['naam'] . ", your data has been succesfully changed!');</script>";
-    header("refresh:0.5; url = loggedin-account.php")
+    header("refresh:0.5; url = loggedin-account.php");
   } else {
     echo "Error updating data: " . mysqli_error($connection);
   }
