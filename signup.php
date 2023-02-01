@@ -1,12 +1,7 @@
 <?php
 
-$emailcorrect = true;
-$usernamecorrect = true;
-$passwordsmatch = true;
-$passwordstrong = true;
-
-if($_SERVER["REQUEST_METHOD"] == "POST") 
-{
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+  {
   include "php/connection.php";
 
   
@@ -18,36 +13,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
   $cpassword = mysqli_real_escape_string($connection, htmlspecialchars($_POST['cpassword']));
 
-  // Checken of de gebruikernaam al bestaat
-  $sql = "Select * from gebruikers where gebruikersnaam='$username'";
-  $result = mysqli_query($connection, $sql);
-  $num = mysqli_num_rows($result);
 
-  if($num!=0)
-    {
-    $usernamecorrect = false;
-    }
+  // wachtwoord versleutelen
+  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-  // checken of de wachtwoorden overeen komen
-  if($password != $cpassword)
-    {
-    $passwordsmatch = false;
-    }
+  //informatie in de database zetten
+  $sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
+  mysqli_query($connection, $sql);
 
-  // Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
-  //
-  if($usernamecorrect && $emailcorrect && $passwordsmatch)
-    {
-    // wachtwoord versleutelen
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    //informatie in de database zetten
-    $sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
-    mysqli_query($connection, $sql);
-
-    // gebruiker naar homepagina sturen
-    header("Location: login.php");
-    }
+  // gebruiker naar homepagina sturen
+  header("Location: login.php?status='new_user'");
+  }
 
 }
 ?>
