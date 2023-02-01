@@ -276,6 +276,7 @@ email.addEventListener("input", function() {
       dataType: "html",
       success: function(data) {
         if ( data * 1 ) {
+          alert("email already in use")
           email_in_use = true
         } else {
           email_in_use = false
