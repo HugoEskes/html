@@ -24,11 +24,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   // send an email to the user that the account has been created
   $to = $email;
   $subject = "Your SKI.I.P. account has been created!";
-  $message = "Welcome $firstname $lastname, <br><br> Your SKI.I.P. account has been created and you can start making reservations!<br> Your username is $username and if you want to change your password you can click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-account.php\">here</a>. <br><br> Hope to see you soon at the gondola's!\r\nThe SKI.I.P. team";
+  $message = "Welcome $firstname $lastname, <br><br> Your SKI.I.P. account has been created and you can start making reservations!<br> Your username is $username and if you want to change your password you can click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-account.php\">here</a>. <br><br> Hope to see you soon at the gondola's!<br>The SKI.I.P. team";
   $message = wordwrap($message, 70, "\r\n");
   $headers = "MIME-Version: 1.0" . "\r\n"; 
   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
-  $headers .= 'From: Birthday Reminder <birthday@example.com>';
+  $headers .= 'From: SKI.I.P. <noreply@skiip.com>';
   mail($to, $subject, $message, $headers);
 
   // gebruiker naar homepagina sturen
