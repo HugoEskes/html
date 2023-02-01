@@ -290,6 +290,7 @@ email.addEventListener("input", function() {
         email.setCustomValidity("Please use a valid Email address"); 
     } 
     else if (email_in_use == true){
+        alert("dit doet het gewoon")
         email.setCustomValidity("Email is already in use")
     } else {
         // Email is valid
