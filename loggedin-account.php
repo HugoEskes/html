@@ -139,6 +139,26 @@ mysqli_close($connection);
 
 ?>
 
+<form action="update.php" method="post">
+  <input type="hidden" name="gebruikerid" value="<?php echo $gebruikerID; ?>">
+  <label>First Name:</label>
+  <input type="text" name="voornaam" value="<?php echo $voornaam; ?>">
+  <br>
+  <label>Last Name:</label>
+  <input type="text" name="achternaam" value="<?php echo $achternaam; ?>">
+  <br>
+  <label>Username:</label>
+  <input type="text" name="gebruikersnaam" value="<?php echo $gebruikersnaam; ?>">
+  <br>
+  <label>Email:</label>
+  <input type="text" name="email" value="<?php echo $email; ?>">
+  <br>
+  <label>Password:</label>
+  <input type="password" name="wachtwoord" value="<?php echo $wachtwoord; ?>">
+  <br>
+  <input type="submit" name="submit" value="Update">
+</form>
+
 
 
 <!-- Footer Start -->
