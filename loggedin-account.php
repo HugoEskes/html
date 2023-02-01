@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   header("Location: loggedin-account.php");
 } else {
   $gebruikerID = $_SESSION["gebruikerID"];
-  require_once '/php/connecction.php'
+  require_once '/php/connecction.php';
   $stmt = $connection->prepare("SELECT voornaam, achternaam, gebruikersnaam, email FROM gebruikers WHERE gebruikerID = ?");
   $stmt->bind_param("i", $gebruikerID);
   $stmt->execute();
