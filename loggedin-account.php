@@ -42,8 +42,8 @@ $email = $_SESSION['email'];
           // Update username and email
           $query = "UPDATE gebruikers SET voornaam = '$newName' achternaam = '$newLastname' gebruikersnaam = '$newUsername', email = '$newEmail' WHERE gebruikerID = '$userID'";
           if (mysqli_query($connection, $query)) {
-            $_SESSION['voornaam'] = $newName
-            $_SESSION['achternaam'] = $newLastname
+            $_SESSION['voornaam'] = $newName;
+            $_SESSION['achternaam'] = $newLastname;
             $_SESSION['gebruikersnaam'] = $newUsername;
             $_SESSION['email'] = $newEmail;
             echo "Record updated successfully";
