@@ -11,7 +11,7 @@ if(isset($_POST['submit'])) {
        // Generate a password reset token
        $token = bin2hex(random_bytes(16));
        // Store the reset token in the database
-       $sql = "UPDATE users SET reset_token='$token' WHERE email='$email'";
+       $sql = "UPDATE gebruikers SET reset_token='$token' WHERE email='$email'";
        mysqli_query($connection, $sql);
        // Send an email to the user with the reset link
        $reset_link = "https://webtech-ki59.webtech-uva.nl/reset.php?token=" . $token;
