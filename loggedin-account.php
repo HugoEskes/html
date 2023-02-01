@@ -12,11 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $gebruikersnaam = $_POST["gebruikersnaam"];
   $email = $_POST["email"];
   $gebruikerID = $_SESSION["gebruikerID"];
-  $conn = new mysqli("host", "username", "password", "database");
-  $stmt = $conn->prepare("UPDATE gebruikers SET voornaam = ?, achternaam = ?, gebruikersnaam = ?, email = ? WHERE gebruikerID = ?");
+  require_once '/php/connecction.php';
+  $stmt = $connection->prepare("UPDATE gebruikers SET voornaam = ?, achternaam = ?, gebruikersnaam = ?, email = ? WHERE gebruikerID = ?");
   $stmt->bind_param("ssssi", $voornaam, $achternaam, $gebruikersnaam, $email, $gebruikerID);
   $stmt->execute();
-  $conn->close();
+  $connection->close();
   header("Location: loggedin-account.php");
 } else {
   $gebruikerID = $_SESSION["gebruikerID"];
