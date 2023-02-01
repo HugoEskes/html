@@ -60,11 +60,11 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
         <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">About Us</h1>
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">About</h1>
             <div class="d-inline-flex mb-lg-5">
                 <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
                 <p class="m-0 text-white px-2">/</p>
-                <p class="m-0 text-white">About Us</p>
+                <p class="m-0 text-white">About</p>
             </div>
         </div>
     </div>
@@ -75,29 +75,24 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="section-title">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">About Us</h4>
-                <h1 class="display-4">Reserving Since 1950</h1>
+                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;"></h4>
+                <h4 class="display-4 text-primary">About</h4>
             </div>
             <div class="row">
-                <div class="col-lg-4 py-0 py-lg-5">
-                    <h1 class="mb-3">Our Story</h1>
-                    <h5 class="mb-3">Eos kasd eos dolor vero vero, lorem stet diam rebum. Ipsum amet sed vero dolor sea</h5>
-                    <p>Takimata sed vero vero no sit sed, justo clita duo no duo amet et, nonumy kasd sed dolor eos diam lorem eirmod. Amet sit amet amet no. Est nonumy sed labore eirmod sit magna. Erat at est justo sit ut. Labor diam sed ipsum et eirmod</p>
-                    <a href="" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Learn More</a>
+                    <h1 class="mb-3"></h1>
+                    <h5 class="mb-3">Hello there! If it was faith, a happy little accident or if you just clicked on the about button on this website. Whichever one of these it was, you ended up in the right place. We’re happy to tell you about our quest regarding skiing and about the motivated people behind this initiative. <br> <br>
+
+                        Okay, so, imagine this: You’re peacefully sliding down the mountain, whether it’s on ski’s, snowboard or on a sled with four reindeers in front of you. Nothing on your mind but snowy hills and the aftertaste of the hot chocolate you just drank at the nearby cafe up on one of the slopes. Until you finally get down and find yourself having to join the tedious long line for the gondola all the way at the back. Maybe it’s ten minutes, maybe it’s half an hour or maybe it’s even more precious time not spent skiing, but standing in a crowd of people, looking at the backs of other people's sweaty heads and listening to small children crying because they didn’t get to have the lollipop they wanted. Now, we from Ski.I.P. asked ourselves: ‘Is this really necessary?’ <br> <br>
+                        
+                        Here we strive to make your skiing journey quick and easy with our gondola reservation system. We believe skiing is enjoyed best when being able to spend the most amount of time actually on the slopes! No more waiting in line, but going straight up again for your next adventure. You put your skis or snowboard in the designated basket (this’ll be a bit more challenging when going by the sled and reindeers) and you’re off! Perfect right? That’s what we thought. With a few fast clicks create an account in the upper right corner, if you haven’t already done this, and reserve your first gondola ride! <br> <br>
+                        
+                        Now let me introduce you to the people who came up with this idea. First we have: Arthur van Campenhout. This young lad is a pioneer on website design and he even has a girlfriend (which isn't easy for an AI major, trust me) and if you thought that wasn’t enough, he also has some governance ambitions. We believe he has a very rich life in front of him. Then I’ll introduce you to our own Hugo Eskes. They say the apple doesn’t fall far from the tree, and that is the case for Hugo. He is keeping
+                        AI in the family and making his father very proud. But this isn’t his only interest. This guy has many ambitions, one of which is fixing other peoples bikes, he is even getting professional training to be a bike mechanic. Why does he find this fun, you ask? I wouldn't know, ask him. Then we have Jacob Halewijn. The man, the myth, the cookiemaster. What is het not? When Jacob isn’t spending his time being the social animal that he is, partying with people of Amsterdam, entertaining them with his bubble personality until deep in the night. He likes to spend his time with only the computer. He can get so swallowed up by it sometimes he doesn’t even hear his best friend telling him his interesting stories. That actually brings me to the next amazing member of our team: Rafael Beekman. While being a very talented young programmer he’s also the joker of our group. Rafael has this talent of always seeing the bright side of things. When things aren’t totally going your way, you can always go to Rafael and he makes all your problems disappear with a simple joke or by just being his fun goofy self. A great asset for any team, if you ask me. But who is: me? Oh who really knows! I am many things but they seem to say I go by the name of Iris Helder. I am a mystery.. and i’d like to keep it that way if you don’t mind. Oh! I forgot to tell you something about us five. Even though our interests are sometimes different, we all share a passion for skiing and AI. And we loved bringing those things together in Ski.I.P.. If you read all the way to the end, I thank you for your patience. You are an individual with great power and perseverance and I wish you all the best. Hope to see you on the slope sometimes? Then maybe you can tell me all about you :) <br> <br> Bye!</h5>
+                    <p></p>
                 </div>
-                <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
                         <img class="position-absolute w-100 h-100" src="img/matterhorn.png" style="object-fit: cover;">
                     </div>
-                </div>
-                <div class="col-lg-4 py-0 py-lg-5">
-                    <h1 class="mb-3">Our Vision</h1>
-                    <p>Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est dolor</p>
-                    <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Lorem ipsum dolor sit amet</h5>
-                    <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Lorem ipsum dolor sit amet</h5>
-                    <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Lorem ipsum dolor sit amet</h5>
-                    <a href="" class="btn btn-primary font-weight-bold py-2 px-4 mt-2">Learn More</a>
-                </div>
             </div>
         </div>
     </div>
