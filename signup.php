@@ -283,8 +283,12 @@ var email = document.getElementById("email");
 // Listen for changes to the email field
 email.addEventListener("input", function() {
     // Get the email value
-    var emailValue = email.value;
-    
+    var emailValue = email.value
+    // Check the email against validation rules
+    if (validateEmail(emailValue) == true ) {
+        // Email is not valid
+        email.setCustomValidity("Please use a valid Email address"); 
+    } 
     $.ajax({
       type: "GET",
       data: {email_ajax: emailValue},
@@ -292,13 +296,7 @@ email.addEventListener("input", function() {
         var email_result = response;
       }
       });
-
-
-    // Check the email against validation rules
-    if (validateEmail(emailValue) == true ) {
-        // Email is not valid
-        email.setCustomValidity("Please use a valid Email address");
-    } else if (email_result){
+    if (email_result){
         email.setCustomValidity("Email is already in use")
     } else {
         // Email is valid
