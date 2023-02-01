@@ -51,7 +51,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } else {
     // Login failed
     // Display an error message
-    header("Location: login.php?incorrectt");
+    header("Location: login.php?status=incorrect");
     exit;
     }
 }
