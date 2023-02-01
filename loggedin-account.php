@@ -112,7 +112,7 @@ mysqli_close($connection);
 
 ?>
 
-<form action="update.php" method="post">
+<form action="edit.php" method="post">
   <input type="hidden" name="gebruikerid" value="<?php echo $gebruikerID; ?>">
   <label>First Name:</label>
   <input type="text" name="voornaam" value="<?php echo $voornaam; ?>">
