@@ -27,6 +27,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $row = mysqli_fetch_assoc($result);
 
     if (mysqli_num_rows($result) == 0) {
+        echo ('iets');
         header('Location: login.php?status=incorrect');
         exit;
     }
