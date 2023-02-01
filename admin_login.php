@@ -70,7 +70,7 @@ mysqli_close($connection);
         <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
             <a href="index.php" class="navbar-brand px-lg-4 m-0">
-                <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
+                <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -79,9 +79,9 @@ mysqli_close($connection);
                 <div class="navbar-nav ml-auto p-4">
                     <a href="index.php" class="nav-item nav-link">Home</a>
                     <a href="reservation.php" class="nav-item nav-link">Reserve</a>
-                    <a href="about.php" class="nav-item nav-link">About</a>
-                    <a href="login.php" class="nav-item nav-link">Log In</a>
-                    <a href="signup.php" class="nav-item nav-link">Sign Up</a>
+                    <a href="about.php" class="nav-item nav-link">About us</a>
+                    <a href="login.php" class="nav-item nav-link">Login</a>
+                    <a href="signup.php" class="nav-item nav-link">Signup</a>
                 </div>
             </div>
         </nav>
@@ -107,7 +107,7 @@ mysqli_close($connection);
         <div class="col-md-12">
             <h2>Admin Login</h2>
             <p>Please fill in your email and password.</p>
-            <form action="admin_login.php" method="post" onsubmit="return validateForm()">
+            <form action="admin_login.php" name="loginForm" method="post" onsubmit="return validateForm()">
                 <div class="form-group">
                     <label>Email Address</label>
                     <input type="text" id='email' name="email" >
@@ -181,38 +181,6 @@ if (email == "" || password == "") {
 }
 return true;
 }
-
-var email = document.getElementById("email");
-
-// Listen for changes to the email field
-email.addEventListener("input", function() {
-    // Get the cpassword value
-    var emailValue = email.value;
-    
-    // Check if the email form is empty
-    if (empty(emailValue)) {
-        email.setCustomValidity("You must fill in an emailaddress");
-    } else {
-        email.setCustomValidity("");
-    
-    }
-  });
-
-  var password = document.getElementById("password");
-
-// Listen for changes to the password field
-password.addEventListener("input", function() {
-    // Get the cpassword value
-    var passwordValue = password.value;
-    
-    // Check if the password form is empty
-    if (empty(passwordValue)) {
-        password.setCustomValidity("You must fill in a password");
-    } else {
-        password.setCustomValidity("");
-    
-    }
-  });
 
 
 </script>

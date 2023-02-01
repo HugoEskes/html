@@ -78,9 +78,8 @@ mysqli_close($connection);
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.min.css" rel="stylesheet">
+    
     </head>
     <body>
 <!-- Navbar Start -->
@@ -138,8 +137,9 @@ mysqli_close($connection);
                         <div class="form-group">
                             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                         </div>
-                        <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
-                        <p>Are you an admin? <a href="admin_login.php"> Log in here</a></p>
+                        <p>Forgot password? <a href="forgot_password.php"> Click here</a></p>
+                        <p>Don't have an account? <a href="signup.php">Register here</a></p>
+                        <p>Are you an admin? <a href="admin_login.php"> Login here</a></p>
                     </form>
                 </div>
             </div>
