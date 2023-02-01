@@ -275,7 +275,6 @@ email.addEventListener("input", function() {
       data: {email_ajax: email.value},
       dataType: "html",
       success: function(data) {
-        alert(data)
         if ( data * 1 ) {
           email_in_use = true
         } else {
