@@ -14,7 +14,7 @@ if(isset($_POST['submit'])) {
        $sql = "UPDATE users SET reset_token='$token' WHERE email='$email'";
        mysqli_query($connection, $sql);
        // Send an email to the user with the reset link
-       $reset_link = "http://example.com/reset.php?token=" . $token;
+       $reset_link = "https://webtech-ki59.webtech-uva.nl/reset.php?token=" . $token;
        $to = $email;
        $subject = "Password Reset";
        $message = "Please click on the following link to reset your password: " . $reset_link;
