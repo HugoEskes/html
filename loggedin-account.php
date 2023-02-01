@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!-- Page Header End -->
 
 
-<form id="update-form">
+<form action='loggedin-account.php' method='post' id="update-form">
   <input type="text" id="voornaam" value="<?php echo $voornaam; ?>">
   <input type="text" id="achternaam" value="<?php echo $achternaam; ?>">
   <input type="text" id="gebruikersnaam" value="<?php echo $gebruikersnaam; ?>">
