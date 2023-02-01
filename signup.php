@@ -289,6 +289,7 @@ email.addEventListener("input", function() {
       type: "GET",
       data: {email_ajax: email.value},
       success: function(data) {
+        alert(data)
         if ( data * 1 ) {
           email_result = true
         } else {
