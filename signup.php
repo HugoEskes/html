@@ -284,6 +284,7 @@ var email = document.getElementById("email");
 email.addEventListener("input", function() {
     // Get the email value
     var emailValue = email.value;
+    
     $.ajax({
       type: "GET",
       data: {email_ajax: emailValue},
@@ -291,8 +292,10 @@ email.addEventListener("input", function() {
         var email_result = response;
       }
       });
+
+
     // Check the email against validation rules
-    if (validateEmail(emailValue) == false) {
+    if (validateEmail(emailValue) == true ) {
         // Email is not valid
         email.setCustomValidity("Please use a valid Email address");
     } else if (email_result){
