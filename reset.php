@@ -5,14 +5,14 @@ if(isset($_POST['reset'])) {
    // Get the reset token from the URL
    $token = $_GET['token'];
    // Connect to the database
-   require_once 'php/connection.php'
+   require_once 'php/connection.php';
    // Verify the reset token
-   $sql = "SELECT * FROM users WHERE reset_token='$token'";
+   $sql = "SELECT * FROM gebruikers WHERE reset_token='$token'";
    $result = mysqli_query($connection, $sql);
    if(mysqli_num_rows($result) > 0) {
       // Reset token is valid
       // Update the user's password in the database
-      $sql = "UPDATE users SET password='$password_hash' WHERE reset_token='$token'";
+      $sql = "UPDATE gebruikers SET password='$password_hash' WHERE reset_token='$token'";
       mysqli_query($connection, $sql);
       echo "Password reset successfully";
    } else {
@@ -21,6 +21,7 @@ if(isset($_POST['reset'])) {
    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,9 +85,9 @@ if(isset($_POST['reset'])) {
     <!-- Page Header End -->
 
 <!-- Form Begin-->
-<form name="forgot-form" onsubmit="return validateForm()">
-   <input type="email" name="email" placeholder="Email">
-   <input type="submit" name="submit" value="Submit">
+<form action="reset.php" method="post" name="reset-form" onsubmit="return validateForm()">
+   <input type="password" name="password" placeholder="Password">
+   <input type="submit" name="reset" value="Reset">
 </form>
 <!-- Form End -->
 
@@ -128,9 +129,9 @@ if(isset($_POST['reset'])) {
 
 <script>
 function validateForm() {
-   var email = document.forms["forgot-form"]["email"].value;
-   if(email == "") {
-      alert("Email is required");
+   var password = document.forms["reset-form"]["password"].value;
+   if(password == "") {
+      alert("Password is required");
       return false;
    }
    return true;
