@@ -269,30 +269,25 @@ email.addEventListener("input", function() {
     // Get the email value
     var emailValue = email.value
 
-    $.ajax({
+    // Check the email against validation rules
+    if (validateEmail(emailValue) == false ) {
+        // Email is not valid
+        email.setCustomValidity("Please use a valid Email address");
+    } else {    
+      $.ajax({
       type: "POST",
       url: "/php/check_email.php",
       data: {email_ajax: email.value},
       dataType: "html",
       success: function(data) {
         if ( data * 1 ) {
-          email_in_use = true
+          email.setCustomValidity("Email is already in use");
         } else {
-          email_in_use = false
+          email.setCustomValidity("");
         }
       }   
       });
-
-    // Check the email against validation rules
-    if (validateEmail(emailValue) == false ) {
-        // Email is not valid
-        email.setCustomValidity("Please use a valid Email address"); 
-    } 
-    else if (email_in_use == true){
-        email.setCustomValidity("Email is already in use");
-    } else {
-        // Email is valid
-        email.setCustomValidity("");
+        
     }
   });
 
