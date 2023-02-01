@@ -38,9 +38,16 @@ if (session_status() !== PHP_SESSION_NONE) {
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.min.css" rel="stylesheet">
+
+    <script type = "text/javascript">
+            function login() {
+
+
+               alert ("Please login to make a reservation.");
+               location.replace("login.php")
+            }
+    </script>     
 </head>
 
 <body>
@@ -126,7 +133,7 @@ if (session_status() !== PHP_SESSION_NONE) {
                                 </div>
                                 
                                 <div>
-                                    <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit">Book Now</button>
+                                    <button class="btn btn-primary btn-block font-weight-bold py-3" onclick="login();" type="submit">Book Now</button>
                                 </div>
                             </form>
                         </div>
@@ -161,7 +168,6 @@ if (session_status() !== PHP_SESSION_NONE) {
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>

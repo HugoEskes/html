@@ -35,8 +35,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     // Start a session and store the user's information
     session_start();
     $_SESSION['gebruikerID'] = $row['gebruikerID'];
+    $_SESSION['voornaam'] = $row['voornaam'];
+    $_SESSION['achternaam'] = $row['achternaam'];
     $_SESSION['gebruikersnaam'] = $row['gebruikersnaam'];
     $_SESSION['email'] = $row['email'];
+    $_SESSION['wachtwoord'] = $row['wachtwoord'];
     $_SESSION['admin'] = False;
     $_SESSION['logged_in'] = true;
     
