@@ -9,9 +9,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
   include "php/connection.php";
 
-  if(isset($_POST["email"])) 
+  if(isset($_POST["email_ajax"])) 
   {
-    $email = $_POST["email"];
+    $email = $_POST["email_ajax"];
     $sql = "Select * from gebruikers where email='$email'";
     $result = mysqli_query($connection, $sql);
     $num = mysqli_num_rows($result);
@@ -19,6 +19,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     if($num!=0)
       {
       echo true;
+      }
+    else
+      {
+      echo false;
       }
   }
   
@@ -232,6 +236,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
 
+<!-- JQuery libary -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
 <script language="JavaScript">
 
 // functie voor het checken of de email kan kloppen ('tekst'@'tekst'.'kleine tekst')
@@ -278,9 +285,8 @@ email.addEventListener("input", function() {
     // Get the email value
     var emailValue = email.value;
     $.ajax({
-      type: "POST",
-      url: "signup.php",
-      data: {email: emailValue},
+      type: "GET",
+      data: {email_ajax: emailValue},
       success: function(response) {
         var email_result = response;
       }
