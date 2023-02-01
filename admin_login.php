@@ -2,10 +2,6 @@
 require_once 'php/connection.php';
 require_once "php/session.php";
 
-if ($_GET['status'] == 'incorrect') {
-    echo("<script type='text/JavaScript'> alert('Emailaddress or password incorrect'); </script>");
-}
-
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
     $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
@@ -153,6 +149,12 @@ mysqli_close($connection);
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
+<!-- Berichtgeving als het wachtwoord niet goed is ingevuld -->
+<?php
+if ($_GET['status'] == 'incorrect') {
+    echo("<script type='text/JavaScript'> alert('Emailaddress or password incorrect'); </script>");
+}
+?>
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
