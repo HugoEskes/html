@@ -6,6 +6,66 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: login.php?not_logged_in=1');
 }
 
+$userID = $_SESSION['gebruikerID'];
+$voornaam = $_SESSION['voornaam'];
+$achternaam = $_SESSION['achternaam'];
+$username = $_SESSION['gebruikersnaam'];
+$email = $_SESSION['email'];
+
+    if (isset($_POST['submit'])) {
+      require_once 'php/connection.php';
+      if (!$connection) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
+
+      $newName = $_POST['voornaam'];
+      $newLastname = $_POST['achternaam'];
+      $newUsername = $_POST['gebruikersnaam'];
+      $newEmail = $_POST['email'];
+      $newPassword = $_POST['wachtwoord'];
+
+      // Confirm current password
+      $query = "SELECT wachtwoord FROM gebruikers WHERE gebruikerID = '$userID'";
+      $result = mysqli_query($connection, $query);
+      if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($_POST['huidig_wachtwoord'], $row['wachtwoord'])) {
+          // Update password if it has been changed
+          if ($newPassword) {
+            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $query = "UPDATE gebruikers SET wachtwoord = '$newPassword' WHERE gebruikerID = '$userID'";
+            if (!mysqli_query($connection, $query)) {
+              echo "Error updating password: " . mysqli_error($connection);
+            }
+          }
+
+          // Update username and email
+          $query = "UPDATE gebruikers SET voornaam = '$newName' achternaam = '$newLastname' gebruikersnaam = '$newUsername', email = '$newEmail' WHERE gebruikerID = '$userID'";
+          if (mysqli_query($connection, $query)) {
+            $_SESSION['voornaam'] = $newName
+            $_SESSION['achternaam'] = $newLastname
+            $_SESSION['gebruikersnaam'] = $newUsername;
+            $_SESSION['email'] = $newEmail;
+            echo "Record updated successfully";
+          } else {
+            echo "Error updating record: " . mysqli_error($connection);
+          }
+        } else {
+          echo "Incorrect password";
+        }
+      } else {
+        echo "User not found";
+      }
+      mysqli_close($connection);
+    }
+?>
+
+<form action="" method="post">
+  <input type="text" name="gebruikersnaam" value="<?php echo $username; ?>">
+  <input type="email" name="email" value="<?php echo $email; ?>">
+  <input type="password" name="huidig_wachtwoord" placeholder="Current password">
+  <input type="password" name="
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Connect to the database
     require_once 'php/connection.php';
@@ -96,30 +156,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- Page Header End -->
 
 <!-- Account Start -->
-<form id="account-form">
-  <label for="voornaam">First Name:</label>
-  <input type="text" id="voornaam" name="voornaam" value="">
-  <br>
-  <label for="achternaam">Last Name:</label>
-  <input type="text" id="achternaam" name="achternaam" value="">
-  <br>
-  <label for="gebruikersnaam">Username:</label>
-  <input type="text" id="gebruikersnaam" name="gebruikersnaam" value="">
-  <br>
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" value="">
-  <br>
-  <label for="wachtwoord">Password:</label>
-  <input type="password" id="wachtwoord" name="wachtwoord" value="">
-  <br>
-  <input type="button" id="update-button" value="Update Account">
-</form>
-
-<div id="password-modal" style="display: none;">
-  <p>Please enter your current password to continue:</p>
-  <input type="password" id="current-password">
-  <br>
-  <input type="button" id="verify-password" value="Verify Password">
+<div id="edit-modal" style="display:none">
+  <div>
+    <label for="new-first-name">First Name:</label>
+    <input type="text" id="new-first-name">
+  </div>
+  <div>
+    <label for="new-last-name">Last Name:</label>
+    <input type="text" id="new-last-name">
+  </div>
+  <div>
+    <label for="new-username">Username:</label>
+    <input type="text" id="new-username">
+  </div>
+  <div>
+    <label for="new-email">Email:</label>
+    <input type="email" id="new-email">
+  </div>
+  <div>
+    <label for="new-password">Password:</label>
+    <input type="password" id="new-password">
+  </div>
+  <div>
+    <label for="confirm-password">Confirm Password:</label>
+    <input type="password" id="confirm-password">
+  </div>
+  <div>
+    <button type="button" onclick="updateUser()">Update</button>
+    <button type="button" onclick="closeModal()">Close</button>
+  </div>
 </div>
 <!-- Account End -->
 

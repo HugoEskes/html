@@ -7,40 +7,35 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
     $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
     
-if (!empty($email) && !empty($password)) {
     // Retrieve user information from the "admins" table
     $sql = "SELECT * FROM admins WHERE email='$email'";
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_assoc($result);
     
-    if (!empty($result)) {
-        if (password_verify($password, $row['wachtwoord'])) {
-            // Login success
-            session_start();
-            $_SESSION['adminID'] = $row['adminID'];
-            $_SESSION['naam'] = $row['naam'];
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['admin'] = true;
-            $_SESSION['logged_in'] = true;
-        
-            // Redirect to the welcome page
-            header("Location: admin_pages/welcome.php");
-            } else {
-            // Login failed
-            // Display an error message
-            echo "<script>alert('Login failed. Email or password is incorrect.')</script>";
-        }
-        } else {
-        // Login failed
-        // Display an error message
+    if (empty($result)) {
         echo "<script>alert('Login failed. Email not in our system.')</script>";
-        }
+    }
+    // Check if email and password match
+    if ($row['email'] == $email && $row['wachtwoord'] == $password) {
+    // Login success
+    // Start a session and store the user's information
+    session_start();
+    $_SESSION['adminID'] = $row['adminID'];
+    $_SESSION['naam'] = $row['naam'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['admin'] = true;
+    $_SESSION['logged_in'] = true;
     
+    // Redirect to the welcome page
+    header("Location: admin_pages/welcome.php");
+    } 
+    else {
+    // Login failed
+    // Display an error message
+    echo "<script>alert('Login failed. Email or password is incorrect.')</script>";
     }
 }
-else {
-    echo "<script>alert('Login failed. Please enter an email and password')</script>";
-}
+
 mysqli_close($connection);
 ?>
 
