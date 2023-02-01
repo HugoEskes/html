@@ -5,31 +5,27 @@ $usernamecorrect = true;
 $passwordsmatch = true;
 $passwordstrong = true;
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST") 
+{
   include "php/connection.php";
 
-  // alert functie aanmaken
-  function alert($msg) 
-    {
-    echo "<script type='text/javascript'>alert('$msg');</script>";
-    }
+  if(isset($_POST["email_ajax"])) 
+  {
+    $email = $_POST["email_ajax"];
+    $sql = "Select * from gebruikers where email='$email'";
+    $result = mysqli_query($connection, $sql);
+    $num = mysqli_num_rows($result);
 
-  function password_strength_test($password)
-    {
-    $uppercase    = preg_match('@[A-Z]@', $password);
-    $lowercase    = preg_match('@[a-z]@', $password);
-    $number       = preg_match('@[0-9]@', $password);
-
-    if (!$uppercase || !$lowercase || !$number || strlen($password) < 8) 
+    if($num!=0)
       {
-      return false;
+      echo "1";
       }
-    else 
+    else
       {
-      return true;
-      } 
-    }
-
+      echo "0";
+      }
+  }
+  
   // Alle informatie ophalen
   $firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
   $lastname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['lastname']));
@@ -45,28 +41,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if($num!=0)
     {
-    alert("Username not available");
     $usernamecorrect = false;
-    }
-
-
-  // Checken of het email al in gebruik is
-  $sql = "Select * from gebruikers where email='$email'";
-  $result = mysqli_query($connection, $sql);
-  $num = mysqli_num_rows($result);
-
-  if($num!=0)
-    {
-    alert("This emailaddress is already in use");
-    $emailcorrect = false;
     }
 
   // checken of de wachtwoorden overeen komen
   if($password != $cpassword)
-  {
-    alert("Passwords don't match");
+    {
     $passwordsmatch = false;
-  }
+    }
 
   // Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
   //
@@ -80,11 +62,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_query($connection, $sql);
 
     // gebruiker naar homepagina sturen
-    alert("Je account is aangemaakt!");
     header("Location: login.php");
     }
 
-} 
+}
 ?>
 
 <!DOCTYPE html>
@@ -129,12 +110,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="navbar-nav ml-auto p-4">
                 <a href="index.html" class="nav-item nav-link">Home</a>
                 <a href="reservation.html" class="nav-item nav-link">Reserve</a>
-                <a href="about.html" class="nav-item nav-link">About us</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
                     <div class="dropdown-menu text-capitalize">
-                        <a href="login.php" class="dropdown-item">Login</a>
-                        <a href="signup.php" class="dropdown-item active">Signup</a>
+                        <a href="login.php" class="dropdown-item">Log In</a>
+                        <a href="signup.php" class="dropdown-item active">Sign Up</a>
                     </div>
                 </div>
                 
@@ -147,11 +128,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Signup</h1>
+        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Sign Up</h1>
         <div class="d-inline-flex mb-lg-5">
             <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
             <p class="m-0 text-white px-2">/</p>
-            <p class="m-0 text-white">Signup</p>
+            <p class="m-0 text-white">Sign Up</p>
         </div> 
     </div>
 </div>
@@ -197,7 +178,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
           </div>
-          <p>Already have an account? <a href="login.php">Login here</a></p>
+          <p>Already have an account? <a href="login.php">Log in here</a></p>
         </form>
       </div>
     </div>
@@ -255,6 +236,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
 
+<!-- JQuery libary -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
 <script language="JavaScript">
 
 // functie voor het checken of de email kan kloppen ('tekst'@'tekst'.'kleine tekst')
@@ -290,18 +274,39 @@ password.addEventListener("input", function() {
     }
   });
 
+
+
+
 // Get the email input field
 var email = document.getElementById("email");
 
 // Listen for changes to the email field
 email.addEventListener("input", function() {
     // Get the email value
-    var emailValue = email.value;
+    var emailValue = email.value
+
+    $.ajax({
+      type: "GET",
+      data: {email_ajax: email.value},
+      dataType: "html",
+      success: function(data) {
+        alert(data)
+        if ( data * 1 ) {
+          email_in_use = true
+        } else {
+          email_in_use = false
+        }
+      }   
+      });
+
 
     // Check the email against validation rules
-    if (validateEmail(emailValue) == false) {
+    if (validateEmail(emailValue) == false ) {
         // Email is not valid
-        email.setCustomValidity("Please use a valid Email address");
+        email.setCustomValidity("Please use a valid Email address"); 
+    } 
+    else if (email_in_use){
+        email.setCustomValidity("Email is already in use")
     } else {
         // Email is valid
         email.setCustomValidity("");

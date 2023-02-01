@@ -1,3 +1,16 @@
+<?php
+if (session_status() !== PHP_SESSION_NONE) {
+    session_start();
+    if (isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == true) {
+        // User is logged in, redirect to loggedin index page
+        header('Location: loggedin-index.php');
+    }
+    if (isset($_SESSION['admin']) || $_SESSION['admin'] == true) {
+        // User is logged in, redirect to admin index page
+        header('Location: admin_pages/admin_index.php');
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,7 +112,7 @@
     <!-- Navbar Start -->
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="index.php" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -107,17 +120,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="reservation.html" class="nav-item nav-link">Reserve</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Ski. I. P.</a>
-                        <div class="dropdown-menu text-capitalize">
-                            <a href="login.php" class="dropdown-item">Log In</a>
-                            <a href="signup.php" class="dropdown-item">Sign Up</a>
-                        </div>
-                    </div>
-                    
+                    <a href="index.php" class="nav-item nav-link active">Home</a>
+                    <a href="reservation.php" class="nav-item nav-link">Reserve</a>
+                    <a href="about.php" class="nav-item nav-link">About us</a>
+                    <a href="login.php" class="nav-item nav-link">Log In</a>
+                    <a href="signup.php" class="nav-item nav-link">Sign Up</a>
                 </div>
             </div>
         </nav>
@@ -153,36 +160,36 @@
     </div>
     <!-- Carousel End -->
 
-    <!-- About Start -->
-    <div class="container-fluid py-5">
-      <div class="container">
-          <div class="section-title">
-              <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;"></h4>
-              <h1 class="display-4 text text-primary">Quick links</h1>
-          </div>
-          <div class="row">
-              <div class="col-lg-4 py-0 py-lg-5">
-                  <h5 class="mb-3">Oprah Winfrey once said: 'Skiing is the next best thing to having wings'</h5>
-                  <p>We have to disagree with her on that. There is only one thing better than skiing, and it's the long invigorating journey up the mountain in one of our gondola's. </p>
-                  <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Unique views</h5>
-                  <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Front row seat on the slopes</h5>
-                  <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Time seems to fly</h5>
-                  <a href="" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Reserve your place now!</a>
-              </div>
-              <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
-                  <div class="position-relative h-100">
-                      <img class="position-absolute w-100 h-100" src="img/matterhorn.png" style="object-fit: cover;">
-                  </div>
-              </div>
-              <div class="col-lg-4 py-0 py-lg-5">
-                  <h5 class="mb-3">If you want to lift yourself up, lift up someone else!</h5>
-                  <p>It is our mission to make skiing a more pleasant experience for you. We strive for the best and nothing less. Go straight to our about page to learn more.</p>
-                  <a href="" class="btn btn-primary font-weight-bold py-2 px-4 mt-2">Get to know us and our quest</a>
-              </div>
-          </div>
-      </div>
-  </div>
-    <!-- About End -->
+<!-- Quick Links Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="section-title">
+            <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;"></h4>
+            <h1 class="display-4 text text-primary">Quick links</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 py-0 py-lg-5">
+                <h5 class="mb-3">Oprah Winfrey once said: 'Skiing is the next best thing to having wings'</h5>
+                <p>We have to disagree with her on that. There is only one thing better than skiing, and it's the long invigorating journey up the mountain in one of our gondola's. </p>
+                <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Unique views</h5>
+                <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Front row seat on the slopes</h5>
+                <h5 class="mb-3"><i class="fa fa-check text-primary mr-3"></i>Time seems to fly</h5>
+                <a href="reservation.php" class="btn btn-secondary font-weight-bold py-2 px-4 mt-2">Reserve your place now!</a>
+            </div>
+            <div class="col-lg-4 py-5 py-lg-0" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100" src="img/matterhorn.png" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-4 py-0 py-lg-5">
+                <h5 class="mb-3">If you want to lift yourself up, lift up someone else!</h5>
+                <p>It is our mission to make skiing a more pleasant experience for you. We strive for the best and nothing less. Go straight to our about page to learn more.</p>
+                <a href="about.php" class="btn btn-primary font-weight-bold py-2 px-4 mt-2">Get to know us and our quest</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Quick Links End -->
 
 
     <!-- Service Start -->
@@ -250,18 +257,6 @@
                 <p><i class="fa fa-map-marker-alt mr-2"></i>Science Park 904, Amsterdam</p>
                 <p><i class="fa fa-phone-alt mr-2"></i>+31 6 12345678</p>
                 <p class="m-0"><i class="fa fa-envelope mr-2"></i>Skiliftreservations@gmail.com</p>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Newsletter</h4>
-                <p>Sign up for our newsletter to receive valuable updates about our skilift and our slopes.</p>
-                <div class="w-100">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Your Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
