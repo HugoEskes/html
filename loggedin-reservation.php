@@ -107,9 +107,11 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                 <select name="time_slot">
                                     <option value="">Select a time slot</option>
                                     <?php
-                                        for ($i = 10; $i <= 17; $i += 1200) {
-                                        $time = str_pad($i, 2, "0", STR_PAD_LEFT) . ":00";
-                                        echo "<option value='$time'>$time</option>";
+                                        $start = strtotime('9:00am');
+                                        $end = strtotime('6:00pm');
+                                        for ($i = $start; $i <= $end; $i += 900) {
+                                            $time = date('g:i a', $i);
+                                            echo "<option value='$time'>$time</option>";
                                         }
                                     ?>
                                     </select>
