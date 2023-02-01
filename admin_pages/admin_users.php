@@ -15,7 +15,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>Users</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="Free Website Template" name="keywords">
 <meta content="Free Website Template" name="description">
@@ -68,9 +68,9 @@
             <div class="navbar-nav ml-auto p-4">
                 <a href="admin_index.php" class="nav-item nav-link">Home</a>
                 <a href="admin_reservations.php" class="nav-item nav-link">Reservations</a>
-                <a href="admin_users.php" class="nav-item nav-link active">Other users</a>
+                <a href="admin_users.php" class="nav-item nav-link active">Other Users</a>
                 <a href="admin_account.php" class="nav-item nav-link">Account</a>
-                <a href="../php/logout.php" class="nav-item nav-link">Logout</a>
+                <a href="../php/logout.php" class="nav-item nav-link">Log Out</a>
             </div>
         </div>
     </nav>
