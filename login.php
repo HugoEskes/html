@@ -47,10 +47,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     
     // Redirect to the welcome page
     header("Location: loggedin-index.php");
+
     } else {
     // Login failed
     // Display an error message
-    header("Location: login.php?incorrect");
+    header("Location: login.php?incorrectt");
     exit;
     }
 }
