@@ -33,13 +33,18 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <link href="css/style.min.css" rel="stylesheet">
 
     <style>
-      form, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        align-items: center;
-        margin: 0 auto;
-        height: 100%;
-      }
+div.form
+{
+    display: block;
+    text-align: center;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
     </style>
 
 </head>
@@ -102,27 +107,27 @@ $wachtwoord = $_SESSION['wachtwoord'];
 mysqli_close($connection);
 
 ?>
-
-<form action="edit.php" method="post">
-  <input type="hidden" name="gebruikerid" value="<?php echo $gebruikerID; ?>">
-  <label>First Name:</label>
-  <input type="text" name="voornaam" value="<?php echo $voornaam; ?>">
-  <br>
-  <label>Last Name:</label>
-  <input type="text" name="achternaam" value="<?php echo $achternaam; ?>">
-  <br>
-  <label>Username:</label>
-  <input type="text" name="gebruikersnaam" value="<?php echo $gebruikersnaam; ?>">
-  <br>
-  <label>Email:</label>
-  <input type="text" name="email" value="<?php echo $email; ?>">
-  <br>
-  <label>Password:</label>
-  <input type="password" name="wachtwoord" value="<?php echo $wachtwoord; ?>">
-  <br>
-  <input type="submit" name="submit" value="Update">
-</form>
-
+<div class="form">
+  <form action="edit.php" method="post">
+    <input type="hidden" name="gebruikerid" value="<?php echo $gebruikerID; ?>">
+    <label>First Name:</label>
+    <input type="text" name="voornaam" value="<?php echo $voornaam; ?>">
+    <br>
+    <label>Last Name:</label>
+    <input type="text" name="achternaam" value="<?php echo $achternaam; ?>">
+    <br>
+    <label>Username:</label>
+    <input type="text" name="gebruikersnaam" value="<?php echo $gebruikersnaam; ?>">
+    <br>
+    <label>Email:</label>
+    <input type="text" name="email" value="<?php echo $email; ?>">
+    <br>
+    <label>Password:</label>
+    <input type="password" name="wachtwoord" value="<?php echo $wachtwoord; ?>">
+    <br>
+    <input type="submit" name="submit" value="Update">
+  </form>
+</div>
 
 
 <!-- Footer Start -->
