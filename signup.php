@@ -269,6 +269,19 @@ email.addEventListener("input", function() {
     // Get the email value
     var emailValue = email.value
 
+    // Check the email against validation rules
+    if (validateEmail(emailValue) == false ) {
+        // Email is not valid
+        email.setCustomValidity("Please use a valid Email address"); 
+    } 
+    else if (email_in_use == true){
+        email.setCustomValidity("Email is already in use")
+    } else {
+        // Email is valid
+        alert(email_in_use)
+        email.setCustomValidity("");
+    }
+    
     $.ajax({
       type: "POST",
       url: "/php/check_email.php",
@@ -282,20 +295,6 @@ email.addEventListener("input", function() {
         }
       }   
       });
-
-
-    // Check the email against validation rules
-    if (validateEmail(emailValue) == false ) {
-        // Email is not valid
-        email.setCustomValidity("Please use a valid Email address"); 
-    } 
-    else if (email_in_use == true){
-        email.setCustomValidity("Email is already in use")
-    } else {
-        // Email is valid
-        alert(email_in_use)
-        email.setCustomValidity("");
-    }
   });
 
 
