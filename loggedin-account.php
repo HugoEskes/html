@@ -33,22 +33,13 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <link href="css/style.min.css" rel="stylesheet">
 
     <style>
-      table, th, td {
+      form, th, td {
         border: 1px solid black;
         border-collapse: collapse;
         align-items: center;
         margin: 0 auto;
         height: 100%;
       }
-      th, td {
-        padding: 5px;
-        text-align: left;
-      }
-      .dropdown:hover {
-        display: block;
-      }
-
-
     </style>
 
 </head>
