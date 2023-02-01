@@ -2,6 +2,10 @@
 require_once 'php/connection.php';
 require_once "php/session.php";
 
+if ($_GET['status'] == 'incorrect')
+   echo "";
+
+
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
@@ -13,7 +17,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $row = mysqli_fetch_assoc($result);
     
     if (empty($result)) {
-        echo "<script>alert('Login failed. Email not in our system.')</script>";
+        header("Location: admin_login.php?status=incorrect");
     }
     // Check if email and password match
     if ($row['email'] == $email && $row['wachtwoord'] == $password) {
@@ -32,7 +36,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     else {
     // Login failed
     // Display an error message
-    echo "<script>alert('Login failed. Email or password is incorrect.')</script>";
+    header("Location: admin_login.php?status=incorrect");
     }
 }
 
