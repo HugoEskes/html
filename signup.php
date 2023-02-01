@@ -24,12 +24,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   // send an email to the user that the account has been created
   $to = $email;
   $subject = "Your SKI.I.P. account has been created!";
-  $message = "Welcome $firstname $lastname, \n Your SKI.I.P. account has been created and you can start making reservations!\n Your username is $username and if you want to change your password you can click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-account.php\">here</a>. \n Hope to see you soon at the gondola's!\nThe SKI.I.P. team";
-  $headers = "From: noreply@skiip.com" . "\r\n";
-  mail($to, $subject, $message, $headers);
+  $message = "Welcome $firstname $lastname, \r\n Your SKI.I.P. account has been created and you can start making reservations!\r\n Your username is $username and if you want to change your password you can click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-account.php\">here</a>. \r\n Hope to see you soon at the gondola's!\r\nThe SKI.I.P. team";
+  $message = wordwrap($message, 70, "\r\n");
+  if(mail($to, $subject, $message)) {
+    echo('mail verstuurd');
+  }
 
   // gebruiker naar homepagina sturen
-  header("Location: login.php?status=new_user");
+  //header("Location: login.php?status=new_user");
   }
 
 }
