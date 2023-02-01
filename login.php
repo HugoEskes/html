@@ -188,7 +188,7 @@ mysqli_close($connection);
 
 <!-- Berichtgeving voor nieuwe gebruikers -->
 <?php
-if ($_GET['status'] == 'incorrect') {
+if ($_GET['status'] == 'new_user') {
     echo("<script type='text/JavaScript'> alert('Your account has been created! Please log in to continue'); </script>");
 }
 ?>
