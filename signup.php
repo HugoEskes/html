@@ -9,22 +9,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
   include "php/connection.php";
 
-  if(isset($_POST["email_ajax"])) 
-  {
-    $email = $_POST["email_ajax"];
-    $sql = "Select * from gebruikers where email='$email'";
-    $result = mysqli_query($connection, $sql);
-    $num = mysqli_num_rows($result);
-
-    if($num!=0)
-      {
-      echo 1;
-      }
-    else
-      {
-      echo 0;
-      }
-  }
   
   // Alle informatie ophalen
   $firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
@@ -287,6 +271,7 @@ email.addEventListener("input", function() {
 
     $.ajax({
       type: "POST",
+      url: "/php/check_email.php",
       data: {email_ajax: email.value},
       dataType: "html",
       success: function(data) {
