@@ -110,12 +110,12 @@ mysqli_close($connection);
             <form action="admin_login.php" name="loginForm" method="post">
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="text" id='email' name="email" >
+                    <input type="email" id='email' name="email" required >
                 </div>
                 <br>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" id='password' name="password">
+                    <input type="password" id='password' name="password" required>
                 </div>
                 <br>
                 <div class="form-group">
