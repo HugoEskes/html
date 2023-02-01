@@ -33,3 +33,18 @@ if (isset($_POST['submit'])) {
   $updated_gebruikersnaam = $_POST['gebruikersnaam'];
   $updated_email = $_POST['email'];
   $updated_wachtwoord = $_POST['wachtwoord'];
+
+  // Update query
+  $update_query = "UPDATE gebruikers SET voornaam = '$updated_voornaam', achternaam = '$updated_achternaam', gebruikersnaam = '$updated_gebruikersnaam', email = '$updated_email', wachtwoord = '$updated_wachtwoord' WHERE gebruikerID = '$id'";
+
+  if (mysqli_query($connection, $update_query)) {
+    echo "Data updated successfully.";
+  } else {
+    echo "Error updating data: " . mysqli_error($connection);
+  }
+}
+
+// Close the database connection
+mysqli_close($connection);
+
+?>
