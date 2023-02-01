@@ -84,6 +84,26 @@ $email = $_SESSION['email'];
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="css/style.min.css" rel="stylesheet">
+
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        align-items: center;
+        margin: 0 auto;
+        height: 100%;
+      }
+      th, td {
+        padding: 5px;
+        text-align: left;
+      }
+      .dropdown:hover {
+        display: block;
+      }
+
+
+    </style>
+    
 </head>
 
 <body>
@@ -125,28 +145,50 @@ $email = $_SESSION['email'];
 <!-- Page Header End -->
 
 
-<form action="loggedin-account.php" method="post" id="update-form">
-    <input type="hidden" name="gebruikerID" value="<?php echo $_SESSION['gebruikerID']; ?>">
-    <label for="voornaam">Voornaam:</label>
-    <input type="text" id="voornaam" name="voornaam" value="<?php echo $_SESSION['voornaam']; ?>">
-    <br>
-    <label for="achternaam">Achternaam:</label>
-    <input type="text" id="achternaam" name="achternaam" value="<?php echo $_SESSION['achternaam']; ?>">
-    <br>
-    <label for="gebruikersnaam">Gebruikersnaam:</label>
-    <input type="text" id="gebruikersnaam" name="gebruikersnaam" value="<?php echo $_SESSION['gebruikersnaam']; ?>">
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="<?php echo $_SESSION['email']; ?>">
-    <br>
-    <label for="huidig_wachtwoord">Huidig wachtwoord:</label>
-    <input type="password" id="huidig_wachtwoord" name="huidig_wachtwoord">
-    <br>
-    <label for="nieuw_wachtwoord">Nieuw wachtwoord:</label>
-    <input type="password" id="nieuw_wachtwoord" name="nieuw_wachtwoord">
-    <br>
-    <input type="submit" name="submit" value="Submit">
-</form>
+<?php
+
+require_once 'php/connection.php';
+
+// Check connection
+if (!$connection) {
+   die("Connection failed: " . mysqli_connect_error());
+}
+$voornaam = $_SESSION['voornaam'];
+$achternaam = $_SESSION['achternaam'];
+$gebruikerID = $_SESSION['gebruikerID'];
+$gebruikersnaam = $_SESSION['gebruikersnaam'];
+$email = $_SESSION['email'];
+$wachtwoord = $_SESSION['wachtwoord'];
+
+
+// Select query
+$select_query = "SELECT * FROM gebruikers WHERE gebruikerID = '$gebruikerID'";
+$result = mysqli_query($connection, $select_query);
+
+echo "<table>";
+echo "<tr><th>ID</th><th>Name</th><th>Email</th><th>Action</th></tr>";
+
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<tr>";
+  echo "<td>" . $row['gebruikerID'] . "</td>";
+  echo "<td>" . $row['gebruikersnaam'] . "</td>";
+  echo "<td>" . $row['email'] . "</td>";
+  echo "<td>";
+  echo "<form action='delete.php' method='post'>";
+  echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
+  echo "<input type='submit' name='delete' value='Delete'>";
+  echo "</form>";
+  echo "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+// Close the database connection
+mysqli_close($connection);
+
+?>
 
 
 
