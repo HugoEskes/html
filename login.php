@@ -55,6 +55,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } else {
     // Login failed
     // Display an error message
+    echo ('iets2.0');
     header("Location: login.php?status=incorrect");
     exit;
     }
