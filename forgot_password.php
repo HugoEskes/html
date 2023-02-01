@@ -94,7 +94,7 @@ if(isset($_POST['submit'])) {
 <form action="forgot_password.php" method="post">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
-    <input type="submit" value="Submit">
+    <input name="submit" type="submit" value="Submit">
 </form>
 <!-- Form End -->
 
