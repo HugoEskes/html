@@ -18,11 +18,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
     if($num!=0)
       {
-      echo true;
+      echo "1";
       }
     else
       {
-      echo false;
+      echo "0";
       }
   }
   
@@ -292,11 +292,13 @@ email.addEventListener("input", function() {
     $.ajax({
       type: "GET",
       data: {email_ajax: emailValue},
-      success: function(response) {
-        alert(response)
-        
-        var email_result = response;
-      }
+      success: function(data) {
+        if ( data * 1 ) {
+          email_result = true
+        } else {
+          email_result = false
+        }
+      }   
       });
     if (email_result){
         email.setCustomValidity("Email is already in use")
