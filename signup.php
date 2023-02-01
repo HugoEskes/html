@@ -18,11 +18,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
     if($num!=0)
       {
-      echo "1";
+      echo 1;
       }
     else
       {
-      echo "0";
+      echo 0;
       }
   }
   
@@ -286,7 +286,7 @@ email.addEventListener("input", function() {
     var emailValue = email.value
 
     $.ajax({
-      type: "GET",
+      type: "POST",
       data: {email_ajax: email.value},
       dataType: "html",
       success: function(data) {
