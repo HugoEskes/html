@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Redirect to account page
     header("Location: /account.php");
     exit;
-    }
+}
 ?>
 
 <!DOCTYPE html>
