@@ -292,6 +292,39 @@ email.addEventListener("input", function() {
   });
 
 
+// Get the email input field
+var username = document.getElementById("username");
+
+// Listen for changes to the email field
+username.addEventListener("input", function() {
+    // Get the email value
+    var usernameValue = username.value
+
+    // Check the email against validation rules
+    if (usernameValue.length < 4) {
+        // Username is too short
+        username.setCustomValidity("Username must contain at least 4 letters");
+    } else if (usernameValue.indexOf(" ") !== -1){
+        //username contains a space
+        username.setCustomValidity("Username can not contain a space")
+    }else {    
+      $.ajax({
+      type: "POST",
+      url: "/php/check_username.php",
+      data: {username_ajax: username.value},
+      dataType: "html",
+      success: function(data) {
+        if ( data * 1 ) {
+          username.setCustomValidity("Username is already in use");
+        } else {
+          username.setCustomValidity("");
+        }
+      }   
+      });
+        
+    }
+  });
+
   // Get the cpassword input field
 var cpassword = document.getElementById("cpassword");
 
