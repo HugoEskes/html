@@ -146,7 +146,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
           <br>
           <div class="form-group">
             <label>Username</label>
-            <input type="text" id="Username" name="username" class="form-control" required>
+            <input type="text" id="username" name="username" class="form-control" required>
           </div>
           <br>
           <div class="form-group">
