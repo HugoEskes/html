@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
   $updated_wachtwoord = $_POST['wachtwoord'];
 
   // Update query
-  $update_query = "UPDATE gebruikers SET voornaam = '$updated_voornaam', achternaam = '$updated_achternaam', gebruikersnaam = '$updated_gebruikersnaam', email = '$updated_email', wachtwoord = '$updated_wachtwoord' WHERE gebruikerID = '$id'";
+  $update_query = "UPDATE gebruikers SET voornaam = '$updated_voornaam', achternaam = '$updated_achternaam', gebruikersnaam = '$updated_gebruikersnaam', email = '$updated_email', wachtwoord = password_hash($updated_wachtwoord, PASSWORD_DEFAULT) WHERE gebruikerID = '$id'";
 
   if (mysqli_query($connection, $update_query)) {
     echo "<script>alert('" . $updated_voornaam . ", your data has been succesfully changed!');</script>";
