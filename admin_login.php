@@ -38,6 +38,9 @@ if (!empty($email) && !empty($password)) {
     
     }
 }
+else {
+    echo "<script>alert('Login failed. Please enter an email and password')</script>";
+}
 mysqli_close($connection);
 ?>
 
