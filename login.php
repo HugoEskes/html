@@ -32,7 +32,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     }
 
     // Check if email and password match
-    if ($row['email'] == $email && password_verify($password, $row['wachtwoord'])) {
+    else if ($row['email'] == $email && password_verify($password, $row['wachtwoord'])) {
     // Login success
     // Start a session and store the user's information
     session_start();
