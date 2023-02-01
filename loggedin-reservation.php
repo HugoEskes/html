@@ -110,7 +110,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                         $start = strtotime('9:00am');
                                         $end = strtotime('6:00pm');
                                         for ($i = $start; $i <= $end; $i += 900) {
-                                            $time = date('g:i a', $i);
+                                            $time = date('H:i', $i);
                                             echo "<option value='$time'>$time</option>";
                                         }
                                     ?>
