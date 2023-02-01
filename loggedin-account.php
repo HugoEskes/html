@@ -131,6 +131,29 @@ $email = $_SESSION['email'];
 </div>
 <!-- Page Header End -->
 
+<form id="update-form">
+    <input type="hidden" name="gebruikerID" value="<?php echo $_SESSION['gebruikerID']; ?>">
+    <label for="voornaam">Voornaam:</label>
+    <input type="text" id="voornaam" name="voornaam" value="<?php echo $_SESSION['voornaam']; ?>">
+    <br>
+    <label for="achternaam">Achternaam:</label>
+    <input type="text" id="achternaam" name="achternaam" value="<?php echo $_SESSION['achternaam']; ?>">
+    <br>
+    <label for="gebruikersnaam">Gebruikersnaam:</label>
+    <input type="text" id="gebruikersnaam" name="gebruikersnaam" value="<?php echo $_SESSION['gebruikersnaam']; ?>">
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="<?php echo $_SESSION['email']; ?>">
+    <br>
+    <label for="huidig_wachtwoord">Huidig wachtwoord:</label>
+    <input type="password" id="huidig_wachtwoord" name="huidig_wachtwoord">
+    <br>
+    <label for="nieuw_wachtwoord">Nieuw wachtwoord:</label>
+    <input type="password" id="nieuw_wachtwoord" name="nieuw_wachtwoord">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
 <!-- Account Start -->
 <div id="edit-modal" style="display:none">
   <div>
