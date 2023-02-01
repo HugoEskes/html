@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   mysqli_query($connection, $sql);
 
   // gebruiker naar homepagina sturen
-  header("Location: login.php?status='new_user'");
+  header("Location: login.php?status=new_user");
   }
 
 }
