@@ -16,6 +16,7 @@ require_once 'php/connection.php';
 require_once "php/session.php";
  
 
+
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
     $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
