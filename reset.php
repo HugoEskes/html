@@ -5,7 +5,7 @@ if(isset($_POST['reset'])) {
    // Get the reset token from the URL
    $token = $_GET['token'];
    // Connect to the database
-   require_once 'php/connection.php'
+   require_once 'php/connection.php';
    // Verify the reset token
    $sql = "SELECT * FROM gebruikers WHERE reset_token='$token'";
    $result = mysqli_query($connection, $sql);
