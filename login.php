@@ -27,15 +27,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $row = mysqli_fetch_assoc($result);
 
     if (mysqli_num_rows($result) == 0) {
-        echo ('iets');
-        //header('Location: login.php?status=incorrect');
+        header('Location: login.php?status=incorrect');
         exit;
     }
 
-    // Check if email and password match
-    echo($password);
-    echo($row['wachtwoord']);
-    
+    // Check if email and password match    
     if ($row['email'] == $email && password_verify($password, $row['wachtwoord'])) {
     // Login success
     // Start a session and store the user's information
@@ -55,8 +51,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } else {
     // Login failed
     // Display an error message
-    echo ('iets2.0');
-    //header("Location: login.php?status=incorrect");
+    header("Location: login.php?status=incorrect");
     exit;
     }
 }
