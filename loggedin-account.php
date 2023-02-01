@@ -171,6 +171,8 @@ echo "<tr><th>ID</th><th>Name</th><th>Email</th><th>Action</th></tr>";
 // Loop through the result set
 
   echo "<tr>";
+  echo "<td>" . $voornaam . "</td>";
+  echo "<td>" . $achternaam . "</td>";
   echo "<td>" . $gebruikerID . "</td>";
   echo "<td>" . $gebruikersnaam . "</td>";
   echo "<td>" . $email . "</td>";
