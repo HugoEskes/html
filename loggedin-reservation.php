@@ -107,7 +107,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                 <select name="time_slot">
                                     <option value="">Select a time slot</option>
                                     <?php
-                                        for ($i = 9; $i <= 17; $i++) {
+                                        for ($i = 10; $i <= 17; $i += 1200) {
                                         $time = str_pad($i, 2, "0", STR_PAD_LEFT) . ":00";
                                         echo "<option value='$time'>$time</option>";
                                         }
