@@ -94,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             <div class="navbar-nav ml-auto p-4">
                 <a href="index.php" class="nav-item nav-link active">Home</a>
                 <a href="reservation.php" class="nav-item nav-link">Reserve</a>
-                <a href="about.php" class="nav-item nav-link">About us</a>
+                <a href="about.php" class="nav-item nav-link">About</a>
                 <a href="login.php" class="nav-item nav-link">Log In</a>
                 <a href="signup.php" class="nav-item nav-link">Sign Up</a>
                 
