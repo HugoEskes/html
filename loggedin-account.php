@@ -5,59 +5,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   // User is not logged in, redirect to login page with a flag indicating the user was not logged in
   header('Location: login.php?not_logged_in=1');
 }
-
-$userID = $_SESSION['gebruikerID'];
-$voornaam = $_SESSION['voornaam'];
-$achternaam = $_SESSION['achternaam'];
-$username = $_SESSION['gebruikersnaam'];
-$email = $_SESSION['email'];
-
-    if (isset($_POST['submit'])) {
-      require_once 'php/connection.php';
-      if (!$connection) {
-        die("Connection failed: " . mysqli_connect_error());
-      }
-
-      $newName = $_POST['voornaam'];
-      $newLastname = $_POST['achternaam'];
-      $newUsername = $_POST['gebruikersnaam'];
-      $newEmail = $_POST['email'];
-      $newPassword = $_POST['wachtwoord'];
-
-      // Confirm current password
-      $query = "SELECT wachtwoord FROM gebruikers WHERE gebruikerID = '$userID'";
-      $result = mysqli_query($connection, $query);
-      if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($_POST['huidig_wachtwoord'], $row['wachtwoord'])) {
-          // Update password if it has been changed
-          if ($newPassword) {
-            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-            $query = "UPDATE gebruikers SET wachtwoord = '$newPassword' WHERE gebruikerID = '$userID'";
-            if (!mysqli_query($connection, $query)) {
-              echo "Error updating password: " . mysqli_error($connection);
-            }
-          }
-
-          // Update username and email
-          $query = "UPDATE gebruikers SET voornaam = '$newName', achternaam = '$newLastname', gebruikersnaam = '$newUsername', email = '$newEmail' WHERE gebruikerID = '$userID'";
-          if (mysqli_query($connection, $query)) {
-            $_SESSION['voornaam'] = $newName;
-            $_SESSION['achternaam'] = $newLastname;
-            $_SESSION['gebruikersnaam'] = $newUsername;
-            $_SESSION['email'] = $newEmail;
-            echo "Record updated successfully";
-          } else {
-            echo "Error updating record: " . mysqli_error($connection);
-          }
-        } else {
-          echo "Incorrect password";
-        }
-      } else {
-        echo "User not found";
-      }
-      mysqli_close($connection);
-    }
 ?>
 
 <!DOCTYPE html>
