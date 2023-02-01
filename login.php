@@ -28,7 +28,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     if (mysqli_num_rows($result) == 0) {
         echo ('iets');
-        header('Location: login.php?status=incorrect');
+        //header('Location: login.php?status=incorrect');
         exit;
     }
 
@@ -56,7 +56,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     // Login failed
     // Display an error message
     echo ('iets2.0');
-    header("Location: login.php?status=incorrect");
+    //header("Location: login.php?status=incorrect");
     exit;
     }
 }
