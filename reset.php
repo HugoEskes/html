@@ -85,7 +85,7 @@ if(isset($_POST['reset'])) {
     <!-- Page Header End -->
 
 <!-- Form Begin-->
-<form name="reset-form" onsubmit="return validateForm()">
+<form action="reset.php" method="post" name="reset-form" onsubmit="return validateForm()">
    <input type="password" name="password" placeholder="Password">
    <input type="submit" name="reset" value="Reset">
 </form>
