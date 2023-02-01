@@ -181,6 +181,40 @@ if (email == "" || password == "") {
 }
 return true;
 }
+
+var email = document.getElementById("email");
+
+// Listen for changes to the email field
+email.addEventListener("input", function() {
+    // Get the cpassword value
+    var emailValue = email.value;
+    
+    // Check if the email form is empty
+    if (empty(emailValue)) {
+        email.setCustomValidity("You must fill in an emailaddress");
+    } else {
+        email.setCustomValidity("");
+    
+    }
+  });
+
+  var password = document.getElementById("password");
+
+// Listen for changes to the password field
+password.addEventListener("input", function() {
+    // Get the cpassword value
+    var passwordValue = password.value;
+    
+    // Check if the password form is empty
+    if (empty(passwordValue)) {
+        password.setCustomValidity("You must fill in a password");
+    } else {
+        password.setCustomValidity("");
+    
+    }
+  });
+
+
 </script>
 
 </body>
