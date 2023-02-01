@@ -103,7 +103,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                         <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Time" data-target="#time" data-toggle="datetimepicker"/>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group dropup">
                                     <select name="time_slot" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
                                         <option value="">Select a time slot</option>
                                         <?php
