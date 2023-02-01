@@ -60,13 +60,6 @@ $email = $_SESSION['email'];
     }
 ?>
 
-<form action="" method="post">
-  <input type="text" name="gebruikersnaam" value="<?php echo $username; ?>">
-  <input type="email" name="email" value="<?php echo $email; ?>">
-  <input type="password" name="huidig_wachtwoord" placeholder="Current password">
-  <input type="password" name="">
-
-
 <!DOCTYPE html>
 <html lang="en">
 
