@@ -37,6 +37,7 @@ if (!empty($email) && !empty($password)) {
         }
     
     }
+}
 mysqli_close($connection);
 ?>
 
