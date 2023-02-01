@@ -7,12 +7,12 @@ if(isset($_POST['reset'])) {
    // Connect to the database
    require_once 'php/connection.php'
    // Verify the reset token
-   $sql = "SELECT * FROM users WHERE reset_token='$token'";
+   $sql = "SELECT * FROM gebruikers WHERE reset_token='$token'";
    $result = mysqli_query($connection, $sql);
    if(mysqli_num_rows($result) > 0) {
       // Reset token is valid
       // Update the user's password in the database
-      $sql = "UPDATE users SET password='$password_hash' WHERE reset_token='$token'";
+      $sql = "UPDATE gebruikers SET password='$password_hash' WHERE reset_token='$token'";
       mysqli_query($connection, $sql);
       echo "Password reset successfully";
    } else {
