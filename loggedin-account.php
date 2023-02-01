@@ -64,32 +64,8 @@ $email = $_SESSION['email'];
   <input type="text" name="gebruikersnaam" value="<?php echo $username; ?>">
   <input type="email" name="email" value="<?php echo $email; ?>">
   <input type="password" name="huidig_wachtwoord" placeholder="Current password">
-  <input type="password" name="
+  <input type="password" name="">
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Connect to the database
-    require_once 'php/connection.php';
-  
-    // Sanitize and validate form inputs
-    $voornaam = mysqli_real_escape_string($connection, $_POST['voornaam']);
-    $achternaam = mysqli_real_escape_string($connection, $_POST['achternaam']);
-    $gebruikersnaam = mysqli_real_escape_string($connection, $_POST['gebruikersnaam']);
-    $email = mysqli_real_escape_string($connection, $_POST['email']);
-    $wachtwoord = mysqli_real_escape_string($connection, $_POST['wachtwoord']);
-  
-    // Update the record in the database
-    $query = "UPDATE gebruikers SET voornaam='$voornaam', achternaam='$achternaam', gebruikersnaam='$gebruikersnaam', email='$email', wachtwoord='$wachtwoord' WHERE gebruikerID=".$_SESSION['gebruikerID'];
-    mysqli_query($connection, $query);
-  
-    // Update the session variables
-    $_SESSION['gebruikersnaam'] = $gebruikersnaam;
-    $_SESSION['email'] = $email;
-  
-    // Redirect to account page
-    header("Location: /account.php");
-    exit;
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
