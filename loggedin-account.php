@@ -84,6 +84,26 @@ $email = $_SESSION['email'];
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="css/style.min.css" rel="stylesheet">
+
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        align-items: center;
+        margin: 0 auto;
+        height: 100%;
+      }
+      th, td {
+        padding: 5px;
+        text-align: left;
+      }
+      .dropdown:hover {
+        display: block;
+      }
+
+
+    </style>
+    
 </head>
 
 <body>
