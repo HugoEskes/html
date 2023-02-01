@@ -285,7 +285,7 @@ email.addEventListener("input", function() {
     // Get the email value
     var emailValue = email.value
     // Check the email against validation rules
-    if (validateEmail(emailValue) == true ) {
+    if (validateEmail(emailValue) == false ) {
         // Email is not valid
         email.setCustomValidity("Please use a valid Email address"); 
     } 
