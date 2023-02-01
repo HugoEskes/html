@@ -5,6 +5,30 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   // User is not logged in, redirect to login page with a flag indicating the user was not logged in
   header('Location: login.php?not_logged_in=1');
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Connect to the database
+    require_once 'php/connection.php'
+  
+    // Sanitize and validate form inputs
+    $voornaam = mysqli_real_escape_string($connection, $_POST['voornaam']);
+    $achternaam = mysqli_real_escape_string($connection, $_POST['achternaam']);
+    $gebruikersnaam = mysqli_real_escape_string($connection, $_POST['gebruikersnaam']);
+    $email = mysqli_real_escape_string($connection, $_POST['email']);
+    $wachtwoord = mysqli_real_escape_string($connection, $_POST['wachtwoord']);
+  
+    // Update the record in the database
+    $query = "UPDATE gebruikers SET voornaam='$voornaam', achternaam='$achternaam', gebruikersnaam='$gebruikersnaam', email='$email', wachtwoord='$wachtwoord' WHERE gebruikerID=".$_SESSION['gebruikerID'];
+    mysqli_query($connection, $query);
+  
+    // Update the session variables
+    $_SESSION['gebruikersnaam'] = $gebruikersnaam;
+    $_SESSION['email'] = $email;
+  
+    // Redirect to account page
+    header("Location: /account.php");
+    exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +95,34 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 </div>
 <!-- Page Header End -->
 
+<!-- Account Start -->
+<form id="account-form">
+  <label for="voornaam">First Name:</label>
+  <input type="text" id="voornaam" name="voornaam" value="">
+  <br>
+  <label for="achternaam">Last Name:</label>
+  <input type="text" id="achternaam" name="achternaam" value="">
+  <br>
+  <label for="gebruikersnaam">Username:</label>
+  <input type="text" id="gebruikersnaam" name="gebruikersnaam" value="">
+  <br>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" value="">
+  <br>
+  <label for="wachtwoord">Password:</label>
+  <input type="password" id="wachtwoord" name="wachtwoord" value="">
+  <br>
+  <input type="button" id="update-button" value="Update Account">
+</form>
+
+<div id="password-modal" style="display: none;">
+  <p>Please enter your current password to continue:</p>
+  <input type="password" id="current-password">
+  <br>
+  <input type="button" id="verify-password" value="Verify Password">
+</div>
+<!-- Account End -->
+
 
 <!-- Footer Start -->
 <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">
@@ -106,6 +158,26 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+<script>
+$(document).ready(function() {
+  // Show password verification modal when update button is clicked
+  $("#update-button").click(function() {
+    $("#password-modal").show();
+  });
+  
+  // Verify password and submit form
+  $("#verify-password").click(function() {
+    // Check if entered password matches current password
+    var currentPassword = $("#current-password").val();
+    if (currentPassword === "YOUR_CURRENT_PASSWORD") {
+      // Submit the form to update the account information
+      $("#account-form").submit();
+    } else {
+      alert("Incorrect password. Please try again.");
+    }
+  });
+});
+</script>
 </body>
 
 </html>
