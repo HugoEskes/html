@@ -103,7 +103,7 @@ $email = $_SESSION['email'];
 
 
     </style>
-    
+
 </head>
 
 <body>
@@ -169,19 +169,19 @@ echo "<table>";
 echo "<tr><th>ID</th><th>Name</th><th>Email</th><th>Action</th></tr>";
 
 // Loop through the result set
-while ($row = mysqli_fetch_assoc($result)) {
+
   echo "<tr>";
-  echo "<td>" . $row['gebruikerID'] . "</td>";
-  echo "<td>" . $row['gebruikersnaam'] . "</td>";
-  echo "<td>" . $row['email'] . "</td>";
+  echo "<td>" . $gebruikerID . "</td>";
+  echo "<td>" . $gebruikersnaam . "</td>";
+  echo "<td>" . $email . "</td>";
   echo "<td>";
   echo "<form action='delete.php' method='post'>";
-  echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
+  echo "<input type='hidden' name='id' value='" . $gebruikerID . "'>";
   echo "<input type='submit' name='delete' value='Delete'>";
   echo "</form>";
   echo "</td>";
   echo "</tr>";
-}
+
 
 echo "</table>";
 
