@@ -6,6 +6,58 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: login.php?not_logged_in=1');
 }
 
+$userID = $_SESSION['gebruikerID'];
+$voornaam = $_SESSION['voornaam'];
+$achternaam = $_SESSION['achternaam'];
+$username = $_SESSION['gebruikersnaam'];
+$email = $_SESSION['email'];
+
+    if (isset($_POST['submit'])) {
+      require_once 'php/connection.php';
+      if (!$connection) {
+        die("Connection failed: " . mysqli_connect_error());
+      }
+
+      $newName = $_POST['voornaam'];
+      $newLastname = $_POST['achternaam'];
+      $newUsername = $_POST['gebruikersnaam'];
+      $newEmail = $_POST['email'];
+      $newPassword = $_POST['wachtwoord'];
+
+      // Confirm current password
+      $query = "SELECT wachtwoord FROM gebruikers WHERE gebruikerID = '$userID'";
+      $result = mysqli_query($connection, $query);
+      if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($_POST['huidig_wachtwoord'], $row['wachtwoord'])) {
+          // Update password if it has been changed
+          if ($newPassword) {
+            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $query = "UPDATE gebruikers SET wachtwoord = '$newPassword' WHERE gebruikerID = '$userID'";
+            if (!mysqli_query($connection, $query)) {
+              echo "Error updating password: " . mysqli_error($connection);
+            }
+          }
+
+          // Update username and email
+          $query = "UPDATE gebruikers SET voornaam = '$newName' achternaam = '$newLastname' gebruikersnaam = '$newUsername', email = '$newEmail' WHERE gebruikerID = '$userID'";
+          if (mysqli_query($connection, $query)) {
+            $_SESSION['voornaam'] = $newName;
+            $_SESSION['achternaam'] = $newLastname;
+            $_SESSION['gebruikersnaam'] = $newUsername;
+            $_SESSION['email'] = $newEmail;
+            echo "Record updated successfully";
+          } else {
+            echo "Error updating record: " . mysqli_error($connection);
+          }
+        } else {
+          echo "Incorrect password";
+        }
+      } else {
+        echo "User not found";
+      }
+      mysqli_close($connection);
+    }
 ?>
 
 <form action="" method="post">
@@ -79,6 +131,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 </div>
 <!-- Page Header End -->
 
+
 <form id="update-form">
     <input type="hidden" name="gebruikerID" value="<?php echo $_SESSION['gebruikerID']; ?>">
     <label for="voornaam">Voornaam:</label>
@@ -102,62 +155,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <input type="submit" value="Submit">
 </form>
 
-<!-- Account Start -->
-<?php
-$userID = $_SESSION['gebruikerID'];
-$voornaam = $_SESSION['voornaam'];
-$achternaam = $_SESSION['achternaam'];
-$username = $_SESSION['gebruikersnaam'];
-$email = $_SESSION['email'];
-
-    if (isset($_POST['submit'])) {
-      require_once 'php/connection.php';
-      if (!$connection) {
-        die("Connection failed: " . mysqli_connect_error());
-      }
-
-      $newName = $_POST['voornaam'];
-      $newLastname = $_POST['achternaam'];
-      $newUsername = $_POST['gebruikersnaam'];
-      $newEmail = $_POST['email'];
-      $newPassword = $_POST['wachtwoord'];
-
-      // Confirm current password
-      $query = "SELECT wachtwoord FROM gebruikers WHERE gebruikerID = '$userID'";
-      $result = mysqli_query($connection, $query);
-      if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($_POST['huidig_wachtwoord'], $row['wachtwoord'])) {
-          // Update password if it has been changed
-          if ($newPassword) {
-            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-            $query = "UPDATE gebruikers SET wachtwoord = '$newPassword' WHERE gebruikerID = '$userID'";
-            if (!mysqli_query($connection, $query)) {
-              echo "Error updating password: " . mysqli_error($connection);
-            }
-          }
-
-          // Update username and email
-          $query = "UPDATE gebruikers SET voornaam = '$newName' achternaam = '$newLastname' gebruikersnaam = '$newUsername', email = '$newEmail' WHERE gebruikerID = '$userID'";
-          if (mysqli_query($connection, $query)) {
-            $_SESSION['voornaam'] = $newName;
-            $_SESSION['achternaam'] = $newLastname;
-            $_SESSION['gebruikersnaam'] = $newUsername;
-            $_SESSION['email'] = $newEmail;
-            echo "Record updated successfully";
-          } else {
-            echo "Error updating record: " . mysqli_error($connection);
-          }
-        } else {
-          echo "Incorrect password";
-        }
-      } else {
-        echo "User not found";
-      }
-      mysqli_close($connection);
-    }
-?>
-<!-- Account End -->
 
 
 <!-- Footer Start -->
@@ -194,26 +191,22 @@ $email = $_SESSION['email'];
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+
 <script>
-$(document).ready(function() {
-  // Show password verification modal when update button is clicked
-  $("#update-button").click(function() {
-    $("#password-modal").show();
-  });
-  
-  // Verify password and submit form
-  $("#verify-password").click(function() {
-    // Check if entered password matches current password
-    var currentPassword = $("#current-password").val();
-    if (currentPassword === "YOUR_CURRENT_PASSWORD") {
-      // Submit the form to update the account information
-      $("#account-form").submit();
-    } else {
-      alert("Incorrect password. Please try again.");
-    }
-  });
-});
+    document.getElementById("update-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "update-account.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                alert("Account updated successfully!");
+            }
+        };
+        xhr.send(formData);
+    });
 </script>
+
 </body>
 
 </html>
