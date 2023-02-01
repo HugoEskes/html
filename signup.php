@@ -9,8 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 {
   include "php/connection.php";
 
-  // alert functie aanmaken
-  if(isset($_POST["name"]) && isset($_POST["age"])) 
+  if(isset($_POST["email"])) 
   {
     $email = $_POST["email"];
     $sql = "Select * from gebruikers where email='$email'";
@@ -43,9 +42,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
   // checken of de wachtwoorden overeen komen
   if($password != $cpassword)
-  {
+    {
     $passwordsmatch = false;
-  }
+    }
 
   // Als de wachtwoorden overeen komen wordt het wachtwoord versleuteld en naar de database gestuurd
   //
