@@ -293,8 +293,13 @@ email.addEventListener("input", function() {
       type: "GET",
       data: {email_ajax: emailValue},
       success: function(response) {
+        alert("ajax request gelukt")
         var email_result = response;
-      }
+      },
+      fail: function(xhr, textStatus, errorThrown)
+        {
+       alert('request failed');
+        }
       });
     if (email_result){
         email.setCustomValidity("Email is already in use")
