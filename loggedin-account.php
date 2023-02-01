@@ -168,7 +168,6 @@ $result = mysqli_query($connection, $select_query);
 echo "<table>";
 echo "<tr><th>Name</th><th>Last Name</th><th>ID</th><th>Username</th><th>Email</th><th>Password</th><th>Action</th></tr>";
 
-// Loop through the result set
 
   echo "<tr>";
   echo "<td>" . $voornaam . "</td>";
@@ -178,9 +177,9 @@ echo "<tr><th>Name</th><th>Last Name</th><th>ID</th><th>Username</th><th>Email</
   echo "<td>" . $email . "</td>";
   echo "<td>" . $wachtwoord . "</td>";
   echo "<td>";
-  echo "<form action='delete.php' method='post'>";
+  echo "<form action='edit.php' method='post'>";
   echo "<input type='hidden' name='id' value='" . $gebruikerID . "'>";
-  echo "<input type='submit' name='delete' value='Delete'>";
+  echo "<input type='submit' name='edit' value='Edit'>";
   echo "</form>";
   echo "</td>";
   echo "</tr>";
