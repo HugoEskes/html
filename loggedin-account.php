@@ -8,7 +8,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Connect to the database
-    require_once 'php/connection.php'
+    require_once 'php/connection.php';
   
     // Sanitize and validate form inputs
     $voornaam = mysqli_real_escape_string($connection, $_POST['voornaam']);
