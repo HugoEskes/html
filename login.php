@@ -25,9 +25,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $sql = "SELECT * FROM gebruikers WHERE email='$email'";
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_assoc($result);
-    
+
     if (mysqli_num_rows($result) == 0) {
-        header('login.php?status=incorrect');
+        header('Location: login.php?status=incorrect');
         exit;
     }
 
@@ -50,7 +50,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } else {
     // Login failed
     // Display an error message
-    header("login.php?incorrect");
+    header("Location: login.php?incorrect");
     exit;
     }
 }
