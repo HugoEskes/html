@@ -145,7 +145,7 @@ $email = $_SESSION['email'];
     <label for="nieuw_wachtwoord">Nieuw wachtwoord:</label>
     <input type="password" id="nieuw_wachtwoord" name="nieuw_wachtwoord">
     <br>
-    <input type="submit" value="Submit">
+    <input type="submit" name="submit" value="Submit">
 </form>
 
 
