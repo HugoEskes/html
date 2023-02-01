@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
     echo "Error updating data: " . mysqli_error($connection);
   }
 }
-
+}
 // Close the database connection
 mysqli_close($connection);
 
