@@ -43,7 +43,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 <div class="container-fluid p-0 nav-bar">
     <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
         <a href="loggedin-index.php" class="navbar-brand px-lg-4 m-0">
-            <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P</h1>
+            <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -52,10 +52,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             <div class="navbar-nav ml-auto p-4">
                 <a href="loggedin-index.php" class="nav-item nav-link">Home</a>
                 <a href="loggedin-reservation.php" class="nav-item nav-link active">Reserve</a>
-                <a href="loggedin-about.php" class="nav-item nav-link">About us</a>
+                <a href="loggedin-about.php" class="nav-item nav-link">About</a>
                 <a href="loggedin-account.php" class="nav-item nav-link">Account</a>
                 <a href="loggedin-myreservations.php" class="nav-item nav-link">My Reservations</a>
-                <a href="php/logout.php" class="nav-item nav-link">Logout</a>               
+                <a href="php/logout.php" class="nav-item nav-link">Log Out</a>               
             </div>
         </div>
     </nav>

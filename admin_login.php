@@ -70,7 +70,7 @@ mysqli_close($connection);
         <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
             <a href="index.php" class="navbar-brand px-lg-4 m-0">
-                <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P</h1>
+                <h1 class="m-0 display-4 text-uppercase text-white">Ski. I. P.</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -79,9 +79,9 @@ mysqli_close($connection);
                 <div class="navbar-nav ml-auto p-4">
                     <a href="index.php" class="nav-item nav-link">Home</a>
                     <a href="reservation.php" class="nav-item nav-link">Reserve</a>
-                    <a href="about.php" class="nav-item nav-link">About us</a>
-                    <a href="login.php" class="nav-item nav-link">Login</a>
-                    <a href="signup.php" class="nav-item nav-link">Signup</a>
+                    <a href="about.php" class="nav-item nav-link">About</a>
+                    <a href="login.php" class="nav-item nav-link">Log In</a>
+                    <a href="signup.php" class="nav-item nav-link">Sign Up</a>
                 </div>
             </div>
         </nav>
@@ -122,7 +122,7 @@ mysqli_close($connection);
                     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                 </div>
                 <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
-                <p>Not an admin?<a href="login.php"> Login here</a></p>
+                <p>Not an admin?<a href="login.php"> Log in here</a></p>
             </form>
         </div>
     </div>

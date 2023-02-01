@@ -122,10 +122,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             <div class="navbar-nav ml-auto p-4">
                 <a href="loggedin-index.php" class="nav-item nav-link active">Home</a>
                 <a href="loggedin-reservation.php" class="nav-item nav-link">Reserve</a>
-                <a href="loggedin-about.php" class="nav-item nav-link">About us</a>
+                <a href="loggedin-about.php" class="nav-item nav-link">About</a>
                 <a href="loggedin-account.php" class="nav-item nav-link">Account</a>
                 <a href="loggedin-myreservations.php" class="nav-item nav-link">My Reservations</a>
-                <a href="php/logout.php" class="nav-item nav-link">Log out</a>
+                <a href="php/logout.php" class="nav-item nav-link">Log Out</a>
             </div>
         </div>
     </nav>

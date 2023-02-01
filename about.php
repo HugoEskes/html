@@ -16,7 +16,7 @@ if (session_status() !== PHP_SESSION_NONE) {
 
 <head>
     <meta charset="utf-8">
-    <title>About us</title>
+    <title>About</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -53,7 +53,7 @@ if (session_status() !== PHP_SESSION_NONE) {
             <div class="navbar-nav ml-auto p-4">
                 <a href="index.php" class="nav-item nav-link ">Home</a>
                 <a href="reservation.php" class="nav-item nav-link">Reserve</a>
-                <a href="about.php" class="nav-item nav-link active">About us</a>
+                <a href="about.php" class="nav-item nav-link active">About</a>
                 <a href="login.php" class="nav-item nav-link">Log In</a>
                 <a href="signup.php" class="nav-item nav-link">Sign Up</a>
             </div>
@@ -66,11 +66,11 @@ if (session_status() !== PHP_SESSION_NONE) {
     <!-- Page Header Start -->
     <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
         <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">About us</h1>
+            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">About</h1>
             <div class="d-inline-flex mb-lg-5">
                 <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
                 <p class="m-0 text-white px-2">/</p>
-                <p class="m-0 text-white">About us</p>
+                <p class="m-0 text-white">About</p>
             </div>
         </div>
     </div>

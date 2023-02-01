@@ -60,7 +60,7 @@ mysqli_close($connection);
 <html lang="en">
     <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Log In</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -96,7 +96,7 @@ mysqli_close($connection);
             <div class="navbar-nav ml-auto p-4">
                 <a href="index.php" class="nav-item nav-link">Home</a>
                 <a href="reservation.php" class="nav-item nav-link">Reserve</a>
-                <a href="about.php" class="nav-item nav-link">About us</a>
+                <a href="about.php" class="nav-item nav-link">About</a>
                 <a href="login.php" class="nav-item nav-link active">Log In</a>
                 <a href="signup.php" class="nav-item nav-link">Sign Up</a>
             </div>
@@ -112,7 +112,7 @@ mysqli_close($connection);
         <div class="d-inline-flex mb-lg-5">
             <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
             <p class="m-0 text-white px-2">/</p>
-            <p class="m-0 text-white">Login</p>
+            <p class="m-0 text-white">Log In</p>
         </div> 
     </div>
 </div>
@@ -122,7 +122,7 @@ mysqli_close($connection);
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Login</h2>
+                    <h2>Log In</h2>
                     <p>Please fill in your email and password.</p>
                     <form action="login.php" method="post">
                         <div class="form-group">
@@ -139,7 +139,7 @@ mysqli_close($connection);
                             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                         </div>
                         <p>Don't have an account? <a href="signup.php">Register here</a>.</p>
-                        <p>Are you an admin? <a href="admin_login.php"> Login here</a></p>
+                        <p>Are you an admin? <a href="admin_login.php"> Log in here</a></p>
                     </form>
                 </div>
             </div>
