@@ -45,6 +45,7 @@ if (session_status() !== PHP_SESSION_NONE) {
 
 
                alert ("Please login to make a reservation.");
+               location.replace("login.php")
             }
     </script>     
 </head>
@@ -132,7 +133,7 @@ if (session_status() !== PHP_SESSION_NONE) {
                                 </div>
                                 
                                 <div>
-                                    <button href='login.php' class="btn btn-primary btn-block font-weight-bold py-3" onclick="login();" type="submit">Book Now</button>
+                                    <button class="btn btn-primary btn-block font-weight-bold py-3" onclick="login();" type="submit">Book Now</button>
                                 </div>
                             </form>
                         </div>
