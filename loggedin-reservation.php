@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
     $sqldate=date('Y-m-d',strtotime($date));
 
     $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikersID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
- //   mysqli_query($connection, $sql);
+
 
     if ($connection->query($sql) === TRUE) {
         header('Location: loggedin-reservation.php?success=1');
