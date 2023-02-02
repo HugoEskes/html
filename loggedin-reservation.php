@@ -230,7 +230,7 @@ if (isset($_POST['submit'])) {
 if (isset($_GET['status'])){
     if ($_GET['status'] == 'success') {
         echo("<script type='text/JavaScript'> 
-        alert('Your reservation for $people people at $timeslot on $date has been made!'); 
+        alert('Your reservation for ${people} people at ${timeslot} on ${date} has been made!'); 
         </script>");
     }
     }
