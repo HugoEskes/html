@@ -1,9 +1,9 @@
 <?php
 if(isset($_POST['submit'])) {
-   $password = $_POST['password'];
+   $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
    $password_hash = password_hash($password, PASSWORD_DEFAULT);
    // Get the reset token from the URL
-   $token = $_POST['reset_token'];
+   $token = mysqli_real_escape_string($connection, htmlspecialchars($_POST['reset_token']));
    // Connect to the database
    require_once 'php/connection.php';
    // Verify the reset token
@@ -91,7 +91,7 @@ if(isset($_POST['submit'])) {
 <!-- Form Begin-->
 <form action="reset.php" method="post" name="reset-form" onsubmit="return validateForm()">
    <input type="password" name="password" placeholder="Password">
-   <br>
+   <br><br>
    <input type='reset_token' name="reset_token" placeholder="Reset token">
    <input type="submit" name="submit" value="Submit">
 </form>
