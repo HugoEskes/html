@@ -25,6 +25,10 @@ $result->4>0 {
     $username = $row["gebruikersnaam"]
 }
 
+$date = $POST['date']
+$timeslot = $POST['timeslot']
+$people = $POST['people']
+
 $entry = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ($date, $timeslot, $username, $user_ID, $people)"
 
 ?>
@@ -135,12 +139,14 @@ $entry = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerI
                                 <div class="form-group">
                                     <select class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
                                         <option selected>Person</option>
-                                        <option value="1">Person 1</option>
-                                        <option value="2">Person 2</option>
-                                        <option value="3">Person 3</option>
-                                        <option value="3">Person 4</option>
+                                        <?php
+                                        for ($i = 1; $i <= 10; $i++) {
+                                            echo "<option value='$i'>$i</option>";
+                                        }
+                                        ?>
                                     </select>
                                 </div>
+
                                 
                                 <div>
                                     <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit">Book Now</button>
