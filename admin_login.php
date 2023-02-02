@@ -27,7 +27,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['logged_in'] = true;
     
     // Redirect to the welcome page
-    header("Location: index.php?status=welcome_admin");
+    header("Location: php/admin_index.php?status=welcome_admin");
     } 
     else {
     // Login failed
