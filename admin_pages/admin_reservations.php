@@ -94,7 +94,12 @@ if (!$connection) {
 }
 
 // Select query
-$select_query = "SELECT * FROM reserveringen JOIN gebruikers ON reserveringen.gebruikerID = gebruikers.gebruikerID WHERE reserveringen.datum > NOW()";
+$select_query = "SELECT * 
+                FROM reserveringen 
+                JOIN gebruikers 
+                ON reserveringen.gebruikerID = gebruikers.gebruikerID 
+                WHERE reserveringen.datum > NOW()
+                ORDER BY reserveringen.datum ASC";
 $result_users = mysqli_query($connection, $select_query);
 
 echo "<table>";
