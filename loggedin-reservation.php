@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
-mysqli_close($connection);
+mysqli_query($connection, $sql);
 ?>
 
 <!DOCTYPE html>
