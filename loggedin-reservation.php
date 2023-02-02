@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
     $people = $_POST['Person'];
     $sqldate=date('Y-m-d',strtotime($date));
 
-    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikersID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
+    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
 
 
     if ($connection->query($sql) === TRUE) {

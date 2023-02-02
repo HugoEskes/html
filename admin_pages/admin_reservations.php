@@ -94,7 +94,7 @@ if (!$connection) {
 }
 
 // Select query
-$select_query = "SELECT * FROM reserveringen JOIN gebruikers ON gebruikersID = gebruikersID";
+$select_query = "SELECT * FROM reserveringen JOIN gebruikers ON gebruikerID = gebruikerID";
 $result_users = mysqli_query($connection, $select_query);
 
 echo "<table>";
@@ -111,7 +111,7 @@ while ($row = mysqli_fetch_assoc($result_users)) {
   echo "<td>" . $row['gebruikersnaam'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
   echo "<td>";
-  echo "<form action='delete.php' method='post'>";
+  echo "<form action='delete_reservation.php' method='post'>";
   echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
   echo "<input type='submit' name='delete' value='Delete'>";
   echo "</form>";
