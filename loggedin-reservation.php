@@ -28,8 +28,9 @@ if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $timeslot = $_POST['time_slot'];
     $people = $_POST['Person'];
+    $sqldate=date('d-m-Y',strtotime($date));
 
-    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikersID, personen) VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
+    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikersID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
     mysqli_query($connection, $sql);
 
     if ($connection->query($sql) === TRUE) {
