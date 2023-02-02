@@ -34,7 +34,7 @@ $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID,
 VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
 
 
-mysqli_close($link);
+mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
