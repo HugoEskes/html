@@ -20,9 +20,10 @@ if(isset($_POST['submit'])) {
        $message = "Please click on the following link to reset your password: " . $reset_link;
        $headers = "From: Skiliftreserveringen@gmail.com";
        mail($to, $subject, $message, $headers);
+       echo "<script>alert('An email with more instructions has been sent.')</script>"
     } else {
        // Email not found in the database
-       echo "Email not found";
+       echo "<script>alert('Email not found')</script>";
     }
  }
  
