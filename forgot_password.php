@@ -17,7 +17,7 @@ if(isset($_POST['submit'])) {
        $reset_link = "https://webtech-ki59.webtech-uva.nl/reset.php?token=" . $token;
        $to = $email;
        $subject = "Password Reset";
-       $message = "Please click on the following link to reset your password: " . $reset_link;
+       $message = "Please click on the following link to reset your password and copy the reset token: " . $token . $reset_link;
        $headers = "From: Skiliftreserveringen@gmail.com";
        mail($to, $subject, $message, $headers);
        echo "<script>alert('An email with more instructions has been sent.')</script>";
