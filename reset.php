@@ -4,7 +4,7 @@ if(isset($_POST['submit'])) {
    require_once 'php/connection.php';
    $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-   // Get the reset token from the URL
+   // Get the reset token from the form
    $token = mysqli_real_escape_string($connection, htmlspecialchars($_POST['reset_token']));
    // Verify the reset token
    $sql = "SELECT * FROM gebruikers WHERE reset_token='$token'";
