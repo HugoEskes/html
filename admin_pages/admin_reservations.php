@@ -98,6 +98,39 @@ $select_query = "SELECT *
                 FROM reserveringen 
                 JOIN gebruikers 
                 ON reserveringen.gebruikerID = gebruikers.gebruikerID 
+                WHERE reserveringen.datum >= NOW()
+                ORDER BY reserveringen.datum ASC";
+$result_users = mysqli_query($connection, $select_query);
+
+echo "<table>";
+echo "<tr><th>User-ID</th><th>Reservation ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th><th>Action</th></tr>";
+
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result_users)) {
+  echo "<tr>";
+  echo "<td>" . $row['gebruikerID'] . "</td>";
+  echo "<td>" . $row['reservatieID'] . "</td>";
+  echo "<td>" . $row['datum'] . "</td>";
+  echo "<td>" . $row['tijdslot'] . "</td>";
+  echo "<td>" . $row['personen'] . "</td>";
+  echo "<td>" . $row['gebruikersnaam'] . "</td>";
+  echo "<td>" . $row['email'] . "</td>";
+  echo "<td>";
+  echo "<form action='delete_reservation.php' method='post'>";
+  echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
+  echo "<input type='submit' name='delete' value='Delete'>";
+  echo "</form>";
+  echo "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+// Select query
+$select_query = "SELECT * 
+                FROM reserveringen 
+                JOIN gebruikers 
+                ON reserveringen.gebruikerID = gebruikers.gebruikerID 
                 WHERE reserveringen.datum > NOW()
                 ORDER BY reserveringen.datum ASC";
 $result_users = mysqli_query($connection, $select_query);
