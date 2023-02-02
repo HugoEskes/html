@@ -1,6 +1,5 @@
 <?php
 if(isset($_POST['submit'])) {
-
    // Connect to the database
    require_once 'php/connection.php';
    $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
@@ -20,11 +19,7 @@ if(isset($_POST['submit'])) {
     // Reset token is invalid
      echo "<script>alert('Invalid reset token')</script>";
    }
-   } else {
-      // Reset token is invalid
-      echo "<script>alert('Invalid reset token')</script>";
-   }
-
+}
 ?>
 
 <!DOCTYPE html>
