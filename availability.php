@@ -82,10 +82,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2>Register</h2>
-        <p>Please fill in this form to create an account.</p>
+        <h2>Availability</h2>
+        <p>Choose a date to see the availability</p>
         <form action="signup.php" method="post">
-          <div class="date" name="date" id="date" type="date" data-target-input="nearest">
+          <div class="date" name="availability_date" id="availability_date" type="date" data-target-input="nearest">
                 <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
             </div>
         </form>
@@ -97,51 +97,44 @@
 require_once 'php/connection.php';
 
 // Check connection
-// if (!$connection) {
-//    die("Connection failed: " . mysqli_connect_error());
-// }
-
-// $user_id = $_SESSION['gebruikerID'];
+if (!$connection) {
+   die("Connection failed: " . mysqli_connect_error());
+}
 
 
-// echo "<h2 style='text-align: center;'>Upcoming reservations</h2>";
+// Select query
+$select_query = "SELECT * 
+                FROM reserveringen 
+                WHERE datum=_POST['availability_date']
+                ORDER BY reserveringen.tijdslot ASC";
+$result = mysqli_query($connection, $select_query);
 
+echo "<table>";
+echo "<tr><th>Time</th><th>Availability</th></tr>";
 
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<tr>";
+  echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
+  echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
+  echo "<td>" . $row['personen'] . "</td>";
+  echo "<td>";
+  echo "<form action='loggedin-delete-reservation.php' method='post'>";
+  echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
+  echo "<input type='submit' name='delete' value='Delete'>";
+  echo "</form>";
+  echo "</td>";
+  echo "</tr>";
+}
 
+echo "</table>";
 
-// // Select query
-// $select_query = "SELECT * 
-//                 FROM reserveringen 
-//                 WHERE gebruikerID=$user_id and reserveringen.datum >= NOW()
-//                 ORDER BY reserveringen.datum ASC";
-// $result = mysqli_query($connection, $select_query);
+echo "</table>";
 
-// echo "<table>";
-// echo "<tr><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
+// Close the database connection
+mysqli_close($connection);
 
-// // Loop through the result set
-// while ($row = mysqli_fetch_assoc($result)) {
-//   echo "<tr>";
-//   echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
-//   echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
-//   echo "<td>" . $row['personen'] . "</td>";
-//   echo "<td>";
-//   echo "<form action='loggedin-delete-reservation.php' method='post'>";
-//   echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
-//   echo "<input type='submit' name='delete' value='Delete'>";
-//   echo "</form>";
-//   echo "</td>";
-//   echo "</tr>";
-// }
-
-// echo "</table>";
-
-// echo "</table>";
-
-// // Close the database connection
-// mysqli_close($connection);
-
-// ?>
+?>
 
 
 <!-- Footer Start -->
