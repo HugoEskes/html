@@ -14,7 +14,7 @@ $user_ID = $_SESSION['gebruikerID'];
 
 // Search the database
 $sql = "SELECT * FROM gebruikers WHERE gebruikerID = '$user_ID'";
-$result = $conn->query($sql);
+$result = $connenction->query($sql);
 
 //attach user values to variables
 if ($result->num_rows > 0) {
