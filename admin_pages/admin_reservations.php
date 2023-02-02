@@ -30,6 +30,22 @@
     <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="../css/style.min.css" rel="stylesheet">
+
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        align-items: center;
+        margin: 0 auto;
+        height: 100%;
+      }
+      th, td {
+        padding: 5px;
+        text-align: left;
+      }
+
+
+    </style>
 </head>
 
 <body>
@@ -78,24 +94,25 @@ if (!$connection) {
 }
 
 // Select query
-$select_query = "SELECT * FROM reserveringen JOIN gebruikers ON gebruikersID = gebruikersID";
+$select_query = "SELECT * FROM reserveringen JOIN gebruikers ON reserveringen.gebruikerID = gebruikers.gebruikerID";
 $result_users = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th></tr>";
+echo "<tr><th>User-ID</th><th>Reservation ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th><th>Action</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result_users)) {
   echo "<tr>";
   echo "<td>" . $row['gebruikerID'] . "</td>";
+  echo "<td>" . $row['reservatieID'] . "</td>";
   echo "<td>" . $row['datum'] . "</td>";
   echo "<td>" . $row['tijdslot'] . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
   echo "<td>" . $row['gebruikersnaam'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
   echo "<td>";
-  echo "<form action='delete.php' method='post'>";
-  echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
+  echo "<form action='delete_reservation.php' method='post'>";
+  echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
   echo "<input type='submit' name='delete' value='Delete'>";
   echo "</form>";
   echo "</td>";

@@ -28,9 +28,10 @@ if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $timeslot = $_POST['time_slot'];
     $people = $_POST['Person'];
+    $sqldate=date('Y-m-d',strtotime($date));
 
-    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
-    mysqli_query($connection, $sql);
+    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
+
 
     if ($connection->query($sql) === TRUE) {
         header('Location: loggedin-reservation.php?success=1');
@@ -39,7 +40,6 @@ if (isset($_POST['submit'])) {
     }
 }
 
-mysqli_query($connection, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -128,8 +128,8 @@ mysqli_query($connection, $sql);
                             <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
                             <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
-                                    <div class="date" name="date" id="date" data-target-input="nearest">
-                                        <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
+                                    <div class="date" name="date" id="date" type="date" data-target-input="nearest">
+                                        <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
                                 </div>
                                 <div class="form-group">

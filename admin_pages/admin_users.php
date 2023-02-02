@@ -46,9 +46,6 @@
         padding: 5px;
         text-align: left;
       }
-      .dropdown:hover {
-        display: block;
-      }
 
 
     </style>
@@ -115,7 +112,7 @@ while ($row = mysqli_fetch_assoc($result)) {
   echo "<td>" . $row['gebruikersnaam'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
   echo "<td>";
-  echo "<form action='delete.php' method='post'>";
+  echo "<form action='delete_user.php' method='post'>";
   echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
   echo "<input type='submit' name='delete' value='Delete'>";
   echo "</form>";

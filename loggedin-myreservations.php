@@ -30,9 +30,22 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.min.css" rel="stylesheet">
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        align-items: center;
+        margin: 0 auto;
+        height: 100%;
+      }
+      th, td {
+        padding: 5px;
+        text-align: left;
+      }
+
+
+    </style>
 </head>
 
 <body>
@@ -73,7 +86,46 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 </div>
 <!-- Page Header End -->
 
+<?php
 
+require_once 'php/connection.php';
+
+// Check connection
+if (!$connection) {
+   die("Connection failed: " . mysqli_connect_error());
+}
+
+$user_id = $_SESSION['gebruikerID'];
+
+// Select query
+$select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id";
+$result = mysqli_query($connection, $select_query);
+
+echo "<table>";
+echo "<tr><th>Reservation-ID</th><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
+
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<tr>";
+  echo "<td>" . $row['reservatieID'] . "</td>";
+  echo "<td>" . $row['datum'] . "</td>";
+  echo "<td>" . $row['tijdslot'] . "</td>";
+  echo "<td>" . $row['personen'] . "</td>";
+  echo "<td>";
+  echo "<form action='loggedin-delete-reservation.php' method='post'>";
+  echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
+  echo "<input type='submit' name='delete' value='Delete'>";
+  echo "</form>";
+  echo "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+// Close the database connection
+mysqli_close($connection);
+
+?>
 
 
 <!-- Footer Start -->
