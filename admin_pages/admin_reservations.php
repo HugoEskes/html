@@ -74,11 +74,11 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">All Reservations</h1>
+        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Reservations</h1>
         <div class="d-inline-flex mb-lg-5">
             <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
             <p class="m-0 text-white px-2">/</p>
-            <p class="m-0 text-white">All Reservations</p>
+            <p class="m-0 text-white">Reservations</p>
         </div>
     </div>
 </div>
@@ -93,6 +93,7 @@ if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
 
+echo "<h2>Upcoming reservations</h2>";
 // Select query
 $select_query = "SELECT * 
                 FROM reserveringen 
@@ -126,6 +127,7 @@ while ($row = mysqli_fetch_assoc($result_users)) {
 
 echo "</table>";
 
+echo "<br><br><br><h2>Past reservations</h2>";
 // Select query
 $select_query = "SELECT * 
                 FROM reserveringen 
