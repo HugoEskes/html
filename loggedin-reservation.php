@@ -21,6 +21,8 @@ if ($result->num_rows > 0) {
     $username = $row["gebruikersnaam"];
 }
 
+
+
 // Check if the form was submitted
 if (isset($_POST['submit'])) {
     $date = $_POST['date'];
