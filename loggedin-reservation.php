@@ -33,6 +33,13 @@ $people = $POST['person'];
 
 $entry = "INSERT INTO `reserveringen` (`datum`, `tijdslot`, `gebruikersnaam`, `gebruikerID`, `personen`) 
 VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
+$result = $conn->query($entry);
+
+if (!$result) {
+  echo "Error: " . $conn->error;
+} else {
+  echo "Record successfully inserted";
+}
 mysqli_close($connection);
 ?>
 
