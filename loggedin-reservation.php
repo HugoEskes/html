@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
         $sql = "SELECT email FROM gebruikers WHERE gebruikerID = '$user_ID'"; 
         $email_result = $connection->query($sql);
         $email_row = $result_result->fetch_assoc();
-        $email = $email_row["gebruikerID"];
+        $email = $email_row["email"];
 
         $to = $email;
         $subject = "Your SKI.I.P. reservation is confirmed!";
