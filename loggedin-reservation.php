@@ -22,8 +22,7 @@ $result->num_rows > 0 {
     $user_ID = $row["gebruikerID"];
     $firstname = $row["voornaam"];
     $lastname = $row['achternaam'];
-    $username = $row["gebruikersnaam"];
-}
+    $username = $row["gebruikersnaam"];}
 
 //attach the values to variables from the form
 
