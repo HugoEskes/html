@@ -134,7 +134,7 @@ $select_query = "SELECT *
                 JOIN gebruikers 
                 ON reserveringen.gebruikerID = gebruikers.gebruikerID 
                 WHERE reserveringen.datum < NOW()
-                ORDER BY reserveringen.datum ASC";
+                ORDER BY reserveringen.datum DESC";
 $result_users = mysqli_query($connection, $select_query);
 
 echo "<table>";
