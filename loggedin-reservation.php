@@ -26,13 +26,12 @@ if ($result->num_rows > 0) {
 
 //attach the values to variables from the form
 
-$date = $_POST['date'];
-$timeslot = $_POST['time_slot'];
-$people = $_POST['Person'];
+//$date = $_POST['date'];
+//$timeslot = $_POST['time_slot'];
+//$people = $_POST['Person'];
 
 $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) 
 VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
-$result = mysqli_query($connection, $sql);
 
 mysqli_close($connection);
 ?>
