@@ -123,12 +123,12 @@ mysqli_close($connection);
                             <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
                             <form class="mb-5">
                                 <div class="form-group">
-                                    <div class="date" id="date" data-target-input="nearest">
+                                    <div class="date" name="date" id="date" data-target-input="nearest">
                                         <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <select name="time_slot" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
+                                    <select name="time_slot" id="time_slot" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
                                         <option value="">Select a time slot</option>
                                         <?php
                                         $start = strtotime('10:00am');
@@ -141,7 +141,7 @@ mysqli_close($connection);
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
+                                    <select name="Person" id="time_slot" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
                                         <option selected>Person</option>
                                         <?php
                                         for ($i = 1; $i <= 10; $i++) {
