@@ -98,7 +98,7 @@ if (!$connection) {
 $user_id = $_SESSION['gebruikerID'];
 
 // Select query
-$select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id";
+$select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id and reserveringen.datum >= NOW()";
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
