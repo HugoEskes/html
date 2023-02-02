@@ -9,21 +9,20 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: login.php?not_logged_in=1');
 }
 
-$user_ID = $_SESSION['gebruikersID'];
+$user_ID = $_SESSION['gebruikerID'];
 
 
 // Search the database
-$sql = "SELECT * FROM gebruikers WHERE column_name = '$user_ID'";
+$sql = "SELECT * FROM gebruikers WHERE gebruikerID = '$user_ID'";
 $result = $conn->query($sql);
 
 //attach user values to variables
-$result->num_rows > 0 {
+if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $user_ID = $row["gebruikerID"];
     $firstname = $row["voornaam"];
     $lastname = $row['achternaam'];
-    $username = $row["gebruikersnaam"];
-}
+    $username = $row["gebruikersnaam"];}
 
 //attach the values to variables from the form
 
@@ -35,7 +34,7 @@ $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID,
 VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
 
 
-mysqli_close($conn);
+mysqli_close($link);
 ?>
 
 <!DOCTYPE html>

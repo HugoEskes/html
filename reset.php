@@ -1,9 +1,9 @@
 <?php
-if(isset($_POST['reset'])) {
+if(isset($_POST['submit'])) {
    $password = $_POST['password'];
    $password_hash = password_hash($password, PASSWORD_DEFAULT);
    // Get the reset token from the URL
-   $token = $_GET['token'];
+   include 'forgot_password.php';
    // Connect to the database
    require_once 'php/connection.php';
    // Verify the reset token
@@ -87,7 +87,7 @@ if(isset($_POST['reset'])) {
 <!-- Form Begin-->
 <form action="reset.php" method="post" name="reset-form" onsubmit="return validateForm()">
    <input type="password" name="password" placeholder="Password">
-   <input type="submit" name="reset" value="Reset">
+   <input type="submit" name="submit" value="Submit">
 </form>
 <!-- Form End -->
 
