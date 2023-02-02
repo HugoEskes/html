@@ -14,6 +14,7 @@ if(isset($_POST['submit'])) {
       // Update the user's password in the database
       $updated_query = "UPDATE gebruikers SET wachtwoord='$password_hash' WHERE reset_token='$token'";
       mysqli_query($connection, $updated_query);
+      $new_query = "UPDATE gebruikers SET reset_token='' WHERE reset_token='$token'"
       echo "<script>alert('Password reset successfully')</script>";
    } else {
     // Reset token is invalid
