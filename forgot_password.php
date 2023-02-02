@@ -1,6 +1,6 @@
 <?php
 if(isset($_POST['submit'])) {
-    $email = $_POST['email'];
+    $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
     // Connect to the database
     require_once 'php/connection.php';
     // Check if the email exists in the database
