@@ -127,7 +127,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 echo "</table>";
 
-echo "<br><br><br><h2 style='text-align: center;'>Past reservations</h2>";
+echo "<br><br><h2 style='text-align: center;'>Past reservations</h2>";
 
 $select_query = "SELECT *
                 FROM reserveringen 

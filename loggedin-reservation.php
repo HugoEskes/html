@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 
 
     if ($connection->query($sql) === TRUE) {
-        header('Location: loggedin-reservation.php?success=1');
+        header('Location: loggedin-reservation.php?status=success');
     } else {
         echo "Error: " . $sql . "<br>" . $connection->error;
     }
@@ -219,6 +219,15 @@ if (isset($_POST['submit'])) {
 });
         }
       </script>
+
+    <!-- Berichtgeving voor succesvolle reservering -->
+<?php
+if (isset($_GET['status'])){
+    if ($_GET['status'] == 'success') {
+        echo("<script type='text/JavaScript'> alert('Your reservation for $people people at $timeslot on $date has been made!'); </script>");
+    }
+    }
+?>
 </body>
 
 </html>
