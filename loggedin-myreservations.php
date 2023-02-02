@@ -101,7 +101,10 @@ $user_id = $_SESSION['gebruikerID'];
 echo "<h2 style='text-align: center;'>Upcoming reservations</h2>";
 
 // Select query
-$select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id and reserveringen.datum >= NOW()";
+$select_query = "SELECT * 
+                FROM reserveringen 
+                WHERE gebruikerID=$user_id and reserveringen.datum >= NOW()
+                ORDER BY reserveringen.datum ASC";
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
@@ -110,8 +113,8 @@ echo "<tr><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
-  echo "<td>" . $row['datum'] . "</td>";
-  echo "<td>" . $row['tijdslot'] . "</td>";
+  echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
+  echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
   echo "<td>";
   echo "<form action='loggedin-delete-reservation.php' method='post'>";
@@ -126,17 +129,21 @@ echo "</table>";
 
 echo "<br><br><br><h2 style='text-align: center;'>Past reservations</h2>";
 
-$select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id and reserveringen.datum < NOW()";
+$select_query = "SELECT *
+                FROM reserveringen 
+                WHERE gebruikerID=$user_id and reserveringen.datum < NOW()
+                ORDER BY reserveringen.datum DESC";
+
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
+echo "<tr><th>Date</th><th>Time</th><th>Persons</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
-  echo "<td>" . $row['datum'] . "</td>";
-  echo "<td>" . $row['tijdslot'] . "</td>";
+  echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
+  echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
   echo "</form>";
   echo "</td>";
