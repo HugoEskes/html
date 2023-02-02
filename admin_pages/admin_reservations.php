@@ -146,7 +146,7 @@ while ($row = mysqli_fetch_assoc($result_users)) {
   echo "<td>" . $row['gebruikerID'] . "</td>";
   echo "<td>" . $row['reservatieID'] . "</td>";
   echo "<td>" . $row['datum'] . "</td>";
-  echo "<td>" . $row['tijdslot'] . "</td>";
+  echo "<td>" . date_format($row['tijdslot'], "H:i") . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
   echo "<td>" . $row['gebruikersnaam'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
