@@ -17,12 +17,12 @@ $result = mysqli_query($connection, $select_query);
 $row = mysqli_fetch_assoc($result);
 
 // Store the data in variables
-$voornaam = $row['voornaam'];
-$achternaam = $row['achternaam'];
-$gebruikerID = $row['gebruikerID'];
-$gebruikersnaam = $row['gebruikersnaam'];
-$email = $row['email'];
-$wachtwoord = $row['wachtwoord'];
+$voornaam = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['voornaam']));
+$achternaam = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['achternaam']));
+$gebruikerID = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['gebruikerID']));
+$gebruikersnaam = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['gebruikersnaam']));
+$email = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['email']));
+$wachtwoord = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['wachtwoord']));
 
 // Check if the form has been submitted
 if (isset($_POST['submit'])) {

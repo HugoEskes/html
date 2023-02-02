@@ -14,7 +14,7 @@ $user_ID = $_SESSION['gebruikerID'];
 
 // Search the database
 $sql = "SELECT * FROM gebruikers WHERE gebruikerID = '$user_ID'";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 
 //attach user values to variables
 if ($result->num_rows > 0) {
@@ -27,14 +27,14 @@ if ($result->num_rows > 0) {
 //attach the values to variables from the form
 
 $date = $_POST['date'];
-$timeslot = $_POST['timeslot'];
-$people = $_POST['person'];
+$timeslot = $_POST['time_slot'];
+$people = $_POST['Person'];
 
 $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) 
 VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
 
 
-mysqli_close($link);
+mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
