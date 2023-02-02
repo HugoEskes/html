@@ -129,7 +129,7 @@ mysqli_query($connection, $sql);
                             <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
                                     <div class="date" name="date" id="date" type="date" data-target-input="nearest">
-                                        <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
+                                        <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
