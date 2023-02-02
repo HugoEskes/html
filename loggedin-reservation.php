@@ -20,9 +20,6 @@ if ($result->num_rows > 0) {
     $lastname = $row['achternaam'];
     $username = $row["gebruikersnaam"];
 }
-
-
-
 // Check if the form was submitted
 if (isset($_POST['submit'])) {
     $date = $_POST['date'];
@@ -221,13 +218,18 @@ if (isset($_POST['submit'])) {
       </script>
 
     <!-- Berichtgeving voor succesvolle reservering -->
+
+    <script type="text/javascript">;
+    var people = '<?php echo $people; ?>';
+    var timeslot = '<?php echo $timeslot; ?>';
+    var date = '<?php echo $date; ?>';
+    </script>;
+
+
 <?php
 if (isset($_GET['status'])){
     if ($_GET['status'] == 'success') {
         echo("<script type='text/JavaScript'> 
-        var people = '<?php echo $people; ?>';
-        var timeslot = '<?php echo $timeslot; ?>';
-        var date = '<?php echo $date; ?>';
         alert('Your reservation for $people people at $timeslot on $date has been made!'); 
         </script>");
     }
