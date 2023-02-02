@@ -105,12 +105,11 @@ $select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id and rese
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>Reservation-ID</th><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
+echo "<tr><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
-  echo "<td>" . $row['reservatieID'] . "</td>";
   echo "<td>" . $row['datum'] . "</td>";
   echo "<td>" . $row['tijdslot'] . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
@@ -131,19 +130,14 @@ $select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id and rese
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>Reservation-ID</th><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
+echo "<tr><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
-  echo "<td>" . $row['reservatieID'] . "</td>";
   echo "<td>" . $row['datum'] . "</td>";
   echo "<td>" . $row['tijdslot'] . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
-  echo "<td>";
-  echo "<form action='loggedin-delete-reservation.php' method='post'>";
-  echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
-  echo "<input type='submit' name='delete' value='Delete'>";
   echo "</form>";
   echo "</td>";
   echo "</tr>";
