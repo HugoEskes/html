@@ -6,6 +6,7 @@ if(isset($_POST['reset'])) {
    $token = $_GET['token'];
    // Connect to the database
    require_once 'php/connection.php';
+   include 'forgot_password.php';
    // Verify the reset token
    $sql = "SELECT * FROM gebruikers WHERE reset_token='$token'";
    $result = mysqli_query($connection, $sql);
