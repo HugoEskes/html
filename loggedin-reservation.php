@@ -17,7 +17,7 @@ $sql = "SELECT * FROM gebruikers WHERE column_name = '$user_ID'";
 $result = $conn->query($sql);
 
 //attach user values to variables
-$result->4>0 {
+$result->num_rows>0 {
     $row = $result->fetch_assoc();
     $user_ID = $row["gebruikerID"]
     $firstname = $row["voornaam"]
