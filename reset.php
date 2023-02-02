@@ -3,7 +3,7 @@ if(isset($_POST['submit'])) {
    $password = $_POST['password'];
    $password_hash = password_hash($password, PASSWORD_DEFAULT);
    // Get the reset token from the URL
-   include 'forgot_password.php';
+   $token = $_GET['token'];
    // Connect to the database
    require_once 'php/connection.php';
    // Verify the reset token
