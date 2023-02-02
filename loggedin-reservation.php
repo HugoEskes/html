@@ -224,7 +224,12 @@ if (isset($_POST['submit'])) {
 <?php
 if (isset($_GET['status'])){
     if ($_GET['status'] == 'success') {
-        echo("<script type='text/JavaScript'> alert('Your reservation for $people people at $timeslot on $date has been made!'); </script>");
+        echo("<script type='text/JavaScript'> 
+        var people = '<?php echo $people; ?>';
+        var timeslot = '<?php echo $timeslot; ?>';
+        var date = '<?php echo $date; ?>';
+        alert('Your reservation for $people people at $timeslot on $date has been made!'); 
+        </script>");
     }
     }
 ?>
