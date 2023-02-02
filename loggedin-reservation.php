@@ -158,7 +158,7 @@ mysqli_query($connection, $sql);
 
                                 
                                 <div>
-                                    <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit">Book Now</button>
+                                    <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit" name="submit">Book Now</button>
                                 </div>
                             </form>
                         </div>
