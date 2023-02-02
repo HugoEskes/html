@@ -33,7 +33,7 @@ $people = $POST['person'];
 
 $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) 
 VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
-$result = $conn->query($entry);
+$result = $conn->query($sql);
 
 if (!$result) {
   echo "Error: " . $conn->error;
