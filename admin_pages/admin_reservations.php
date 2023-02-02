@@ -93,7 +93,7 @@ if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
 
-echo "<h2>Upcoming reservations</h2>";
+echo "<h2 style='text-align: center;'>Upcoming reservations</h2>";
 // Select query
 $select_query = "SELECT * 
                 FROM reserveringen 
@@ -127,7 +127,7 @@ while ($row = mysqli_fetch_assoc($result_users)) {
 
 echo "</table>";
 
-echo "<br><br><br><h2>Past reservations</h2>";
+echo "<br><br><br><h2 style='text-align: center;'>Past reservations</h2>";
 // Select query
 $select_query = "SELECT * 
                 FROM reserveringen 
