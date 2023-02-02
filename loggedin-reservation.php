@@ -128,7 +128,7 @@ mysqli_query($connection, $sql);
                             <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
                             <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
-                                    <div class="date" name="date" id="date" data-target-input="nearest">
+                                    <div class="date" name="date" id="date" type="date" data-target-input="nearest">
                                         <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
                                 </div>
