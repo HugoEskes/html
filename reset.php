@@ -91,7 +91,8 @@ if(isset($_POST['submit'])) {
 <!-- Form Begin-->
 <form action="reset.php" method="post" name="reset-form" onsubmit="return validateForm()">
    <input type="password" name="password" placeholder="Password">
-   <input type='reset_token' name="reset_token" placeholder="reset_token">
+   <br>
+   <input type='reset_token' name="reset_token" placeholder="Reset token">
    <input type="submit" name="submit" value="Submit">
 </form>
 <!-- Form End -->
