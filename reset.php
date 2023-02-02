@@ -15,11 +15,11 @@ if(isset($_POST['submit'])) {
       // Update the user's password in the database
       $sql = "UPDATE gebruikers SET wachtwoord='$password_hash' WHERE reset_token='$token'";
       mysqli_query($connection, $sql);
-      echo "Password reset successfully";
+      echo "<script>alert('Password reset successfully')</script>";
    }
    } else {
       // Reset token is invalid
-      echo "Invalid reset token";
+      echo "<script>alert('Invalid reset token')</script>";
    }
 }
 ?>
