@@ -85,7 +85,7 @@ echo "<table>";
 echo "<tr><th>ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th></tr>";
 
 // Loop through the result set
-while ($row = mysqli_fetch_assoc($result)) {
+while ($row = mysqli_fetch_assoc($result_users)) {
   echo "<tr>";
   echo "<td>" . $row['gebruikerID'] . "</td>";
   echo "<td>" . $row['datum'] . "</td>";
