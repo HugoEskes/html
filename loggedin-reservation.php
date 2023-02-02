@@ -126,9 +126,8 @@ mysqli_query($connection, $sql);
                     <div class="col-lg-6">
                         <div class="text-center p-5" style="background: rgba(51, 33, 29, .8);">
                             <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
-                            <form class="mb-5">
+                            <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
-                                    <form>
                                     <div class="date" name="date" id="date" data-target-input="nearest">
                                         <input type="text" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
@@ -159,7 +158,6 @@ mysqli_query($connection, $sql);
 
                                 <div>
                                     <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit" name="submit">Book Now</button>
-                                    </form>
                                 </div>
                             </form>
                         </div>
