@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
           // send an email to the user that the account has been created
         $sql = "SELECT email FROM gebruikers WHERE gebruikerID = '$user_ID'"; 
         $email_result = $connection->query($sql);
-        $email_row = $result_result->fetch_assoc();
+        $email_row = $email_result->fetch_assoc();
         $email = $email_row["email"];
 
         $to = $email;
