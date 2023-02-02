@@ -138,7 +138,7 @@ $select_query = "SELECT *
 $result_users = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>User-ID</th><th>Reservation ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th><th>Action</th></tr>";
+echo "<tr><th>User-ID</th><th>Reservation ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result_users)) {
@@ -150,10 +150,6 @@ while ($row = mysqli_fetch_assoc($result_users)) {
   echo "<td>" . $row['personen'] . "</td>";
   echo "<td>" . $row['gebruikersnaam'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
-  echo "<td>";
-  echo "<form action='delete_reservation.php' method='post'>";
-  echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
-  echo "<input type='submit' name='delete' value='Delete'>";
   echo "</form>";
   echo "</td>";
   echo "</tr>";
