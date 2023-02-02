@@ -21,6 +21,13 @@ if ($result->num_rows > 0) {
     $username = $row["gebruikersnaam"];
 }
 
+$user_ID = "57"
+$date = "28/2"
+$username = "test"
+$people = "8"
+$timeslot = "12:15"
+
+
 // Check if the form was submitted
 if (isset($_POST['submit'])) {
     $date = $_POST['date'];
