@@ -25,6 +25,7 @@ $result->num_rows>0 {
     $username = $row["gebruikersnaam"]
 }
 
+//attach the values to variables from the form
 $date = $POST['date'];
 $timeslot = $POST['timeslot'];
 $people = $POST['person'];
