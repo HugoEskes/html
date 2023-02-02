@@ -97,8 +97,37 @@ if (!$connection) {
 
 $user_id = $_SESSION['gebruikerID'];
 
+
+echo "<h2 style='text-align: center;'>Upcoming reservations</h2>";
+
 // Select query
 $select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id and reserveringen.datum >= NOW()";
+$result = mysqli_query($connection, $select_query);
+
+echo "<table>";
+echo "<tr><th>Reservation-ID</th><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
+
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<tr>";
+  echo "<td>" . $row['reservatieID'] . "</td>";
+  echo "<td>" . $row['datum'] . "</td>";
+  echo "<td>" . $row['tijdslot'] . "</td>";
+  echo "<td>" . $row['personen'] . "</td>";
+  echo "<td>";
+  echo "<form action='loggedin-delete-reservation.php' method='post'>";
+  echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
+  echo "<input type='submit' name='delete' value='Delete'>";
+  echo "</form>";
+  echo "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+echo "<br><br><br><h2 style='text-align: center;'>Past reservations</h2>";
+
+$select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id and reserveringen.datum < NOW()";
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
