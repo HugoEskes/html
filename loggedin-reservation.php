@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
         $headers .= 'From: SKI.I.P. <noreply@skiip.com>';
         mail($to, $subject, $message, $headers);
-        header('Location: loggedin-reservation.php?status=success');
+        header('Location: loggedin-myreservations.php?status=success');
     } else {
         echo "Error: " . $sql . "<br>" . $connection->error;
     }
@@ -231,15 +231,6 @@ if (isset($_POST['submit'])) {
         }
       </script>
 
-<?php
-if (isset($_GET['status'])){
-    if ($_GET['status'] == 'success') {
-        echo("<script type='text/JavaScript'> 
-        alert(`Your reservation has been made!`); 
-        </script>");
-    }
-    }
-?>
 </body>
 
 </html>
