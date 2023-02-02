@@ -96,12 +96,12 @@ require_once 'php/connection.php';
 if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
-$voornaam = $_SESSION['voornaam'];
-$achternaam = $_SESSION['achternaam'];
-$gebruikerID = $_SESSION['gebruikerID'];
-$gebruikersnaam = $_SESSION['gebruikersnaam'];
-$email = $_SESSION['email'];
-$wachtwoord = $_SESSION['wachtwoord'];
+$voornaam = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['voornaam']));
+$achternaam = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['achternaam']));
+$gebruikerID = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['gebruikerID']));
+$gebruikersnaam = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['gebruikersnaam']));
+$email = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['email']));
+$wachtwoord = mysqli_real_escape_string($connection, htmlspecialchars($_SESSION['wachtwoord']));
 
 // Close the database connection
 mysqli_close($connection);
