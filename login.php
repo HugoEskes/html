@@ -191,13 +191,15 @@ mysqli_close($connection);
 
 <!-- Berichtgeving voor nieuwe gebruikers -->
 <?php
-if ($_GET['status'] == 'new_user') {
-    echo("<script type='text/JavaScript'> alert('Your account has been created! Please log in to continue'); </script>");
-}
+if (isset($_GET['status'])){
+    if ($_GET['status'] == 'new_user') {
+        echo("<script type='text/JavaScript'> alert('Your account has been created! Please log in to continue'); </script>");
+    }
 
-if ($_GET['status'] == 'incorrect') {
-    echo("<script type='text/JavaScript'> alert('Email or password incorrect'); </script>");
-}
+    if ($_GET['status'] == 'incorrect') {
+        echo("<script type='text/JavaScript'> alert('Email or password incorrect'); </script>");
+    }
+    }
 ?>
 
 </body>
