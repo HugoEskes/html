@@ -106,7 +106,7 @@ $select_query = "SELECT * FROM gebruikers";
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>ID</th><th>Name</th><th>Email</th><th>Action</th></tr>";
+echo "<tr><th>ID</th><th>Username</th><th>Email</th><th>Action</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {

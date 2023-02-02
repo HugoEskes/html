@@ -68,6 +68,49 @@
 </div>
 <!-- Page Header End -->
 
+<?php
+
+require_once '../php/connection.php';
+
+// Check connection
+if (!$connection) {
+   die("Connection failed: " . mysqli_connect_error());
+}
+
+// Select query
+$select_query = "SELECT * FROM reserveringen JOIN gebruikers ON gebruikersID = gebruikersID";
+$result_users = mysqli_query($connection, $select_query);
+
+echo "<table>";
+echo "<tr><th>ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th></tr>";
+
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result_users)) {
+  echo "<tr>";
+  echo "<td>" . $row['gebruikerID'] . "</td>";
+  echo "<td>" . $row['datum'] . "</td>";
+  echo "<td>" . $row['tijdslot'] . "</td>";
+  echo "<td>" . $row['personen'] . "</td>";
+  echo "<td>" . $row['gebruikersnaam'] . "</td>";
+  echo "<td>" . $row['email'] . "</td>";
+  echo "<td>";
+  echo "<form action='delete.php' method='post'>";
+  echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
+  echo "<input type='submit' name='delete' value='Delete'>";
+  echo "</form>";
+  echo "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+// Close the database connection
+mysqli_close($connection);
+
+?>
+
+
+
     <!-- Footer Start -->
     <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">
         <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
