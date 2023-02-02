@@ -9,7 +9,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: login.php?not_logged_in=1');
 }
 
-$user_ID = $_SESSION['gebruikersID'];
+$user_ID = $_SESSION['gebruikerID'];
 
 
 // Search the database
@@ -34,7 +34,7 @@ $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID,
 VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
 
 
-mysqli_close($conn);
+mysqli_close($link);
 ?>
 
 <!DOCTYPE html>
