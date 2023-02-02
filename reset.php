@@ -7,13 +7,13 @@ if(isset($_POST['submit'])) {
    // Get the reset token from the form
    $token = mysqli_real_escape_string($connection, htmlspecialchars($_POST['reset_token']));
    // Verify the reset token
-   $sql = "SELECT * FROM gebruikers WHERE reset_token='$token'";
-   $result = mysqli_query($connection, $sql);
+   $select_query = "SELECT * FROM gebruikers WHERE reset_token='$token'";
+   $result = mysqli_query($connection, $select_query);
    if(mysqli_num_rows($result) > 0) {
       // Reset token is valid
       // Update the user's password in the database
-      $sql = "UPDATE gebruikers SET wachtwoord='$password_hash' WHERE reset_token='$token'";
-      mysqli_query($connection, $sql);
+      $updated_query = "UPDATE gebruikers SET wachtwoord='$password_hash' WHERE reset_token='$token'";
+      mysqli_query($connection, $updated_query);
       echo "<script>alert('Password reset successfully')</script>";
    } else {
     // Reset token is invalid
