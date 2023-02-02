@@ -98,12 +98,13 @@ $select_query = "SELECT * FROM reserveringen JOIN gebruikers ON gebruikersID = g
 $result_users = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th><th>Action</th></tr>";
+echo "<tr><th>User-ID</th><th>Reservation ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th><th>Action</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result_users)) {
   echo "<tr>";
   echo "<td>" . $row['gebruikerID'] . "</td>";
+  echo "<td>" . $row['reservatieID'] . "</td>";
   echo "<td>" . $row['datum'] . "</td>";
   echo "<td>" . $row['tijdslot'] . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
