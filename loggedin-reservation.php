@@ -27,8 +27,7 @@ if (isset($_POST['submit'])) {
     $timeslot = $_POST['time_slot'];
     $people = $_POST['Person'];
 
-    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) 
-    VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
+    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
     mysqli_query($connection, $sql);
 
     if ($connection->query($sql) === TRUE) {
