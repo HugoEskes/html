@@ -81,7 +81,7 @@ if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
 
-$user_id=$_SESSION['gebruikersID']
+$user_id = $_SESSION['gebruikersID'];
 
 // Select query
 $select_query = "SELECT * FROM reserveringen WHERE gebruikerID=$user_id";
