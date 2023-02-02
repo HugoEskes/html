@@ -112,7 +112,7 @@ while ($row = mysqli_fetch_assoc($result_users)) {
   echo "<td>" . $row['email'] . "</td>";
   echo "<td>";
   echo "<form action='delete_reservation.php' method='post'>";
-  echo "<input type='hidden' name='id' value='" . $row['gebruikerID'] . "'>";
+  echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
   echo "<input type='submit' name='delete' value='Delete'>";
   echo "</form>";
   echo "</td>";
