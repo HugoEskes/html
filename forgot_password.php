@@ -1,8 +1,8 @@
 <?php
 if(isset($_POST['submit'])) {
-    $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
     // Connect to the database
     require_once 'php/connection.php';
+    $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
     // Check if the email exists in the database
     $sql = "SELECT * FROM gebruikers WHERE email = '$email'";
     $result = mysqli_query($connection, $sql);

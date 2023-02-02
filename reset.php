@@ -1,11 +1,11 @@
 <?php
 if(isset($_POST['submit'])) {
+   // Connect to the database
+   require_once 'php/connection.php';
    $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
    $password_hash = password_hash($password, PASSWORD_DEFAULT);
    // Get the reset token from the URL
    $token = mysqli_real_escape_string($connection, htmlspecialchars($_POST['reset_token']));
-   // Connect to the database
-   require_once 'php/connection.php';
    // Verify the reset token
    $sql = "SELECT * FROM gebruikers WHERE reset_token='$token'";
    $result = mysqli_query($connection, $sql);
@@ -19,11 +19,7 @@ if(isset($_POST['submit'])) {
     // Reset token is invalid
      echo "<script>alert('Invalid reset token')</script>";
    }
-   } else {
-      // Reset token is invalid
-      echo "<script>alert('Invalid reset token')</script>";
-   }
-
+}
 ?>
 
 <!DOCTYPE html>
