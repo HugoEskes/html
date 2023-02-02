@@ -191,6 +191,17 @@ mysqli_close($connection);
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+
+<?php
+if (isset($_GET['status'])){
+    if ($_GET['status'] == 'success') {
+        echo("<script type='text/JavaScript'> 
+        alert(`Your reservation has been made!`); 
+        </script>");
+    }
+    }
+?>
+
 </body>
 
 </html>
