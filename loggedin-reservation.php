@@ -32,7 +32,6 @@ $people = $_POST['Person'];
 
 $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) 
 VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
-$result = mysqli_query($connection, $sql);
 
 mysqli_close($connection);
 ?>
