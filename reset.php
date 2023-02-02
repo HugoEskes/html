@@ -3,8 +3,7 @@ if(isset($_POST['submit'])) {
    $password = $_POST['password'];
    $password_hash = password_hash($password, PASSWORD_DEFAULT);
    // Get the reset token from the URL
-   if (isset($_GET['token'])) {
-    $token = $_GET['token'];
+   $token = $_POST['reset_token']
    // Connect to the database
    require_once 'php/connection.php';
    // Verify the reset token
@@ -16,12 +15,15 @@ if(isset($_POST['submit'])) {
       $sql = "UPDATE gebruikers SET wachtwoord='$password_hash' WHERE reset_token='$token'";
       mysqli_query($connection, $sql);
       echo "<script>alert('Password reset successfully')</script>";
+   } else {
+    // Reset token is invalid
+     echo "<script>alert('Invalid reset token')</script>";
    }
    } else {
       // Reset token is invalid
       echo "<script>alert('Invalid reset token')</script>";
    }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +91,7 @@ if(isset($_POST['submit'])) {
 <!-- Form Begin-->
 <form action="reset.php" method="post" name="reset-form" onsubmit="return validateForm()">
    <input type="password" name="password" placeholder="Password">
+   <input type='reset_token' name="reset_token" placeholder="reset_token">
    <input type="submit" name="submit" value="Submit">
 </form>
 <!-- Form End -->
