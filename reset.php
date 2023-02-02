@@ -1,23 +1,25 @@
 <?php
 if(isset($_POST['submit'])) {
-   $password = $_POST['password'];
-   $password_hash = password_hash($password, PASSWORD_DEFAULT);
-   // Get the reset token from the URL
-   $token = $_GET['token'];
    // Connect to the database
    require_once 'php/connection.php';
+   $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
+   $password_hash = password_hash($password, PASSWORD_DEFAULT);
+   // Get the reset token from the form
+   $token = mysqli_real_escape_string($connection, htmlspecialchars($_POST['reset_token']));
    // Verify the reset token
-   $sql = "SELECT * FROM gebruikers WHERE reset_token='$token'";
-   $result = mysqli_query($connection, $sql);
+   $select_query = "SELECT * FROM gebruikers WHERE reset_token='$token'";
+   $result = mysqli_query($connection, $select_query);
    if(mysqli_num_rows($result) > 0) {
       // Reset token is valid
       // Update the user's password in the database
-      $sql = "UPDATE gebruikers SET wachtwoord='$password_hash' WHERE reset_token='$token'";
-      mysqli_query($connection, $sql);
-      echo "Password reset successfully";
+      $updated_query = "UPDATE gebruikers SET wachtwoord='$password_hash' WHERE reset_token='$token'";
+      mysqli_query($connection, $updated_query);
+      $new_query = "UPDATE gebruikers SET reset_token='' WHERE reset_token='$token'";
+      mysqli_query($connection, $new_query);
+      echo "<script>alert('Password reset successfully')</script>";
    } else {
-      // Reset token is invalid
-      echo "Invalid reset token";
+    // Reset token is invalid
+     echo "<script>alert('Invalid reset token')</script>";
    }
 }
 ?>
@@ -87,6 +89,8 @@ if(isset($_POST['submit'])) {
 <!-- Form Begin-->
 <form action="reset.php" method="post" name="reset-form" onsubmit="return validateForm()">
    <input type="password" name="password" placeholder="Password">
+   <br><br>
+   <input type='reset_token' name="reset_token" placeholder="Reset token">
    <input type="submit" name="submit" value="Submit">
 </form>
 <!-- Form End -->

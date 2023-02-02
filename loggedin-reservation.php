@@ -5,36 +5,41 @@ require_once 'php/config.php';
 session_start();
 
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-  // User is not logged in, redirect to login page with a flag indicating the user was not logged in
   header('Location: login.php?not_logged_in=1');
 }
 
 $user_ID = $_SESSION['gebruikerID'];
 
-
-// Search the database
 $sql = "SELECT * FROM gebruikers WHERE gebruikerID = '$user_ID'";
 $result = $connection->query($sql);
 
-//attach user values to variables
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $user_ID = $row["gebruikerID"];
     $firstname = $row["voornaam"];
     $lastname = $row['achternaam'];
-    $username = $row["gebruikersnaam"];}
-
-//attach the values to variables from the form
-
-$date = $_POST['date'];
-$timeslot = $_POST['time_slot'];
-$people = $_POST['Person'];
-
-$sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) 
-VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
+    $username = $row["gebruikersnaam"];
+}
 
 
-mysqli_close($connection);
+
+// Check if the form was submitted
+if (isset($_POST['submit'])) {
+    $date = $_POST['date'];
+    $timeslot = $_POST['time_slot'];
+    $people = $_POST['Person'];
+
+    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$date', '$timeslot', '$username', '$user_ID', '$people')";
+    mysqli_query($connection, $sql);
+
+    if ($connection->query($sql) === TRUE) {
+        header('Location: loggedin-reservation.php?success=1');
+    } else {
+        echo "Error: " . $sql . "<br>" . $connection->error;
+    }
+}
+
+mysqli_query($connection, $sql);
 ?>
 
 <!DOCTYPE html>

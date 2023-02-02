@@ -1,8 +1,8 @@
 <?php
 if(isset($_POST['submit'])) {
-    $email = $_POST['email'];
     // Connect to the database
     require_once 'php/connection.php';
+    $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
     // Check if the email exists in the database
     $sql = "SELECT * FROM gebruikers WHERE email = '$email'";
     $result = mysqli_query($connection, $sql);
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])) {
        $reset_link = "https://webtech-ki59.webtech-uva.nl/reset.php?token=" . $token;
        $to = $email;
        $subject = "Password Reset";
-       $message = "Please click on the following link to reset your password: " . $reset_link;
+       $message = "Please copy the following reset token: '$token'. Please click on the following link to reset your password: "  . $reset_link;
        $headers = "From: Skiliftreserveringen@gmail.com";
        mail($to, $subject, $message, $headers);
        echo "<script>alert('An email with more instructions has been sent.')</script>";
