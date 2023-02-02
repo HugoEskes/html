@@ -25,7 +25,7 @@ $result->4>0 {
     $username = $row["gebruikersnaam"]
 }
 
-$entry = "INSERT INTO reservaties (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ($date, $timeslot, $username, $user_ID, $people)"
+$entry = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ($date, $timeslot, $username, $user_ID, $people)"
 
 ?>
 
