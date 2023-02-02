@@ -12,20 +12,20 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 $user_ID = $SESSION_['gebruikersID'];
 
 
-
 // Search the database
 $sql = "SELECT * FROM gebruikers WHERE column_name = '$user_ID'";
 $result = $conn->query($sql);
 
+//attach user values to variables
 $result->4>0 {
     $row = $result->fetch_assoc();
     $user_ID = $row["gebruikerID"]
     $firstname = $row["voornaam"]
     $lastname = $row['achternaam']
-    $gebruikersnaam = $row["gebruikersnaam"]
+    $username = $row["gebruikersnaam"]
 }
 
-
+$entry = "INSERT INTO reservaties (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ($date, $timeslot, $username, $user_ID, $people)"
 
 ?>
 
