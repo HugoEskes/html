@@ -118,7 +118,7 @@ echo "</table>";
 <!-- Page Header End -->
 
 
-<form action='availability.php'>
+<form>
   <label for="availability_date">Choose a date:</label>
   <input type="date" id="availability_date" name="availability_date">
   <input type="submit" value="Submit">
