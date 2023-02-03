@@ -102,7 +102,7 @@ if (isset($_GET['availability_date'])) {
       th, td {
         padding: 5px;
         text-align: center;
-        width: 70px;
+        width: 85px;
         overflow: hidden;
       }
 
