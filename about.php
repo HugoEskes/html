@@ -105,43 +105,42 @@ if (session_status() !== PHP_SESSION_NONE) {
             <br><br>
             <div class="row">
             <h5 class="mb-3">Information about our skilifts</h5>
-            <br><br>
             <div>
                 <br><br>
-            <?php
-            
-            require_once 'php/connection.php';
+                <?php
+                
+                require_once 'php/connection.php';
 
-            // Check connection
-            if (!$connection) {
-            die("Connection failed: " . mysqli_connect_error());
-            }
+                // Check connection
+                if (!$connection) {
+                die("Connection failed: " . mysqli_connect_error());
+                }
 
-            // Select query
-            $select_query = "SELECT * FROM Skiliften";
-            $result = mysqli_query($connection, $select_query);
+                // Select query
+                $select_query = "SELECT * FROM Skiliften";
+                $result = mysqli_query($connection, $select_query);
 
-            echo "<table>";
-            echo "<tr><th>Name</th><th>Duration</th><th>Distance</th><th>Heigth Difference</th><th>Location</th></tr>";
+                echo "<table>";
+                echo "<tr><th>Name</th><th>Duration</th><th>Distance</th><th>Heigth Difference</th><th>Location</th></tr>";
 
-            // Loop through the result set
-            while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>" . $row['naam'] . "</td>";
-            echo "<td>" . $row['tijdsduur(min)'] . "</td>";
-            echo "<td>" . $row['afstand(meter)'] . "</td>";
-            echo "<td>" . $row['hoogte verschil(meter)'] . "</td>";
-            echo "<td>" . $row['locatie'] . "</td>";
-            echo "</form>";
-            echo "</tr>";
-            }
+                // Loop through the result set
+                while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['naam'] . "</td>";
+                echo "<td>" . $row['tijdsduur(min)'] . "</td>";
+                echo "<td>" . $row['afstand(meter)'] . "</td>";
+                echo "<td>" . $row['hoogte verschil(meter)'] . "</td>";
+                echo "<td>" . $row['locatie'] . "</td>";
+                echo "</form>";
+                echo "</tr>";
+                }
 
-            echo "</table>";
+                echo "</table>";
 
-            // Close the database connection
-            mysqli_close($connection);
+                // Close the database connection
+                mysqli_close($connection);
 
-            ?>
+                ?>
             </div>
         </div>
     </div>
