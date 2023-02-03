@@ -106,7 +106,7 @@ if (!$connection) {
 $select_query = "SELECT * 
                 FROM tijden 
                 WHERE datum=_POST['availability_date']
-                ORDER BY reserveringen.tijd ASC";
+                ORDER BY tijden.tijd ASC";
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
