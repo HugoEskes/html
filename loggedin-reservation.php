@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
     $sqldate=date('Y-m-d',strtotime($date));
     $skilift = $_POST['skilift'];
 
-    if ($sqldate >= strtotime('now')){
+    if ($sqldate >= date('Y-m-d', strtotime('now'))){
     
         $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift'"; 
         $availability_result = $connection->query($sql_tijden);
