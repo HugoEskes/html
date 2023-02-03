@@ -139,28 +139,6 @@ if (isset($_POST['submit'])) {
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="css/style.min.css" rel="stylesheet">
 
-    <style>
-      table, th, td {
-        background-color: #382424;
-        align-items: center;
-        height: 100%;
-        color: gainsboro;
-        table-layout: fixed;
-        float: left;
-        width: 32%;
-        margin-right: 1%;
-      }
-      th, td {
-        padding: 5px;
-        text-align: center;
-        width: 49%;
-        overflow: hidden;
-        border: 1px solid #DA9F5B;
-        border-collapse: collapse;
-      }
-
-
-    </style>
 </head>
 
 <body>
@@ -249,7 +227,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 <div class="form-group">
                                     <div class="date" name="date" id="date" type="date" data-target-input="nearest">
-                                        <input type="text" name="date" id="dateeee" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
+                                        <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
