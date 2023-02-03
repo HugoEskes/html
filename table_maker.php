@@ -24,12 +24,13 @@ $basic_array2 = array("12:30" => 30, "12:45" => 30, "13:00" => 30, "13:15" => 30
 $basic_array3 = array("15:00" => 30, "15:15" => 30, "15:30" => 30, "15:45" => 30, "16:00" => 30, "16:15" => 30, "16:30" => 30, "16:45" => 30, "17:00" => 30);
 
 function insert_availability($basic_array, $data){
+    $new_array = $basic_array;
     while ($row = mysqli_fetch_assoc($data)) {
-        if (array_key_exists(date("H:i", strtotime($row['tijd'])), $basic_array)) {
-            $basic_array[date("H:i", strtotime($row['tijd']))] = $row['beschikbare_plekken'];
+        if (array_key_exists(date("H:i", strtotime($row['tijd'])), $new_array)) {
+            $new_array[date("H:i", strtotime($row['tijd']))] = $row['beschikbare_plekken'];
         }
     }
-    return $basic_array;
+    return $new_array;
 }
 
 $basic_array1 = insert_availability($basic_array1, $result);
