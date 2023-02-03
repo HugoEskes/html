@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
         // Send a conformation email
         $to = $email;
         $subject = "Your SKI.I.P. reservation is confirmed!";
-        $message = "Hi $firstname $lastname, <br><br> Your SKI.I.P. reservation is confirmed!<br><br> <strong>Reservation details:</strong><br>Date: $date <br> Timeslot: $timeslot <br> Amount of spaces: $people <br><br> If you want to cancel or get an overview of all your reservations click ou want to change your password you can click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-myreservations.php\">here</a> <br>The SKI.I.P. team";
+        $message = "Hi $firstname $lastname, <br><br> Your SKI.I.P. reservation is confirmed!<br><br> <strong>Reservation details:</strong><br>Date: $date <br> Timeslot: $timeslot <br> Amount of spaces: $people <br><br> If you want to cancel or get an overview of all your reservations click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-myreservations.php\">here</a> <br>The SKI.I.P. team";
         $message = wordwrap($message, 70, "\r\n");
         $headers = "MIME-Version: 1.0" . "\r\n"; 
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
