@@ -178,7 +178,7 @@ if (isset($_POST['submit'])) {
                             <div class="col-md-12 pb-5">
                             <form>
                             <label for="availability_date"><br><br><h2 style="color:#DA9F5B">Availability</h2><br><p style="color: gainsboro;">Choose a date and a skilift:<br><p></label>
-                                    <select name="skilift">
+                                    <select name="skilift_table">
                                     <option value="">Select a Skilift</option>
                                     <?php
                                     require_once 'php/connection.php';
@@ -293,9 +293,10 @@ if (isset($_POST['submit'])) {
         event.preventDefault();
 
         var date = document.querySelector("#availability_date").value;
+        var skilift = document.querySelector("#skilift_table").value
         var xhr = new XMLHttpRequest();
 
-        xhr.open("GET", "table_maker.php?availability_date=" + date);
+        xhr.open("GET", "table_maker.php?availability_date=" + date + "&skilift=" + skilift));
         xhr.onload = function() {
         if (xhr.status === 200) {
             document.querySelector("#table-container").innerHTML = xhr.responseText;
