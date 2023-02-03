@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
             $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
         }
         else {
-            echo "<script>alert('This skilift is fully booked at this time, please select a different time.')</script>"
+            echo "<script>alert('This skilift is fully booked at this time, please select a different time.')</script>";
         }
     } else {
         /* no rows returned */
