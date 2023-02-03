@@ -38,7 +38,7 @@ $password_admin5 = 'Welkom123';
 $email_admin5 = 'Arthurcampenhout@gmail.com';
 $hashed_admin5 = password_hash($password_admin5, PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO admins (naam, wachtwoord, email) VALUES ('$name_admin1', '$password_admin1', '$email_admin1')";
+$sql = "INSERT INTO admins (naam, wachtwoord, email) VALUES ('$name_admin5', '$password_admin5', '$email_admin5')";
 mysqli_query($connection, $sql);
 
 ?>
