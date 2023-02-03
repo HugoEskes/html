@@ -4,6 +4,41 @@
     // User is not logged in, redirect to login page with a flag indicating the user was not logged in
     header('Location: ../admin_login.php?not_logged_in=1');
   }
+
+  if($_SERVER["REQUEST_METHOD"] == "POST") {
+    {
+    include "../php/connection.php";
+  
+    
+    // Alle informatie ophalen
+    $username = mysqli_real_escape_string($connection, htmlspecialchars($_POST['username']));
+    $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST['email']));
+    $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST['password']));
+    $cpassword = mysqli_real_escape_string($connection, htmlspecialchars($_POST['cpassword']));
+  
+  
+    // wachtwoord versleutelen
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+  
+    //informatie in de database zetten
+    $sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
+    mysqli_query($connection, $sql);
+  
+    // send an email to the user that the account has been created
+    $to = $email;
+    $subject = "You are now a SKI. I. P. Admin!";
+    $message = "Congratulations $username! <br><br> You have now been made an admin on the SKI. I. P site!<br> Your username is $username and you can now login via the admin login page <a href='https://webtech-ki59.webtech-uva.nl/admin_login.php'> here!</a>. <br><br> Please be responsable with all your new priviliges.<br>The SKI.I.P. team";
+    $message = wordwrap($message, 70, "\r\n");
+    $headers = "MIME-Version: 1.0" . "\r\n"; 
+    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
+    $headers .= 'From: SKI.I.P. <noreply@skiip.com>';
+    mail($to, $subject, $message, $headers);
+  
+    // gebruiker naar homepagina sturen
+    header("Location: admin_pages/admin_account.php");
+    }
+  
+  }
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +103,42 @@
 </div>
 <!-- Page Header End -->
 
+<!-- Add admin page start -->
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Creating a new admin</h2>
+        <p>Please fill in this form to create a new admin.</p>
+        <form action="admin_account.php" method="post">
+        <div class="form-group">
+            <label>Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label>E-mail Address:</label>
+            <input type="text" id="email" name="email" class="form-control" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label>Confirm password:</label>
+            <input type="password" id="cpassword" name="cpassword" class="form-control" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-primary" value="Add admin">
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+<!-- Add admin page end -->
 
 <!-- Footer Start -->
 <div class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">
@@ -102,6 +173,134 @@
 
 <!-- Template Javascript -->
 <script src="../js/main.js"></script>
+
+<script language="JavaScript">
+
+// functie voor het checken of de email kan kloppen ('tekst'@'tekst'.'kleine tekst')
+function validateEmail(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+// Get the password input field
+var password = document.getElementById("password");
+
+// Listen for changes to the password field
+password.addEventListener("input", function() {
+    // Get the password value
+    var passwordValue = password.value;
+
+    // Check the password against validation rules
+    if (passwordValue.length < 8) {
+        // Password is too short
+        password.setCustomValidity("Password must be at least 8 characters long.");
+    } else if (!/[A-Z]/.test(passwordValue)) {
+        // Password does not contain an uppercase letter
+        password.setCustomValidity("Password must contain at least one uppercase letter.");
+    } else if (!/[a-z]/.test(passwordValue)) {
+        // Password does not contain a lowercase letter
+        password.setCustomValidity("Password must contain at least one lowercase letter.");
+    } else if (!/\d/.test(passwordValue)) {
+        // Password does not contain a digit
+        password.setCustomValidity("Password must contain at least one digit.");
+    } else {
+        // Password is valid
+        password.setCustomValidity("");
+    }
+  });
+
+
+
+
+// Get the email input field
+var email = document.getElementById("email");
+
+// Listen for changes to the email field
+email.addEventListener("input", function() {
+    // Get the email value
+    var emailValue = email.value
+
+    // Check the email against validation rules
+    if (validateEmail(emailValue) == false ) {
+        // Email is not valid
+        email.setCustomValidity("Please use a valid Email address");
+    } else {    
+      $.ajax({
+      type: "POST",
+      url: "/php/check_email.php",
+      data: {email_ajax: email.value},
+      dataType: "html",
+      success: function(data) {
+        if ( data * 1 ) {
+          email.setCustomValidity("Email is already in use");
+        } else {
+          email.setCustomValidity("");
+        }
+      }   
+      });
+        
+    }
+  });
+
+
+// Get the email input field
+var username = document.getElementById("username");
+
+// Listen for changes to the email field
+username.addEventListener("input", function() {
+    // Get the email value
+    var usernameValue = username.value
+
+    // Check the email against validation rules
+    if (usernameValue.length < 4) {
+        // Username is too short
+        username.setCustomValidity("Username must contain at least 4 letters");
+    } else if (usernameValue.indexOf(" ") !== -1){
+        //username contains a space
+        username.setCustomValidity("Username can not contain a space")
+    }else {    
+      $.ajax({
+      type: "POST",
+      url: "/php/check_username.php",
+      data: {username_ajax: username.value},
+      dataType: "html",
+      success: function(data) {
+        if ( data * 1 ) {
+          username.setCustomValidity("Username is already in use");
+        } else {
+          username.setCustomValidity("");
+        }
+      }   
+      });
+        
+    }
+  });
+
+  // Get the cpassword input field
+var cpassword = document.getElementById("cpassword");
+
+// Listen for changes to the cpassword field
+cpassword.addEventListener("input", function() {
+    // Get the cpassword value
+    var cpasswordValue = cpassword.value;
+    
+  // Get the password value
+  var passwordValue = document.getElementById("password").value;
+
+    // Check if the passwords are the same
+    if (cpasswordValue !== passwordValue) {
+        // Notify that the passwords are not the same
+        cpassword.setCustomValidity("The passwords do not match");
+    } else {
+        // The passwords are the same
+        cpassword.setCustomValidity("");
+    
+    }
+  });
+
+
+
+</script> 
 </body>
 
 </html>
