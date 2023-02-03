@@ -105,7 +105,7 @@ if (session_status() !== PHP_SESSION_NONE) {
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div style="margin: 300px; float: right">
+                        <div style="margin: 100px; float: right">
                         <p class='m-0 text-white'>
                             You need to be logged in to make a reservation. <br>
                             Please login <a href='login.php'>here</a>. </p>
