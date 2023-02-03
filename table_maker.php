@@ -96,10 +96,11 @@ if (isset($_GET['availability_date'])) {
         align-items: center;
         margin: 0 auto;
         height: 100%;
+        color: red;
       }
       th, td {
         padding: 5px;
-        text-align: left;
+        text-align: center;
       }
 
 
