@@ -11,6 +11,7 @@ if (isset($_GET['availability_date'])){
                     FROM tijden 
                     WHERE datum='".$_GET['availability_date']."'";
 }
+
 else {
     $select_query = "SELECT * 
                     FROM tijden 
@@ -18,7 +19,7 @@ else {
 }
 $result = mysqli_query($connection, $select_query);
 
-$sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE naam = '".$_GET['skilift']."'";
+$sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE naam='".$_GET['skilift']."'";
 $seats_result = $connection->query($sql_skiliftseats);
 $seats_row = $seats_result->fetch_assoc();
 $seats = $seats_row['max_personen'];

@@ -208,7 +208,8 @@ if (isset($_POST['submit'])) {
                                     $sql = "SELECT * FROM Skiliften";
                                     $result = mysqli_query($connection, $sql);
                                     while ($row = mysqli_fetch_array($result)) {
-                                        echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
+                                        echo "<option value='" . $row['skiliftID'] . "'>" . $row['naam'] . "</option>";
+                                    
                                     }
                                     ?>
                                     </select>
@@ -295,6 +296,7 @@ if (isset($_POST['submit'])) {
         var date = document.querySelector("#availability_date").value;
         var skilift = document.querySelector("#skilift_table").value
         var xhr = new XMLHttpRequest();
+
 
         xhr.open("GET", "table_maker.php?availability_date=" + date + "&skilift=" + skilift);
         xhr.onload = function() {
