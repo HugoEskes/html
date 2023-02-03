@@ -231,7 +231,7 @@ email.addEventListener("input", function() {
       dataType: "html",
       success: function(data) {
         if ( data * 1 ) {
-          email.setCustomValidity("Email is already in use");
+          email.setCustomValidity("Email is already a regular user, please delete them first before making them an admin.");
         } else {
           email.setCustomValidity("");
         }
