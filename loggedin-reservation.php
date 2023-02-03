@@ -162,6 +162,7 @@ if (isset($_POST['submit'])) {
                             <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
                                     <select name="Skilifts" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
+                                    <option value="">Select a Skilift</option>
                                     <?php
                                     require_once 'php/connection.php';
                                     $sql = "SELECT * FROM Skiliften";
