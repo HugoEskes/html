@@ -104,7 +104,7 @@ if (!$connection) {
 
 // Select query
 $select_query = "SELECT * 
-                FROM reserveringen 
+                FROM tijden 
                 WHERE datum=_POST['availability_date']
                 ORDER BY reserveringen.tijdslot ASC";
 $result = mysqli_query($connection, $select_query);
@@ -115,9 +115,8 @@ echo "<tr><th>Time</th><th>Availability</th></tr>";
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
-  echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
   echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
-  echo "<td>" . $row['personen'] . "</td>";
+  echo "<td>" . $row['beschikbare_plekken'] . "</td>";
   echo "<td>";
   echo "<form action='loggedin-delete-reservation.php' method='post'>";
   echo "<input type='hidden' name='id' value='" . $row['reservatieID'] . "'>";
