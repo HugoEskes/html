@@ -29,7 +29,6 @@ if (isset($_POST['submit'])) {
     $sqldate=date('Y-m-d',strtotime($date));
     $skilift = $_POST['skilift'];
 
-    $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
     
     $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift'"; 
     $availability_result = $connection->query($sql_tijden);
@@ -38,8 +37,14 @@ if (isset($_POST['submit'])) {
         $availability_row = $availability_result->fetch_assoc();
         $previous_availability = $availability_row["beschikbare_plekken"];
         $new_availability = $previous_availability - $people;
-        $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift'";
-        mysqli_query($connection, $sql_availability_update);
+        if $new_availability >= 0 {
+            $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift'";
+            mysqli_query($connection, $sql_availability_update);
+            $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
+        }
+        else {
+            echo "<script>alert('This skilift is fully booked at this time, please select a different time.')</script>"
+        }
     } else {
         /* no rows returned */
         $availability = 30 - $people;
