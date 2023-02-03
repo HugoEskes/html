@@ -1,3 +1,43 @@
+<?php
+
+require_once 'php/connection.php';
+
+// Check connection
+if (!$connection) {
+   die("Connection failed: " . mysqli_connect_error());
+}
+
+// Select query
+if (isset($_GET['availability_date'])){
+    $select_query = "SELECT * 
+                    FROM tijden 
+                    WHERE datum='".$_GET['availability_date']."'
+                    ORDER BY tijden.tijd ASC";
+}
+else {
+    $select_query = "SELECT * 
+                    FROM tijden 
+                    ORDER BY tijden.tijd ASC";
+}
+
+$result = mysqli_query($connection, $select_query);
+
+echo "<table id='availability-table'>";
+echo "<tr><th>Time</th><th>Availability</th></tr>";
+
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<tr>";
+  echo "<td>" . date("H:i", strtotime($row['tijd'])) . "</td>";
+  echo "<td>" . $row['beschikbare_plekken'] . "</td>";
+  echo "</tr>";
+}
+
+echo "</table>";
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,67 +117,12 @@
 </div>
 <!-- Page Header End -->
 
-
-<!-- Signup page start -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Availability</h2>
-        <p>Choose a date to see the availability</p>
-        <form action="availability.php" method="post">
-            <div class="form-group">
-                <div class="date" name="availability_date" id="availabilty_date" type="date" data-target-input="nearest">
-                    <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
-                </div>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
-<?php
-
-require_once 'php/connection.php';
-
-// Check connection
-if (!$connection) {
-   die("Connection failed: " . mysqli_connect_error());
-}
-
-$current_date = date('Y-m-d');
-// Select query
-if (isset($_POST['availability_date'])){
-$select_query = "SELECT * 
-                FROM tijden 
-                WHERE datum='".$_POST['availability_date']."'
-                ORDER BY tijden.tijd ASC";
-}
-else {
-    $select_query = "SELECT * 
-                FROM tijden 
-                WHERE datum=.$current_date.
-                ORDER BY tijden.tijd ASC";
-}
-$result = mysqli_query($connection, $select_query);
-
-echo "<table>";
-echo "<tr><th>Time</th><th>Availability</th></tr>";
-
-// Loop through the result set
-while ($row = mysqli_fetch_assoc($result)) {
-  echo "<tr>";
-  echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
-  echo "<td>" . $row['beschikbare_plekken'] . "</td>";
-  echo "</form>";
-  echo "</td>";
-  echo "</tr>";
-}
-
-echo "</table>";
-
-// Close the database connection
-mysqli_close($connection);
-
-?>
+<form>
+  <label for="availability_date">Choose a date:</label>
+  <input type="date" id="availability_date" name="availability_date">
+  <input type="submit" value="Submit">
+</form>
+<div id="table-container"></div>
 
 
 <!-- Footer Start -->
@@ -173,6 +158,24 @@ mysqli_close($connection);
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+
+<script>
+  document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var date = document.querySelector("#availability_date").value;
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "availability.php?availability_date=" + date);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        document.querySelector("#table-container").innerHTML = xhr.responseText;
+      }
+    };
+    xhr.send();
+  });
+</script>
+
 </body>
 
 </html>
