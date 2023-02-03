@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
             if ($new_availability >= 0) {
                 $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot' and skiliftID='$skiliftID'";
                 mysqli_query($connection, $sql_availability_update);
-                $sql_reserveringen = "INSERT INTO reserveringen (datum, skiliftID, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skiliftID', '$timeslot', '$username', '$user_ID', '$people')";
+                $sql_reserveringen = "INSERT INTO reserveringen (datum, skiliftID, tijdslot, gebruikerID, personen) VALUES ('$sqldate', '$skiliftID', '$timeslot', '$user_ID', '$people')";
                 mysqli_query($connection, $sql_reserveringen);
 
 
