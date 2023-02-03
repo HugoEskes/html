@@ -103,7 +103,7 @@ if (isset($_GET['availability_date'])) {
         text-align: center;
         width: 49%;
         overflow: hidden;
-        border: 2px solid #DA9F5B;
+        border: 1px solid #DA9F5B;
         border-collapse: collapse;
       }
 
