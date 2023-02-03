@@ -84,9 +84,11 @@
       <div class="col-md-12">
         <h2>Availability</h2>
         <p>Choose a date to see the availability</p>
-        <form action="signup.php" method="post">
-          <div class="date" name="availability_date" id="availability_date" type="date" data-target-input="nearest">
-                <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
+        <form action="availability.php" method="post">
+            <div class="form-group">
+                <div class="date" name="availability_date" id="availabilty_date" type="date" data-target-input="nearest">
+                    <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
+                </div>
             </div>
         </form>
       </div>
@@ -101,12 +103,20 @@ if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
 
-
+$current_date = date('Y-m-d');
 // Select query
+if (isset($_POST['availability_date'])){
 $select_query = "SELECT * 
                 FROM tijden 
                 WHERE datum='".$_POST['availability_date']."'
                 ORDER BY tijden.tijd ASC";
+}
+else {
+    $select_query = "SELECT * 
+                FROM tijden 
+                WHERE datum=.$current_date.
+                ORDER BY tijden.tijd ASC";
+}
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
