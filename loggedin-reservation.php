@@ -274,8 +274,6 @@ if (isset($_POST['submit'])) {
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-      </script>
-
     <script>
     document.querySelector("form").addEventListener("submit", function(event) {
         event.preventDefault();
@@ -292,9 +290,11 @@ if (isset($_POST['submit'])) {
         xhr.send();
     });
 
+    $(function () {
     $('#date').datetimepicker({
-    minDate: new Date(),
-
+    useCurrent: false;
+    disabledDates: [moment().subtract(1, 'day')]
+  });
 });
     </script>
 
