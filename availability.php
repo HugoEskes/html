@@ -1,7 +1,5 @@
 <?php
 
-
-
 require_once 'php/connection.php';
 
 
@@ -24,16 +22,24 @@ else {
 
 $result = mysqli_query($connection, $select_query);
 
+$basic_array = array("10:00" => 30, "10:15" => 30, "10:30" => 30, "10:45" => 30, "11:00" => 30, "11:15" => 30, "11:30" => 30, "11:45" => 30, "12:00" => 30, "12:15" => 30, "12:30" => 30, "12:45" => 30, "13:00" => 30, "13:15" => 30, "13:30" => 30, "13:45" => 30, "14:00" => 30, "14:15" => 30, "14:30" => 30, "14:45" => 30, "15:00" => 30, "15:15" => 30, "15:30" => 30, "15:45" => 30, "16:00" => 30, "16:15" => 30, "16:30" => 30, "16:45" => 30, "17:00" => 30);
+while ($row = mysqli_fetch_assoc($result)) {
+    if (array_key_exists(date("H:i", strtotime($row['tijd'])), $basic_array)) {
+        $basic_array[date("H:i", strtotime($row['tijd']))] = $row['beschikbare_plekken'];
+    }
+}
+
+
 if (isset($_GET['availability_date'])) {
     echo "<table id='availability-table'>";
     echo "<tr><th>Time</th><th>Availability</th></tr>";
 
     $counter = 0;
     // Loop through the result set
-    while ($row = mysqli_fetch_assoc($result)) {
+    foreach ($basic_array as $tijdslot => $beschikbare_plekken) {
     echo "<tr>";
-    echo "<td>" . date("H:i", strtotime($row['tijd'])) . "</td>";
-    echo "<td>" . $row['beschikbare_plekken'] . "</td>";
+    echo "<td>" . $tijdslot . "</td>";
+    echo "<td>" . $beschikbare_plekken . "</td>";
     echo "</tr>";
     }
 
