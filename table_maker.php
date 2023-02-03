@@ -19,12 +19,12 @@ else {
 }
 $result = mysqli_query($connection, $select_query);
 
-echo("<script type='text/JavaScript'> alert('Voor de query'); </script>");
+echo("voor de query");
 $sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE skiliftID = '".$_GET['skilift_table']."'";
 $seats_result = $connection->query($sql_skiliftseats);
 $seats_row = $seats_result->fetch_assoc();
 $seats = $seats_row['max_personen'];
-echo("<script type='text/JavaScript'> alert('$seats Na de query'); </script>");
+echo("na de query $seats");
 
 
 $basic_array1 = array("10:00" => $seats, "10:15" => $seats, "10:30" => $seats, "10:45" => $seats, "11:00" => $seats, "11:15" => $seats, "11:30" => $seats, "11:45" => $seats, "12:00" => $seats, "12:15" => $seats);
