@@ -47,7 +47,7 @@
                 <a href="admin_index.php" class="nav-item nav-link">Home</a>
                 <a href="admin_reservations.php" class="nav-item nav-link">Reservations</a>
                 <a href="admin_users.php" class="nav-item nav-link">Other Users</a>
-                <a href="admin_account.php" class="nav-item nav-link active">Account</a>
+                <a href="admin_account.php" class="nav-item nav-link active">Add Admin Accounts</a>
                 <a href="../php/logout.php" class="nav-item nav-link">Log Out</a>
             </div>
         </div>
@@ -58,11 +58,11 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
     <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">My Account</h1>
+        <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">Add Admin Accounts</h1>
         <div class="d-inline-flex mb-lg-5">
             <p class="m-0 text-white"><a class="text-white" href="">Home</a></p>
             <p class="m-0 text-white px-2">/</p>
-            <p class="m-0 text-white">My Account</p>
+            <p class="m-0 text-white">Add Admin Accounts</p>
         </div>
     </div>
 </div>
