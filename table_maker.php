@@ -36,7 +36,7 @@ function insert_availability($basic_array, $data){
 $basic_array1 = insert_availability($basic_array1, $result);
 
 if (isset($_GET['availability_date'])) {
-    echo "<table id='availability-table'>";
+    echo "<table id='availability-table' bordercolor='#da9f5b'>";
     echo "<tr><th>Time</th><th>Availability</th></tr>";
 
     $counter = 0;
@@ -54,7 +54,7 @@ if (isset($_GET['availability_date'])) {
 $basic_array2 = insert_availability($basic_array2, $result);
 
 if (isset($_GET['availability_date'])) {
-    echo "<table id='availability-table'>";
+    echo "<table id='availability-table' bordercolor='#da9f5b'>";
     echo "<tr><th>Time</th><th>Availability</th></tr>";
 
     $counter = 0;
@@ -72,7 +72,7 @@ if (isset($_GET['availability_date'])) {
 $basic_array3 = insert_availability($basic_array3, $result);
 
 if (isset($_GET['availability_date'])) {
-    echo "<table id='availability-table'>";
+    echo "<table id='availability-table' bordercolor='#da9f5b'>";
     echo "<tr><th>Time</th><th>Availability</th></tr>";
 
     $counter = 0;
