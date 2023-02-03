@@ -177,7 +177,7 @@ if (isset($_POST['submit'])) {
                         <div class="row">
                             <div class="col-md-12 pb-5">
                             <form>
-                            <label for="availability_date">Choose a date:</label>
+                            <label for="availability_date"><br><br><h2 style="color:#DA9F5B">Availability</h2><br><p style="color: gainsboro;">Choose a date and a skilift:<br><p></label>
                                 <input type="date" id="availability_date" name="availability_date">
                                 <input type="submit" value="Submit">
                                 </form>
