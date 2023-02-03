@@ -41,7 +41,24 @@ if (isset($_POST['submit'])) {
             $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift'";
             mysqli_query($connection, $sql_availability_update);
             $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
-        }
+            mysqli_query($connection, $sql_reserveringen);
+            // Get the email of the user
+            $sql = "SELECT email FROM gebruikers WHERE gebruikerID = '$user_ID'"; 
+            $email_result = $connection->query($sql);
+            $email_row = $email_result->fetch_assoc();
+            $email = $email_row["email"];
+
+            // Send a conformation email
+            $to = $email;
+            $subject = "Your SKI.I.P. reservation is confirmed!";
+            $message = "Hi $firstname $lastname, <br><br> Your SKI.I.P. reservation is confirmed!<br><br> <strong>Reservation details:</strong><br>Skilift: $skilift <br>Date: $date <br> Timeslot: $timeslot <br> Amount of spaces: $people <br><br> If you want to cancel or get an overview of all your reservations click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-myreservations.php\">here</a> <br>The SKI.I.P. team";
+            $message = wordwrap($message, 70, "\r\n");
+            $headers = "MIME-Version: 1.0" . "\r\n"; 
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
+            $headers .= 'From: SKI.I.P. <noreply@skiip.com>';
+            mail($to, $subject, $message, $headers);
+            header('Location: loggedin-myreservations.php?status=success');
+            }
         else {
             echo "<script>alert('This skilift is fully booked at this time, please select a different time.')</script>";
         }
@@ -51,9 +68,7 @@ if (isset($_POST['submit'])) {
         $sql_availability = "INSERT INTO tijden (skilift_naam, datum, tijd, beschikbare_plekken) VALUES ('$skilift', '$sqldate', '$timeslot', '$availability')";
         mysqli_query($connection, $sql_availability);
         $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
-    }
-
-    if ($connection->query($sql_reserveringen) === TRUE) {
+        mysqli_query($connection, $sql_reserveringen);
         // Get the email of the user
         $sql = "SELECT email FROM gebruikers WHERE gebruikerID = '$user_ID'"; 
         $email_result = $connection->query($sql);
@@ -70,10 +85,9 @@ if (isset($_POST['submit'])) {
         $headers .= 'From: SKI.I.P. <noreply@skiip.com>';
         mail($to, $subject, $message, $headers);
         header('Location: loggedin-myreservations.php?status=success');
-    } else {
-        echo "Error: " . $sql . "<br>" . $connection->error;
+            }
     }
-}
+
 
 ?>
 
