@@ -111,7 +111,7 @@
         <p>Please fill in this form to create a new admin.</p>
         <form action="admin_account.php" method="post">
         <div class="form-group">
-            <label>Username:</label>
+            <label>Name:</label>
             <input type="text" id="username" name="username" class="form-control" required>
           </div>
           <br>
