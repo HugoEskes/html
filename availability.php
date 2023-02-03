@@ -23,10 +23,11 @@ else {
 $result = mysqli_query($connection, $select_query);
 
 echo "<table id='availability-table'>";
-echo "<tr><th>Time</th><th>Availability</th></tr>";
 
+$counter = 0;
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
+    echo "<tr><th>Time</th><th>Availability</th></tr>";
   echo "<tr>";
   echo "<td>" . date("H:i", strtotime($row['tijd'])) . "</td>";
   echo "<td>" . $row['beschikbare_plekken'] . "</td>";
