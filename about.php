@@ -104,6 +104,7 @@ if (session_status() !== PHP_SESSION_NONE) {
             </div>
             <div class="row">
             <h5 class="mb-3">Information about our skilifts</h5>
+            <br><br>
             <?php
 
             require_once 'php/connection.php';
