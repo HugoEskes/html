@@ -29,11 +29,11 @@ if (isset($_POST['submit'])) {
 
     $sql_reserveringen = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
     
-    $sql_tijden = "SELECT datum, tijd, beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot'"; 
+    $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot'"; 
     $availability_result = $connection->query($sql_tijden);
    
     if ($availability_result->num_rows > 0) {
-        $_availability_row = $availability_result->fetch_assoc();
+        $availability_row = $availability_result->fetch_assoc();
         $previous_availability = $availability_row["beschikbare_plekken"];
         $new_availability = $previous_availability - $people;
         $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot'";
