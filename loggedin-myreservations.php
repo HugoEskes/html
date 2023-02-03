@@ -102,7 +102,7 @@ echo "<h2 style='text-align: center;'>Upcoming reservations</h2>";
 
 // Select query
 $select_query = "SELECT * 
-                FROM reserveringen '
+                FROM reserveringen
                 JOIN Skiliften 
                 ON reserveringen.skiliftID = skiliften.skiliftID 
                 WHERE gebruikerID=$user_id and reserveringen.datum >= NOW()
