@@ -161,6 +161,36 @@ if (isset($_POST['submit'])) {
                             <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
                             <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
+                                <select name="skilift" id="skilift" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
+                                        <option value="">Select Skilift</option>
+                                        <?php
+                                        require_once 'php/connection.php';
+
+                                        // Check connection
+                                        if (!$connection) {
+                                            die("Connection failed: " . mysqli_connect_error());
+                                         }
+                                        $select_query = 'SELECT * FROM skiliften';
+                                        $result = mysqli_query($connection, $select_query);
+                                        
+                                        while ($row = mysqli_fetch_assoc($result)){
+                                            $option = $row['naam']
+                                            echo "<option value='$option'>$option</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select name="Skilift" id="skilift" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
+                                        <option selected>Skilift</option>
+                                        <?php
+                                        while ($row = mysqli_fetch_assoc($result)){
+                                            $option = $row['naam']
+                                            echo "<option value='$option'>$option</option>";
+                                        }
+                                        ?>
+                                </div>
+                                <div class="form-group">
                                     <div class="date" name="date" id="date" type="date" data-target-input="nearest">
                                         <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
