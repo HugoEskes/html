@@ -28,14 +28,20 @@ if (isset($_POST['submit'])) {
     $timeslot = $_POST['time_slot'];
     $people = $_POST['Person'];
     $sqldate=date('Y-m-d',strtotime($date));
-    $skilift = $_POST['skilift'];
+    $skiliftnaam = $_POST['skilift'];
+
+    $sql_skiliftID = "SELECT skiliftID FROM Skiliften WHERE naam='$skiliftnaam'";
+    $skiliftID_result = $connection->query($sql_tijden);
+    $skiliftID_row = $skiliftID_result->fetch_assoc();
+    $skiliftID = $skiliftID_row['skiliftID'];
+
 
     if ($sqldate >= date('Y-m-d', strtotime('now'))){
     
-        $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift'"; 
+        $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot' and skiliftID='$skiliftID'"; 
         $availability_result = $connection->query($sql_tijden);
 
-        $sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE naam='$skilift'";
+        $sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE skiliftID='$skiliftID'";
         $seats_result = $connection->query($sql_skiliftseats);
         $seats_row = $seats_result->fetch_assoc();
         $seats = $seats_row['max_personen'];
@@ -45,7 +51,7 @@ if (isset($_POST['submit'])) {
             $previous_availability = $availability_row["beschikbare_plekken"];
             $new_availability = $previous_availability - $people;
             if ($new_availability >= 0) {
-                $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift'";
+                $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot' and skiliftID='$skiliftID'";
                 mysqli_query($connection, $sql_availability_update);
                 $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
                 mysqli_query($connection, $sql_reserveringen);

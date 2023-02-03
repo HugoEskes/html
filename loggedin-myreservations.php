@@ -107,6 +107,8 @@ $select_query = "SELECT *
                 ORDER BY reserveringen.datum ASC";
 $result = mysqli_query($connection, $select_query);
 
+
+
 echo "<table>";
 echo "<tr><th>Skilift</th><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
 
