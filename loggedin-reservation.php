@@ -94,7 +94,7 @@ if (isset($_POST['submit'])) {
                 }
         }
         else {
-            echo "<script>alert('Please enter a valid day.')</script>";
+            echo "<script>alert('Please enter a day not in history.')</script>";
         }
     }
 ?>
