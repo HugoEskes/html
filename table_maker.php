@@ -97,13 +97,13 @@ if (isset($_GET['availability_date'])) {
         color: gainsboro;
         table-layout: fixed;
         float: left;
-        width: 33%;
+        width: 32%;
         margin-right: 1%;
       }
       th, td {
         padding: 5px;
         text-align: center;
-        width: 50%;
+        width: 49%;
         overflow: hidden;
       }
 
