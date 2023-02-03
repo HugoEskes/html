@@ -88,3 +88,18 @@ if (isset($_GET['availability_date'])) {
 }
 
 ?>
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        align-items: center;
+        margin: 0 auto;
+        height: 100%;
+      }
+      th, td {
+        padding: 5px;
+        text-align: left;
+      }
+
+
+    </style>
