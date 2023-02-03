@@ -185,7 +185,7 @@ if (isset($_POST['submit'])) {
                                     $sql = "SELECT * FROM Skiliften";
                                     $result = mysqli_query($connection, $sql);
                                     while ($row = mysqli_fetch_array($result)) {
-                                        echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
+                                        echo "<option value='" . $row['skiliftID'] . "'>" . $row['naam'] . "</option>";
                                     }
                                     ?>
                                     </select>
