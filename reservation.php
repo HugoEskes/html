@@ -96,7 +96,7 @@ if (session_status() !== PHP_SESSION_NONE) {
                     <div class="col-lg-6 my-5 my-lg-0">
                         <div class="row">
                             <div class="col-md-12 pb-5">
-                                <form>
+                                <form style="text-align: center;">
                                 <label for="availability_date"><br><br><h2>Availability</h2><br>Choose a date and a skilift:<br></label>
                                     <input type="date" id="availability_date" name="availability_date">
                                     <input type="submit" value="Submit">
