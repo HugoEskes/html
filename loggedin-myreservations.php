@@ -108,11 +108,12 @@ $select_query = "SELECT *
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
+echo "<tr><th>Skilift</th><th>Date</th><th>Time</th><th>Persons</th><th>Delete</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
+  echo "<td>" . $row['skilift_naam'] . "</td>";
   echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
   echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
@@ -137,11 +138,12 @@ $select_query = "SELECT *
 $result = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>Date</th><th>Time</th><th>Persons</th></tr>";
+echo "<tr><th>Skilift</th><th>Date</th><th>Time</th><th>Persons</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
+  echo "<td>" . $row['skilift_naam'] . "</td>";
   echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
   echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
