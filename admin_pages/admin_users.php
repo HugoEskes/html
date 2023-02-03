@@ -46,6 +46,9 @@
         padding: 5px;
         text-align: left;
       }
+      h6 {
+        text-align: center;
+      }
 
 
 </style>
@@ -89,7 +92,7 @@
 </div>
 <!-- Page Header End -->
 
-<h5 class="mb-3">If you want to delete a user, please click 'delete'. All reservations made by this user are also deleted.</h5>
+<h6 class="mb-3">If you want to delete a user, please click 'delete'. All reservations made by this user are also deleted.</h6>
 <?php
 
 require_once '../php/connection.php';
