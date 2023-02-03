@@ -27,16 +27,34 @@ if (isset($_POST['submit'])) {
     $people = $_POST['Person'];
     $sqldate=date('Y-m-d',strtotime($date));
 
-    $sql = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
+    $sql_reserveringen = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
+    
+    $sql = "SELECT datum, tijdslot, personen FROM tijden WHERE datum='$date' and tijdslot='$timeslot'"; 
+    
+    $sql_tijden = "INSERT INTO tijden (datum, tijdslot, personen) VALUES ('$sqldate', '$timeslot', '$people')";
+    $availability_result = $connection->query($sql_tijden);
+   
+    if ($availability_result->num_rows > 0) {
+        $_availability_row = $availability_result->fetch_assoc();
+        $previous_availability = $availability_row["gebruikerID"];
+        $new_availability = $previous_availability - $people;
+        $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$date' and tijdslot='$timeslot'";
+        mysqli_query($connection, $sql_availability_update);
+    } else {
+        /* no rows returned */
+        $availability = 30 - $people;
+        $sql_availability = "INSERT INTO tijden (datum, tijdslot, beschikbare_plekken) VALUES ('$sqldate', '$timeslot', '$availability')";
+        mysqli_query($connection, $sql_availability);
+    }
 
-
-    if ($connection->query($sql) === TRUE) {
-          // send an email to the user that the account has been created
+    if ($connection->query($sql_reserveringen) === TRUE) {
+        // Get the email of the user
         $sql = "SELECT email FROM gebruikers WHERE gebruikerID = '$user_ID'"; 
         $email_result = $connection->query($sql);
         $email_row = $email_result->fetch_assoc();
         $email = $email_row["email"];
 
+        // Send a conformation email
         $to = $email;
         $subject = "Your SKI.I.P. reservation is confirmed!";
         $message = "Hi $firstname $lastname, <br><br> Your SKI.I.P. reservation is confirmed!<br><br> <strong>Reservation details:</strong><br>Date: $date <br> Timeslot: $timeslot <br> Amount of spaces: $people <br><br> If you want to cancel or get an overview of all your reservations click ou want to change your password you can click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-myreservations.php\">here</a> <br>The SKI.I.P. team";
