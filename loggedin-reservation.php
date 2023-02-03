@@ -333,7 +333,7 @@ if (isset($_POST['submit'])) {
         var date = document.querySelector("#availability_date").value;
         var xhr = new XMLHttpRequest();
 
-        xhr.open("GET", "availability.php?availability_date=" + date);
+        xhr.open("GET", "loggedin-reservation.php?availability_date=" + date);
         xhr.onload = function() {
         if (xhr.status === 200) {
             document.querySelector("#table-container").innerHTML = xhr.responseText;
