@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
 
     $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
     
-    $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift"; 
+    $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift'"; 
     $availability_result = $connection->query($sql_tijden);
    
     if ($availability_result->num_rows > 0) {
