@@ -36,7 +36,7 @@ function insert_availability($basic_array, $data){
 $basic_array1 = insert_availability($basic_array1, $result);
 
 if (isset($_GET['availability_date'])) {
-    echo "<table id='availability-table' bordercolor='#DA9F5B'>";
+    echo "<table id='availability-table' style='background-color=#382424' 'bordercolor=#DA9F5B'>";
     echo "<tr><th>Time</th><th>Availability</th></tr>";
 
     $counter = 0;
