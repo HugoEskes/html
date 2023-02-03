@@ -8,6 +8,96 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: login.php?not_logged_in=1');
 }
 
+require_once 'php/connection.php';
+
+
+// Check connection
+if (!$connection) {
+   die("Connection failed: " . mysqli_connect_error());
+}
+// Select query
+if (isset($_GET['availability_date'])){
+    $select_query = "SELECT * 
+                    FROM tijden 
+                    WHERE datum='".$_GET['availability_date']."'
+                    ORDER BY tijden.tijd ASC";
+}
+else {
+    $select_query = "SELECT * 
+                    FROM tijden 
+                    ORDER BY tijden.tijd ASC";
+}
+
+$result = mysqli_query($connection, $select_query);
+
+$basic_array1 = array("10:00" => 30, "10:15" => 30, "10:30" => 30, "10:45" => 30, "11:00" => 30, "11:15" => 30, "11:30" => 30, "11:45" => 30, "12:00" => 30, "12:15" => 30);
+$basic_array2 = array("12:30" => 30, "12:45" => 30, "13:00" => 30, "13:15" => 30, "13:30" => 30, "13:45" => 30, "14:00" => 30, "14:15" => 30, "14:30" => 30, "14:45" => 30, );
+$basic_array3 = array("15:00" => 30, "15:15" => 30, "15:30" => 30, "15:45" => 30, "16:00" => 30, "16:15" => 30, "16:30" => 30, "16:45" => 30, "17:00" => 30);
+
+function insert_availability($basic_array, $data){
+    while ($row = mysqli_fetch_assoc($data)) {
+        if (array_key_exists(date("H:i", strtotime($row['tijd'])), $basic_array)) {
+            $basic_array[date("H:i", strtotime($row['tijd']))] = $row['beschikbare_plekken'];
+        }
+    }
+    return $basic_array;
+}
+
+$basic_array1 = insert_availability($basic_array1, $result);
+
+if (isset($_GET['availability_date'])) {
+    echo "<table id='availability-table'>";
+    echo "<tr><th>Time</th><th>Availability</th></tr>";
+
+    $counter = 0;
+    // Loop through the result set
+    foreach ($basic_array1 as $tijdslot => $beschikbare_plekken) {
+    echo "<tr>";
+    echo "<td>" . $tijdslot . "</td>";
+    echo "<td>" . $beschikbare_plekken . "</td>";
+    echo "</tr>";
+    }
+
+    echo "</table>";
+}
+
+$basic_array2 = insert_availability($basic_array2, $result);
+
+if (isset($_GET['availability_date'])) {
+    echo "<table id='availability-table'>";
+    echo "<tr><th>Time</th><th>Availability</th></tr>";
+
+    $counter = 0;
+    // Loop through the result set
+    foreach ($basic_array2 as $tijdslot => $beschikbare_plekken) {
+    echo "<tr>";
+    echo "<td>" . $tijdslot . "</td>";
+    echo "<td>" . $beschikbare_plekken . "</td>";
+    echo "</tr>";
+    }
+
+    echo "</table>";
+}
+
+$basic_array3 = insert_availability($basic_array3, $result);
+
+if (isset($_GET['availability_date'])) {
+    echo "<table id='availability-table'>";
+    echo "<tr><th>Time</th><th>Availability</th></tr>";
+
+    $counter = 0;
+    // Loop through the result set
+    foreach ($basic_array3 as $tijdslot => $beschikbare_plekken) {
+    echo "<tr>";
+    echo "<td>" . $tijdslot . "</td>";
+    echo "<td>" . $beschikbare_plekken . "</td>";
+    echo "</tr>";
+    }
+
+    echo "</table>";
+}
+
+
 $user_ID = $_SESSION['gebruikerID'];
 
 $sql = "SELECT * FROM gebruikers WHERE gebruikerID = '$user_ID'";
@@ -146,7 +236,12 @@ if (isset($_POST['submit'])) {
                     <div class="col-lg-6 my-5 my-lg-0">
                         <div class="row">
                             <div class="col-md-12 pb-5">
-                                <div id="map" style="height:400px;width:100%;"></div>
+                            <form>
+                            <label for="availability_date">Choose a date:</label>
+                                <input type="date" id="availability_date" name="availability_date">
+                                <input type="submit" value="Submit">
+                                </form>
+                            <div id="table-container"></div>
                             </div>
                         </div>
                     </div>
@@ -229,23 +324,24 @@ if (isset($_POST['submit'])) {
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <!-- Google API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7tTtgSMOA_yFVqkh1zFZrpvouCorDXvE&callback=initMap"></script>
+      </script>
 
     <script>
-        function initMap() {
-          var map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 45.892417, lng: 7.540064 },
-            zoom: 8
-          });
-        
-        var marker = new google.maps.Marker({
-    position: {lat: 45.892417, lng: 7.540064},
-    map: map,
-    title: 'Pian della Volpe ski lift '
-});
+    document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var date = document.querySelector("#availability_date").value;
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "availability.php?availability_date=" + date);
+        xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.querySelector("#table-container").innerHTML = xhr.responseText;
         }
-      </script>
+        };
+        xhr.send();
+    });
+    </script>
 
 </body>
 
