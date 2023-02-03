@@ -98,6 +98,17 @@ if (session_status() !== PHP_SESSION_NONE) {
                             <div class="col-md-12 pb-5">
                                 <form style="text-align: center;">
                                 <label for="availability_date"><br><br><h2 style="color:#DA9F5B">Availability</h2><br><p style="color: gainsboro;">Here you can see the availability of our gondola's. If you want to make a reservation you have to be <a></a>logged in. Choose a date and a skilift:<br><p></label>
+                                    <select name="skilift_table">
+                                    <option value="">Select a Skilift</option>
+                                    <?php
+                                    require_once 'php/connection.php';
+                                    $sql = "SELECT * FROM Skiliften";
+                                    $result = mysqli_query($connection, $sql);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        echo "<option value='" . $row['skiliftID'] . "'>" . $row['naam'] . "</option>";
+                                    }
+                                    ?>
+                                    </select>                                   
                                     <input type="date" id="availability_date" name="availability_date">
                                     <input type="submit" value="Submit">
                                 </form>
