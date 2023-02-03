@@ -34,7 +34,7 @@
     $headers .= 'From: SKI.I.P. <noreply@skiip.com>';
     mail($to, $subject, $message, $headers);
   
-    echo "<script>alert('A new admin has been created. They have been send an email!')</script>"
+    echo "<script>alert('A new admin has been created. They have been send an email!')</script>";
     }
   
   }
