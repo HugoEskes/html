@@ -55,6 +55,8 @@ if (isset($_POST['submit'])) {
                 mysqli_query($connection, $sql_availability_update);
                 $sql_reserveringen = "INSERT INTO reserveringen (datum, skiliftID, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skiliftID', '$timeslot', '$username', '$user_ID', '$people')";
                 mysqli_query($connection, $sql_reserveringen);
+
+
                 // Get the email of the user
                 $sql = "SELECT email FROM gebruikers WHERE gebruikerID = '$user_ID'"; 
                 $email_result = $connection->query($sql);
@@ -70,6 +72,7 @@ if (isset($_POST['submit'])) {
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
                 $headers .= 'From: SKI.I.P. <noreply@skiip.com>';
                 mail($to, $subject, $message, $headers);
+
                 header('Location: loggedin-myreservations.php?status=success');
                 }
             else {
@@ -320,7 +323,7 @@ if (isset($_POST['submit'])) {
     <script src="js/main.js"></script>
 
     <script>
-    document.querySelector("form").addEventListener("submit", function(event) {
+    document.querySelector("form").addEventListener("submit_table", function(event) {
         event.preventDefault();
 
         var date = document.querySelector("#availability_date").value;
