@@ -20,7 +20,7 @@ if(isset($_POST['submit'])) {
        $reset_link = "https://webtech-ki59.webtech-uva.nl/reset.php?token=" . $token;
         $to = $email;
         $subject = "Forgot password";
-        $message = "Hi $firstname $lastname, <br><br>Forgotten your password? No problem! Mistakes happen<br>Please copy this code $token and click this link: $reset_link. <br><br>If you didn't request this password change, please ignore this email.<br>The SKI.I.P. team";
+        $message = "Hi $firstname $lastname, <br><br>Forgotten your password? No problem! Mistakes happen!<br>Please copy this code $token and click this link: $reset_link. <br><br>If you didn't request this password change, please ignore this email.<br>The SKI.I.P. team";
         $message = wordwrap($message, 70, "\r\n");
         $headers = "MIME-Version: 1.0" . "\r\n"; 
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
