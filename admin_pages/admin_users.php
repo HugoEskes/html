@@ -48,7 +48,7 @@
       }
 
 
-    </style>
+</style>
 </head>
 
 <body>
