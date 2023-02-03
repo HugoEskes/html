@@ -178,6 +178,17 @@ if (isset($_POST['submit'])) {
                             <div class="col-md-12 pb-5">
                             <form>
                             <label for="availability_date"><br><br><h2 style="color:#DA9F5B">Availability</h2><br><p style="color: gainsboro;">Choose a date and a skilift:<br><p></label>
+                                    <select name="skilift" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
+                                    <option value="">Select a Skilift</option>
+                                    <?php
+                                    require_once 'php/connection.php';
+                                    $sql = "SELECT * FROM Skiliften";
+                                    $result = mysqli_query($connection, $sql);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
+                                    }
+                                    ?>
+                                    </select>
                                 <input type="date" id="availability_date" name="availability_date">
                                 <input type="submit" value="Submit">
                                 </form>
