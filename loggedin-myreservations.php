@@ -117,8 +117,8 @@ echo "<tr><th>Skilift</th><th>Date</th><th>Time</th><th>Persons</th><th>Delete</
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
-  echo "<td>" . $row['skilift_naam'] . "</td>";
-  echo "<td>" . date("d-m-Y", strtotime($row['naam'])) . "</td>";
+  echo "<td>" . $row['naam'] . "</td>";
+  echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
   echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
   echo "<td>";
