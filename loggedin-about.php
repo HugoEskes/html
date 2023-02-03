@@ -114,7 +114,7 @@
                 $result = mysqli_query($connection, $select_query);
 
                 echo "<table>";
-                echo "<tr><th>Name</th><th>Duration</th><th>Distance</th><th>Heigth Difference</th><th>Location</th></tr>";
+                echo "<tr><th>Name</th><th>Duration (min)</th><th>Distance (meter)</th><th>Heigth Difference (meter)</th><th>Location</th></tr>";
 
                 // Loop through the result set
                 while ($row = mysqli_fetch_assoc($result)) {
