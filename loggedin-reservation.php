@@ -161,7 +161,7 @@ if (isset($_POST['submit'])) {
                             <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
                             <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
-                                    <select name="Skilifts">
+                                    <select name="Skilifts" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
                                     <?php
                                     require_once 'php/connection.php';
                                     $sql = "SELECT * FROM Skiliften";
