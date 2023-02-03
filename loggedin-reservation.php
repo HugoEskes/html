@@ -161,6 +161,19 @@ if (isset($_POST['submit'])) {
                             <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
                             <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
+                                    <select name="Skilifts" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
+                                    <option value="">Select a Skilift</option>
+                                    <?php
+                                    require_once 'php/connection.php';
+                                    $sql = "SELECT * FROM Skiliften";
+                                    $result = mysqli_query($connection, $sql);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
+                                    }
+                                    ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <div class="date" name="date" id="date" type="date" data-target-input="nearest">
                                         <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
