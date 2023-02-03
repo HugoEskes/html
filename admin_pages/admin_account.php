@@ -21,7 +21,7 @@
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
   
     //informatie in de database zetten
-    $sql = "INSERT INTO admins (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
+    $sql = "INSERT INTO admins (naam, email, wachtwoord) VALUES ('$username', '$email', '$hashed_password')";
     mysqli_query($connection, $sql);
   
     // send an email to the user that the account has been created
