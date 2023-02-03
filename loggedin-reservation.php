@@ -174,7 +174,7 @@ if (isset($_POST['submit'])) {
                                         $result = mysqli_query($connection, $select_query);
                                         
                                         while ($row = mysqli_fetch_assoc($result)){
-                                            $option = $row['naam']
+                                            $option = $row['naam'];
                                             echo "<option value='$option'>$option</option>";
                                         }
                                         ?>
@@ -185,7 +185,7 @@ if (isset($_POST['submit'])) {
                                         <option selected>Skilift</option>
                                         <?php
                                         while ($row = mysqli_fetch_assoc($result)){
-                                            $option = $row['naam']
+                                            $option = $row['naam'];
                                             echo "<option value='$option'>$option</option>";
                                         }
                                         ?>
