@@ -9,7 +9,7 @@ require_once 'php/connection.php';
 if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
-if (isset($_POST['availability_date'])) {
+if ($_GET['availability_date'] == '+ date') {
     // Select query
     if (isset($_GET['availability_date'])){
         $select_query = "SELECT * 
@@ -125,6 +125,7 @@ if (isset($_POST['availability_date'])) {
 <form>
   <label for="availability_date">Choose a date:</label>
   <input type="date" id="availability_date" name="availability_date">
+  <input type="submit" value="Submit">
 </form>
 <div id="table-container"></div>
 
@@ -164,7 +165,7 @@ if (isset($_POST['availability_date'])) {
 <script src="js/main.js"></script>
 
 <script>
-  document.querySelector("form").addEventListener("date", function(event) {
+  document.querySelector("form").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var date = document.querySelector("#availability_date").value;
