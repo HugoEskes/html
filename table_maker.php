@@ -98,6 +98,7 @@ if (isset($_GET['availability_date'])) {
         table-layout: fixed;
         float: left;
         width: 33.33%;
+        margin-right: 1%;
       }
       th, td {
         padding: 5px;
