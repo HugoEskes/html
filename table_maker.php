@@ -16,12 +16,17 @@ else {
                     FROM tijden 
                     ORDER BY tijden.tijd ASC";
 }
-
 $result = mysqli_query($connection, $select_query);
 
-$basic_array1 = array("10:00" => 30, "10:15" => 30, "10:30" => 30, "10:45" => 30, "11:00" => 30, "11:15" => 30, "11:30" => 30, "11:45" => 30, "12:00" => 30, "12:15" => 30);
-$basic_array2 = array("12:30" => 30, "12:45" => 30, "13:00" => 30, "13:15" => 30, "13:30" => 30, "13:45" => 30, "14:00" => 30, "14:15" => 30, "14:30" => 30, "14:45" => 30, );
-$basic_array3 = array("15:00" => 30, "15:15" => 30, "15:30" => 30, "15:45" => 30, "16:00" => 30, "16:15" => 30, "16:30" => 30, "16:45" => 30, "17:00" => 30);
+$sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE naam = '".$_GET['skilift']."'";
+$seats_result = $connection->query($sql_skiliftseats);
+$seats_row = $seats_result->fetch_assoc();
+$seats = $seats_row['max_personen'];
+
+
+$basic_array1 = array("10:00" => $seats, "10:15" => $seats, "10:30" => $seats, "10:45" => $seats, "11:00" => $seats, "11:15" => $seats, "11:30" => $seats, "11:45" => $seats, "12:00" => $seats, "12:15" => $seats);
+$basic_array2 = array("12:30" => $seats, "12:45" => $seats, "13:00" => $seats, "13:15" => $seats, "13:30" => $seats, "13:45" => $seats, "14:00" => $seats, "14:15" => $seats, "14:30" => $seats, "14:45" => $seats, );
+$basic_array3 = array("15:00" => $seats, "15:15" => $seats, "15:30" => $seats, "15:45" => $seats, "16:00" => $seats, "16:15" => $seats, "16:30" => $seats, "16:45" => $seats, "17:00" => $seats);
 
 function insert_availability($basic_array, $data){
     while ($row = mysqli_fetch_assoc($data)) {
