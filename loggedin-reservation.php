@@ -35,7 +35,8 @@ if (isset($_POST['submit'])) {
 
     $sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE naam='$skilift'";
     $seats_result = $connection->query($sql_skiliftseats);
-   
+    $seats_row = $seats_result->fetch_assoc();
+
     if ($availability_result->num_rows > 0) {
         $availability_row = $availability_result->fetch_assoc();
         $previous_availability = $availability_row["beschikbare_plekken"];
@@ -67,7 +68,7 @@ if (isset($_POST['submit'])) {
         }
     } else {
         /* no rows returned */
-        $availability = $seats_result - $people;
+        $availability = $seats_row - $people;
         $sql_availability = "INSERT INTO tijden (skilift_naam, datum, tijd, beschikbare_plekken) VALUES ('$skilift', '$sqldate', '$timeslot', '$availability')";
         mysqli_query($connection, $sql_availability);
         $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
