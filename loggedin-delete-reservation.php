@@ -23,7 +23,7 @@
     $previous_availability = $availability_row["beschikbare_plekken"];
     $new_availability = $previous_availability + $personen;
 
-    $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot'";
+    $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$date' and tijd='$timeslot'";
     mysqli_query($connection, $sql_availability_update);
 
     // Delete query
