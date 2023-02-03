@@ -96,7 +96,7 @@ if (isset($_GET['availability_date'])) {
         align-items: center;
         margin: 0 auto;
         height: 100%;
-        color: white;
+        color: Gainsboro;
       }
       th, td {
         padding: 5px;
