@@ -96,8 +96,12 @@ if (session_status() !== PHP_SESSION_NONE) {
                     <div class="col-lg-6 my-5 my-lg-0">
                         <div class="row">
                             <div class="col-md-12 pb-5">
-                                <div id="map" style="height:400px;width:100%;"></div>
-                            </div>
+                                <form>
+                                <label for="availability_date">Choose a date:</label>
+                                    <input type="date" id="availability_date" name="availability_date">
+                                    <input type="submit" value="Submit">
+                                </form>
+                            <div id="table-container"></div>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -162,6 +166,23 @@ if (session_status() !== PHP_SESSION_NONE) {
 });
         }
       </script>
+
+    <script>
+    document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var date = document.querySelector("#availability_date").value;
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "table_maker.php?availability_date=" + date);
+        xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.querySelector("#table-container").innerHTML = xhr.responseText;
+        }
+        };
+        xhr.send();
+    });
+    </script>
 </body>
 
 </html>
