@@ -27,22 +27,23 @@ if (isset($_POST['submit'])) {
     $timeslot = $_POST['time_slot'];
     $people = $_POST['Person'];
     $sqldate=date('Y-m-d',strtotime($date));
+    $skilift = $_POST['skilift'];
 
-    $sql_reserveringen = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
+    $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
     
-    $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot'"; 
+    $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift"; 
     $availability_result = $connection->query($sql_tijden);
    
     if ($availability_result->num_rows > 0) {
         $availability_row = $availability_result->fetch_assoc();
         $previous_availability = $availability_row["beschikbare_plekken"];
         $new_availability = $previous_availability - $people;
-        $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot'";
+        $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot' and skilift_naam='$skilift'";
         mysqli_query($connection, $sql_availability_update);
     } else {
         /* no rows returned */
         $availability = 30 - $people;
-        $sql_availability = "INSERT INTO tijden (datum, tijd, beschikbare_plekken) VALUES ('$sqldate', '$timeslot', '$availability')";
+        $sql_availability = "INSERT INTO tijden (skilift_naam, datum, tijd, beschikbare_plekken) VALUES ('$skilift', '$sqldate', '$timeslot', '$availability')";
         mysqli_query($connection, $sql_availability);
     }
 
@@ -56,7 +57,7 @@ if (isset($_POST['submit'])) {
         // Send a conformation email
         $to = $email;
         $subject = "Your SKI.I.P. reservation is confirmed!";
-        $message = "Hi $firstname $lastname, <br><br> Your SKI.I.P. reservation is confirmed!<br><br> <strong>Reservation details:</strong><br>Date: $date <br> Timeslot: $timeslot <br> Amount of spaces: $people <br><br> If you want to cancel or get an overview of all your reservations click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-myreservations.php\">here</a> <br>The SKI.I.P. team";
+        $message = "Hi $firstname $lastname, <br><br> Your SKI.I.P. reservation is confirmed!<br><br> <strong>Reservation details:</strong><br>Skilift: $skilift <br>Date: $date <br> Timeslot: $timeslot <br> Amount of spaces: $people <br><br> If you want to cancel or get an overview of all your reservations click <a href=\"https://webtech-ki59.webtech-uva.nl/loggedin-myreservations.php\">here</a> <br>The SKI.I.P. team";
         $message = wordwrap($message, 70, "\r\n");
         $headers = "MIME-Version: 1.0" . "\r\n"; 
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
@@ -161,7 +162,7 @@ if (isset($_POST['submit'])) {
                             <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
                             <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
-                                    <select name="Skilifts" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
+                                    <select name="skilift" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
                                     <option value="">Select a Skilift</option>
                                     <?php
                                     require_once 'php/connection.php';
