@@ -279,7 +279,7 @@ $basic_array3 = insert_availability($basic_array3, $result);
                                     ?>
                                     </select>
                                 <input type="date" id="availability_date" name="availability_date">
-                                <input type="submit_table" value="Submit">
+                                <input type="submit" id="submit_table" name="submit_table" value="Submit">
                                 </form>
                             <div id="table-container"></div>
                             </div>
@@ -378,21 +378,21 @@ $basic_array3 = insert_availability($basic_array3, $result);
     <script src="js/main.js"></script>
 
     <script>
-    document.querySelector("form").addEventListener("submit", function(event) {
-        event.preventDefault();
+//    document.querySelector("form").addEventListener("submit", function(event) {
+  //      event.preventDefault();
+//
+//        var date = document.querySelector("#availability_date").value;
+//        var skilift = document.querySelector("#skilift_table").value
+//        var xhr = new XMLHttpRequest();
 
-        var date = document.querySelector("#availability_date").value;
-        var skilift = document.querySelector("#skilift_table").value
-        var xhr = new XMLHttpRequest();
-
-        xhr.open("GET", "table_maker.php?availability_date=" + date + "&skilift=" + skilift);
-        xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.querySelector("#table-container").innerHTML = xhr.responseText;
-        }
-        };
-        xhr.send();
-    });
+//        xhr.open("GET", "table_maker.php?availability_date=" + date + "&skilift=" + skilift);
+//        xhr.onload = function() {
+//        if (xhr.status === 200) {
+//            document.querySelector("#table-container").innerHTML = xhr.responseText;
+//        }
+//        };
+//        xhr.send();
+ //   });
 
     </script>
 
