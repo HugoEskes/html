@@ -326,7 +326,7 @@ if (isset($_POST['submit'])) {
     document.querySelector("form").addEventListener("submit", function(event) {
         event.preventDefault();
 
-        var date = document.querySelector("#availability_date").value;
+        var date = document.querySelector("input[name='availability_date']").value;
         var xhr = new XMLHttpRequest();
 
         xhr.open("GET", "table_maker.php?availability_date=" + date);
