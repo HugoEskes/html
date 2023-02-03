@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
     $sql_reserveringen = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
     
-    $sql_tijden = "SELECT datum, tijd, beschikbare_plekken FROM tijden WHERE datum='$date' and tijd='$timeslot'"; 
+    $sql_tijden = "SELECT datum, tijd, beschikbare_plekken FROM tijden WHERE datum='$sqldate' and tijd='$timeslot'"; 
     $availability_result = $connection->query($sql_tijden);
    
     if ($availability_result->num_rows > 0) {
