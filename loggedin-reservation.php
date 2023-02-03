@@ -83,7 +83,7 @@ if (isset($_POST['submit'])) {
             $availability = $seats - $people;
             $sql_availability = "INSERT INTO tijden (skiliftID, datum, tijd, beschikbare_plekken) VALUES ('$skiliftID', '$sqldate', '$timeslot', '$availability')";
             mysqli_query($connection, $sql_availability);
-            $sql_reserveringen = "INSERT INTO reserveringen (datum, skiliftID, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skiliftID', '$timeslot', '$username', '$user_ID', '$people')";
+            $sql_reserveringen = "INSERT INTO reserveringen (datum, skiliftID, tijdslot, gebruikerID, personen) VALUES ('$sqldate', '$skiliftID', '$timeslot', '$user_ID', '$people')";
             mysqli_query($connection, $sql_reserveringen);
             // Get the email of the user
             $sql = "SELECT email FROM gebruikers WHERE gebruikerID = '$user_ID'"; 
