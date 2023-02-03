@@ -27,11 +27,9 @@ if (isset($_POST['submit'])) {
     $people = $_POST['Person'];
     $sqldate=date('Y-m-d',strtotime($date));
 
-    $sql_reserveringen = "INSERT INTO reserveringen (datum, tijd, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
+    $sql_reserveringen = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
     
-    $sql = "SELECT datum, tijd, personen FROM tijden WHERE datum='$date' and tijd='$timeslot'"; 
-    
-    $sql_tijden = "INSERT INTO tijden (datum, tijd, personen) VALUES ('$sqldate', '$timeslot', '$people')";
+    $sql = "SELECT datum, tijd, beschikbare_plekken FROM tijden WHERE datum='$date' and tijd='$timeslot'"; 
     $availability_result = $connection->query($sql_tijden);
    
     if ($availability_result->num_rows > 0) {
