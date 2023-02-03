@@ -201,7 +201,7 @@ if (isset($_POST['submit'])) {
                     <div class="col-lg-6 my-5 my-lg-0">
                         <div class="row">
                             <div class="col-md-12 pb-5">
-                            <form action="loggedin-reservation.php" method="post">
+                            <form>
                             <label for="availability_date"><br><br><h2 style="color:#DA9F5B">Availability</h2><br><p style="color: gainsboro;">Choose a date and a skilift:<br><p></label>
                                     <select name="skilift_table">
                                     <option value="">Select a Skilift</option>
