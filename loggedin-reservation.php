@@ -290,12 +290,6 @@ if (isset($_POST['submit'])) {
         xhr.send();
     });
 
-    $(function () {
-    $('#date').datetimepicker({
-    useCurrent: false;
-    disabledDates: [moment().subtract(1, 'day')]
-  });
-});
     </script>
 
 </body>
