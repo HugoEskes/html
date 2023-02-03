@@ -9,8 +9,7 @@ if (!$connection) {
 if (isset($_GET['availability_date'])){
     $select_query = "SELECT * 
                     FROM tijden 
-                    WHERE datum='".$_GET['availability_date']."'
-                    ORDER BY tijden.tijd ASC";
+                    WHERE datum='".$_GET['availability_date']."'";
 }
 else {
     $select_query = "SELECT * 
@@ -90,17 +89,20 @@ if (isset($_GET['availability_date'])) {
 ?>
     <style>
       table, th, td {
-        display: inline;
         background-color: #382424;
         border: 1px solid #DA9F5B;
         border-collapse: collapse;
         align-items: center;
         height: 100%;
         color: gainsboro;
+        table-layout: fixed;
+        width: 200px;
       }
       th, td {
         padding: 5px;
         text-align: center;
+        width: 100px;
+        overflow: hidden;
       }
 
 
