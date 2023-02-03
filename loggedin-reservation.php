@@ -216,6 +216,29 @@ $basic_array3 = insert_availability($basic_array3, $result);
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="css/style.min.css" rel="stylesheet">
+
+    <style>
+      table, th, td {
+        background-color: #382424;
+        align-items: center;
+        height: 100%;
+        color: gainsboro;
+        table-layout: fixed;
+        float: left;
+        width: 32%;
+        margin-right: 1%;
+      }
+      th, td {
+        padding: 5px;
+        text-align: center;
+        width: 49%;
+        overflow: hidden;
+        border: 1px solid #DA9F5B;
+        border-collapse: collapse;
+      }
+
+
+    </style>
 </head>
 
 <body>
