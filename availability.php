@@ -9,36 +9,34 @@ require_once 'php/connection.php';
 if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
-if ($_GET['availability_date'] == '+ date') {
-    // Select query
-    if (isset($_GET['availability_date'])){
-        $select_query = "SELECT * 
-                        FROM tijden 
-                        WHERE datum='".$_GET['availability_date']."'
-                        ORDER BY tijden.tijd ASC";
-    }
-    else {
-        $select_query = "SELECT * 
-                        FROM tijden 
-                        ORDER BY tijden.tijd ASC";
-    }
+// Select query
+if (isset($_GET['availability_date'])){
+    $select_query = "SELECT * 
+                    FROM tijden 
+                    WHERE datum='".$_GET['availability_date']."'
+                    ORDER BY tijden.tijd ASC";
+}
+else {
+    $select_query = "SELECT * 
+                    FROM tijden 
+                    ORDER BY tijden.tijd ASC";
+}
 
-    $result = mysqli_query($connection, $select_query);
+$result = mysqli_query($connection, $select_query);
 
-    echo "<table id='availability-table'>";
+echo "<table id='availability-table'>";
+echo "<tr><th>Time</th><th>Availability</th></tr>";
 
-    $counter = 0;
-    // Loop through the result set
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr><th>Time</th><th>Availability</th></tr>";
-    echo "<tr>";
-    echo "<td>" . date("H:i", strtotime($row['tijd'])) . "</td>";
-    echo "<td>" . $row['beschikbare_plekken'] . "</td>";
-    echo "</tr>";
-    }
+$counter = 0;
+// Loop through the result set
+while ($row = mysqli_fetch_assoc($result)) {
+echo "<tr>";
+echo "<td>" . date("H:i", strtotime($row['tijd'])) . "</td>";
+echo "<td>" . $row['beschikbare_plekken'] . "</td>";
+echo "</tr>";
+}
 
-    echo "</table>";
-    }
+echo "</table>";
 ?>
 
 
