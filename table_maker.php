@@ -36,7 +36,7 @@ $basic_array1 = insert_availability($basic_array1, $result);
 
 if (isset($_GET['availability_date'])) {
     echo "<table id='availability-table'>";
-    echo "<tr><th>Time</th><th>Availability</th></tr>";
+    echo "<tr><th>Time</th><th>Places</th></tr>";
 
     $counter = 0;
     // Loop through the result set
@@ -54,7 +54,7 @@ $basic_array2 = insert_availability($basic_array2, $result);
 
 if (isset($_GET['availability_date'])) {
     echo "<table id='availability-table'>";
-    echo "<tr><th>Time</th><th>Availability</th></tr>";
+    echo "<tr><th>Time</th><th>Places</th></tr>";
 
     $counter = 0;
     // Loop through the result set
@@ -72,7 +72,7 @@ $basic_array3 = insert_availability($basic_array3, $result);
 
 if (isset($_GET['availability_date'])) {
     echo "<table id='availability-table'>";
-    echo "<tr><th>Time</th><th>Availability</th></tr>";
+    echo "<tr><th>Time</th><th>Places</th></tr>";
 
     $counter = 0;
     // Loop through the result set
