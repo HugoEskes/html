@@ -102,11 +102,13 @@ if (session_status() !== PHP_SESSION_NONE) {
                     <h5 class="mb-3">Where are our skilifts?</h5>
                     <div id="map" style="height:400px;width:100%;"></div>
             </div>
+            <br><br>
             <div class="row">
             <h5 class="mb-3">Information about our skilifts</h5>
             <br><br>
+            <div>
             <?php
-
+            
             require_once 'php/connection.php';
 
             // Check connection
@@ -129,9 +131,7 @@ if (session_status() !== PHP_SESSION_NONE) {
             echo "<td>" . $row['afstand(meter)'] . "</td>";
             echo "<td>" . $row['hoogte verschil(meter)'] . "</td>";
             echo "<td>" . $row['locatie'] . "</td>";
-            echo "<td>";
             echo "</form>";
-            echo "</td>";
             echo "</tr>";
             }
 
@@ -141,6 +141,7 @@ if (session_status() !== PHP_SESSION_NONE) {
             mysqli_close($connection);
 
             ?>
+            </div>
         </div>
     </div>
     <!-- About End -->
