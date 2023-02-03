@@ -205,8 +205,8 @@ if (session_status() !== PHP_SESSION_NONE) {
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-        <!-- Google API -->
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7tTtgSMOA_yFVqkh1zFZrpvouCorDXvE&callback=initMap"></script>
+    <!-- Google API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7tTtgSMOA_yFVqkh1zFZrpvouCorDXvE&callback=initMap"></script>
 
 <script>
     function initMap() {
@@ -218,7 +218,7 @@ if (session_status() !== PHP_SESSION_NONE) {
     var marker = new google.maps.Marker({
 position: {lat: 45.892417, lng: 7.540064},
 map: map,
-title: 'Pian della Volpe ski lift '
+title: 'Pian della Volpe ski lift'
 });
     }
   </script>
