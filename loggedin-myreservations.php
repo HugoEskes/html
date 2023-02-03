@@ -104,7 +104,7 @@ echo "<h2 style='text-align: center;'>Upcoming reservations</h2>";
 $select_query = "SELECT * 
                 FROM reserveringen
                 JOIN Skiliften 
-                ON reserveringen.skiliftID = skiliften.skiliftID 
+                ON reserveringen.skiliftID = Skiliften.skiliftID 
                 WHERE gebruikerID=$user_id and reserveringen.datum >= NOW()
                 ORDER BY reserveringen.datum ASC";
 $result = mysqli_query($connection, $select_query);
