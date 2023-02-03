@@ -90,21 +90,21 @@ if (isset($_GET['availability_date'])) {
     <style>
       table, th, td {
         background-color: #382424;
-        border: 1px solid #DA9F5B;
-        border-collapse: collapse;
         align-items: center;
         height: 100%;
         color: gainsboro;
         table-layout: fixed;
         float: left;
-        width: 166px;
+        width: 32%;
         margin-right: 1%;
       }
       th, td {
         padding: 5px;
         text-align: center;
-        width: 82.8px;
+        width: 49%;
         overflow: hidden;
+        border: 1.5px solid #DA9F5B;
+        border-collapse: collapse;
       }
 
 
