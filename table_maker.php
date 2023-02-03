@@ -19,8 +19,6 @@ else {
 }
 $result = mysqli_query($connection, $select_query);
 
-echo('<script>alert("Test")</script>');
-
 $sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE naam = '".$_GET['skilift']."'";
 $seats_result = $connection->query($sql_skiliftseats);
 $seats_row = $seats_result->fetch_assoc();
