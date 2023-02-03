@@ -66,7 +66,7 @@
                 <a href="admin_index.php" class="nav-item nav-link">Home</a>
                 <a href="admin_reservations.php" class="nav-item nav-link">Reservations</a>
                 <a href="admin_users.php" class="nav-item nav-link active">Other Users</a>
-                <a href="admin_account.php" class="nav-item nav-link">Account</a>
+                <a href="admin_account.php" class="nav-item nav-link">Add Admin Accounts</a>
                 <a href="../php/logout.php" class="nav-item nav-link">Log Out</a>
             </div>
         </div>
