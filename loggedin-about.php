@@ -69,34 +69,84 @@
         </div>
     </div>
     <!-- Page Header End -->
-
-
-    <!-- About Start -->
-    <div class="container-fluid py-5">
+     <!-- About Start -->
+     <div class="container-fluid py-5">
         <div class="container">
             <div class="section-title">
                 <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;"></h4>
                 <h4 class="display-4 text-primary">About</h4>
             </div>
             <div class="row">
-                    <h1 class="mb-3"></h1>
-                    <h5 class="mb-3">Hello there! If it was faith, a happy little accident or if you just clicked on the about button on this website. Whichever one of these it was, you ended up in the right place. We’re happy to tell you about our quest regarding skiing and about the motivated people behind this initiative. <br> <br>
+                    <h5 class="mb-3">Where are our skilifts?</h5>
+                    <div id="map" style="height:400px;width:100%;"></div>
+            </div>
+            <br><br>
+            <div class="row">
+            <h5 class="mb-3">Information about our skilifts</h5>
+            <div>
+                <br><br>
+                <?php
+                
+                require_once 'php/connection.php';
 
-                    Okay, so, imagine this: You’re peacefully sliding down the mountain, whether it’s on ski’s, snowboard or on a sled with four reindeers in front of you. Nothing on your mind but snowy hills and the aftertaste of the hot chocolate you just drank at the nearby cafe up on one of the slopes. Until you finally get down and find yourself having to join the tedious long line for the gondola all the way at the back. Maybe it’s ten minutes, maybe it’s half an hour or maybe it’s even more precious time not spent skiing, but standing in a crowd of people, looking at the backs of other people's sweaty heads and listening to small children crying because they didn’t get to have the lollipop they wanted. Now, we from Ski.I.P. asked ourselves: ‘Is this really necessary?’ <br> <br>
+                // Check connection
+                if (!$connection) {
+                die("Connection failed: " . mysqli_connect_error());
+                }
 
-                    Here we strive to make your skiing journey quick and easy with our gondola reservation system. We believe skiing is enjoyed best when being able to spend the most amount of time actually on the slopes! No more waiting in line, but going straight up again for your next adventure. You put your skis or snowboard in the designated basket (this’ll be a bit more challenging when going by the sled and reindeers) and you’re off! Perfect right? That’s what we thought. With a few fast clicks create an account in the upper right corner, if you haven’t already done this, and reserve your first gondola ride! <br> <br>
+                // Select query
+                $select_query = "SELECT * FROM Skiliften";
+                $result = mysqli_query($connection, $select_query);
 
-                    Now let me introduce you to the people who came up with this idea. <br> First we have: Arthur van Campenhout. This young lad is a pioneer on website design and he even has a girlfriend (which isn't easy for an AI major, trust me) and if you thought that wasn’t enough, he also has some governance ambitions. We believe he has a very rich life in front of him. <br> Then I’ll introduce you to our own Hugo Eskes. They say the apple doesn’t fall far from the tree, and that is the case for Hugo. He is keeping
-                    AI in the family and making his father very proud. But this isn’t his only interest. This guy has many ambitions, one of which is fixing other peoples bikes, he is even getting professional training to be a bike mechanic. Why does he find this fun, you ask? I wouldn't know, ask him. <br>Then we have Jacob Halewijn. The man, the myth, the cookiemaster. What is het not? When Jacob isn’t spending his time being the social animal that he is, partying with people of Amsterdam, entertaining them with his bubble personality until deep in the night. He likes to spend his time with only the computer. He can get so swallowed up by it sometimes he doesn’t even hear his best friend telling him his interesting stories. <br> That actually brings me to the next amazing member of our team: Rafael Beekman. While being a very talented young programmer he’s also the joker of our group. Rafael has this talent of always seeing the bright side of things. When things aren’t totally going your way, you can always go to Rafael and he makes all your problems disappear with a simple joke or by just being his fun goofy self. A great asset for any team, if you ask me. <br> But who is: me? Oh who really knows! I am many things but they seem to say I go by the name of Iris Helder. I am a mystery.. and i’d like to keep it that way if you don’t mind. Oh! I forgot to tell you something about us five. Even though our interests are sometimes different, we all share a passion for skiing and AI. And we loved bringing those things together in Ski.I.P.. If you read all the way to the end, I thank you for your patience. You are an individual with great power and perseverance and I wish you all the best. Hope to see you on the slope sometimes? Then maybe you can tell me all about you :) <br> <br> Bye!</h5>
-                    <p></p>
-                </div>
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="img/matterhorn.png" style="object-fit: cover;">
-                    </div>
+                echo "<table>";
+                echo "<tr><th>Name</th><th>Duration</th><th>Distance</th><th>Heigth Difference</th><th>Location</th></tr>";
+
+                // Loop through the result set
+                while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['naam'] . "</td>";
+                echo "<td>" . $row['tijdsduur(min)'] . "</td>";
+                echo "<td>" . $row['afstand(meter)'] . "</td>";
+                echo "<td>" . $row['hoogte verschil(meter)'] . "</td>";
+                echo "<td>" . $row['locatie'] . "</td>";
+                echo "</form>";
+                echo "</tr>";
+                }
+
+                echo "</table>";
+
+                // Close the database connection
+                mysqli_close($connection);
+
+                ?>
             </div>
         </div>
     </div>
     <!-- About End -->
+<br><br>
+    <!-- About Us Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="section-title">
+                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;"></h4>
+                <h4 class="display-4 text-primary">About us</h4>
+            </div>
+            <div class="row">
+                    <h1 class="mb-3"></h1>
+                    <h5 class="mb-3">
+                        Hello there! If it was faith, a happy little accident or if you just clicked on the about button on this website. Whichever one of these it was, you ended up in the right place. We’re happy to tell you about our quest regarding skiing and about the motivated people behind this initiative. <br> <br>
+
+                        Okay, so, imagine this: You’re peacefully sliding down the mountain, whether it’s on ski’s, snowboard or on a sled with four reindeers in front of you. Nothing on your mind but snowy hills and the aftertaste of the hot chocolate you just drank at the nearby cafe up on one of the slopes. Until you finally get down and find yourself having to join the tedious long line for the gondola all the way at the back. Maybe it’s ten minutes, maybe it’s half an hour or maybe it’s even more precious time not spent skiing, but standing in a crowd of people, looking at the backs of other people's sweaty heads and listening to small children crying because they didn’t get to have the lollipop they wanted. Now, we from Ski.I.P. asked ourselves: ‘Is this really necessary?’ <br> <br>
+                        
+                        Here we strive to make your skiing journey quick and easy with our gondola reservation system. We believe skiing is enjoyed best when being able to spend the most amount of time actually on the slopes! No more waiting in line, but going straight up again for your next adventure. You put your skis or snowboard in the designated basket (this’ll be a bit more challenging when going by the sled and reindeers) and you’re off! Perfect right? That’s what we thought. With a few fast clicks create an account in the upper right corner, if you haven’t already done this, and reserve your first gondola ride! <br> <br>
+                        
+                        Now let me introduce you to the people who came up with this idea. <br> First we have: Arthur van Campenhout. This young lad is a pioneer on website design and he even has a girlfriend (which isn't easy for an AI major, trust me) and if you thought that wasn’t enough, he also has some governance ambitions. We believe he has a very rich life in front of him. <br> Then I’ll introduce you to our own Hugo Eskes. They say the apple doesn’t fall far from the tree, and that is the case for Hugo. He is keeping
+                        AI in the family and making his father very proud. But this isn’t his only interest. This guy has many ambitions, one of which is fixing other peoples bikes, he is even getting professional training to be a bike mechanic. Why does he find this fun, you ask? I wouldn't know, ask him. <br>Then we have Jacob Halewijn. The man, the myth, the cookiemaster. What is het not? When Jacob isn’t spending his time being the social animal that he is, partying with people of Amsterdam, entertaining them with his bubble personality until deep in the night. He likes to spend his time with only the computer. He can get so swallowed up by it sometimes he doesn’t even hear his best friend telling him his interesting stories. <br> That actually brings me to the next amazing member of our team: Rafael Beekman. While being a very talented young programmer he’s also the joker of our group. Rafael has this talent of always seeing the bright side of things. When things aren’t totally going your way, you can always go to Rafael and he makes all your problems disappear with a simple joke or by just being his fun goofy self. A great asset for any team, if you ask me. <br> But who is: me? Oh who really knows! I am many things but they seem to say I go by the name of Iris Helder. I am a mystery.. and i’d like to keep it that way if you don’t mind. Oh! I forgot to tell you something about us five. Even though our interests are sometimes different, we all share a passion for skiing and AI. And we loved bringing those things together in Ski.I.P.. If you read all the way to the end, I thank you for your patience. You are an individual with great power and perseverance and I wish you all the best. Hope to see you on the slope sometimes? Then maybe you can tell me all about you :) <br> <br> Bye!</h5>
+
+            </div>
+        </div>
+    </div>
+    <!-- About Us End -->
 
 
     <!-- Footer Start -->
@@ -132,6 +182,24 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- Google API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7tTtgSMOA_yFVqkh1zFZrpvouCorDXvE&callback=initMap"></script>
+
+<script>
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 45.892417, lng: 7.540064 },
+        zoom: 8
+      });
+    
+    var marker = new google.maps.Marker({
+position: {lat: 45.892417, lng: 7.540064},
+map: map,
+title: 'Pian della Volpe ski lift'
+});
+    }
+  </script>
 </body>
 
 </html>

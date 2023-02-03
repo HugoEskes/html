@@ -6,7 +6,10 @@ if(isset($_POST['submit'])) {
     // Check if the email exists in the database
     $sql = "SELECT * FROM gebruikers WHERE email = '$email'";
     $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($result);
     if(mysqli_num_rows($result) > 0) {
+       $firstname = $row['voornaam'];
+       $lastname = $row['achternaam'];
        // Email found in the database
        // Generate a password reset token
        $token = bin2hex(random_bytes(16));
@@ -15,11 +18,14 @@ if(isset($_POST['submit'])) {
        mysqli_query($connection, $sql);
        // Send an email to the user with the reset link
        $reset_link = "https://webtech-ki59.webtech-uva.nl/reset.php?token=" . $token;
-       $to = $email;
-       $subject = "Password Reset";
-       $message = "Please copy the following reset token: '$token'. Please click on the following link to reset your password: "  . $reset_link;
-       $headers = "From: Skiliftreserveringen@gmail.com";
-       mail($to, $subject, $message, $headers);
+        $to = $email;
+        $subject = "Forgot password";
+        $message = "Hi $firstname $lastname, <br><br>Forgotten your password? No problem! Mistakes happen!<br>Please copy this code $token and click this link: $reset_link. <br><br>If you didn't request this password change, please ignore this email.<br>The SKI.I.P. team";
+        $message = wordwrap($message, 70, "\r\n");
+        $headers = "MIME-Version: 1.0" . "\r\n"; 
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
+        $headers .= 'From: SKI.I.P. <noreply@skiip.com>';
+        mail($to, $subject, $message, $headers);
        echo "<script>alert('An email with more instructions has been sent.')</script>";
     } else {
        // Email not found in the database

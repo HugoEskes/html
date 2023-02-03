@@ -80,6 +80,7 @@ if (session_status() !== PHP_SESSION_NONE) {
         <div class="modal-content">
           <h2>Privacy Statement</h2>
           <p>This website uses cookies to enhance your experience. By continuing to browse this site, you agree to our use of cookies.</p>
+          <p>For our privacy statement, please click <a href='privacy_policy.pdf' >Here</a></P>
           <button id="accept-button" class="close-button">Accept</button>
           
         </div>
