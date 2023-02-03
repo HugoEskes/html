@@ -37,6 +37,7 @@ if (session_status() !== PHP_SESSION_NONE) {
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.min.css" rel="stylesheet">
+    <!-- style for the privacy pop up -->
     <style>
         .modal {
           display: none; 
@@ -76,6 +77,7 @@ if (session_status() !== PHP_SESSION_NONE) {
 </head>
 
 <body>
+    <!--Code for the privacy pop up -->
     <div class="modal">
         <div class="modal-content">
           <h2>Privacy Statement</h2>
