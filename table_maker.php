@@ -90,7 +90,7 @@ if (isset($_GET['availability_date'])) {
 ?>
     <style>
       table, th, td {
-        display: table;
+        display: inline;
         background-color: #382424;
         border: 1px solid #DA9F5B;
         border-collapse: collapse;
