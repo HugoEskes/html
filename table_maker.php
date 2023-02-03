@@ -32,7 +32,7 @@ function insert_availability($basic_array, $data){
     }
     return $new_array;
 }
-
+$result = mysqli_query($connection, $select_query);
 $basic_array1 = insert_availability($basic_array1, $result);
 
 if (isset($_GET['availability_date'])) {
@@ -51,6 +51,7 @@ if (isset($_GET['availability_date'])) {
     echo "</table>";
 }
 
+$result = mysqli_query($connection, $select_query);
 $basic_array2 = insert_availability($basic_array2, $result);
 
 if (isset($_GET['availability_date'])) {
@@ -69,6 +70,7 @@ if (isset($_GET['availability_date'])) {
     echo "</table>";
 }
 
+$result = mysqli_query($connection, $select_query);
 $basic_array3 = insert_availability($basic_array3, $result);
 
 if (isset($_GET['availability_date'])) {
