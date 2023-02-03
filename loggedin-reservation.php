@@ -27,23 +27,23 @@ if (isset($_POST['submit'])) {
     $people = $_POST['Person'];
     $sqldate=date('Y-m-d',strtotime($date));
 
-    $sql_reserveringen = "INSERT INTO reserveringen (datum, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
+    $sql_reserveringen = "INSERT INTO reserveringen (datum, tijd, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$timeslot', '$username', '$user_ID', '$people')";
     
-    $sql = "SELECT datum, tijdslot, personen FROM tijden WHERE datum='$date' and tijdslot='$timeslot'"; 
+    $sql = "SELECT datum, tijd, personen FROM tijden WHERE datum='$date' and tijd='$timeslot'"; 
     
-    $sql_tijden = "INSERT INTO tijden (datum, tijdslot, personen) VALUES ('$sqldate', '$timeslot', '$people')";
+    $sql_tijden = "INSERT INTO tijden (datum, tijd, personen) VALUES ('$sqldate', '$timeslot', '$people')";
     $availability_result = $connection->query($sql_tijden);
    
     if ($availability_result->num_rows > 0) {
         $_availability_row = $availability_result->fetch_assoc();
         $previous_availability = $availability_row["gebruikerID"];
         $new_availability = $previous_availability - $people;
-        $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$date' and tijdslot='$timeslot'";
+        $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$date' and tijd='$timeslot'";
         mysqli_query($connection, $sql_availability_update);
     } else {
         /* no rows returned */
         $availability = 30 - $people;
-        $sql_availability = "INSERT INTO tijden (datum, tijdslot, beschikbare_plekken) VALUES ('$sqldate', '$timeslot', '$availability')";
+        $sql_availability = "INSERT INTO tijden (datum, tijd, beschikbare_plekken) VALUES ('$sqldate', '$timeslot', '$availability')";
         mysqli_query($connection, $sql_availability);
     }
 
