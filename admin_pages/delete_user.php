@@ -10,8 +10,11 @@
     $id = $_POST['id'];
 
     // Delete query
-    $delete_query = "DELETE FROM gebruikers WHERE gebruikerID='$id'";
-    $result = mysqli_query($connection, $delete_query);
+    $delete_query_user = "DELETE FROM gebruikers WHERE gebruikerID='$id'";
+    $result = mysqli_query($connection, $delete_query_user);
+
+    $delete_query_reservations = "DELETE FROM reserveringen WHERE gebruikerID='$id'";
+    $result2 = mysqli_query($connection, $delete_query_reservations);
 
     // Check if delete was successful
     if ($result) {
