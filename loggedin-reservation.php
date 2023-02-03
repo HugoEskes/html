@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
     $skiliftnaam = $_POST['skilift'];
 
     $sql_skiliftID = "SELECT skiliftID FROM Skiliften WHERE naam='$skiliftnaam'";
-    $skiliftID_result = $connection->query($sql_tijden);
+    $skiliftID_result = $connection->query($sql_skiliftID);
     $skiliftID_row = $skiliftID_result->fetch_assoc();
     $skiliftID = $skiliftID_row['skiliftID'];
 
