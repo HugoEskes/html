@@ -13,9 +13,9 @@
     $reservation_result = mysqli_query($connection, $sql_find_information);
 
     $reservation_row = $reservation_result->fetch_assoc();
-    $date = $availability_row["datum"];
-    $timeslot = $availability_row["tijdslot"];
-    $personen = $availability_row["personen"];
+    $date = $reservation_row["datum"];
+    $timeslot = $reservation_row["tijdslot"];
+    $personen = $reservation_row["personen"];
 
     $sql_tijden = "SELECT beschikbare_plekken FROM tijden WHERE datum='$date' and tijd='$timeslot'"; 
     $availability_result = $connection->query($sql_tijden);
