@@ -11,6 +11,7 @@ if (isset($_GET['availability_date'])){
                     FROM tijden 
                     WHERE datum='".$_GET['availability_date']."'";
 }
+
 else {
     $select_query = "SELECT * 
                     FROM tijden 
