@@ -99,7 +99,7 @@ if (session_status() !== PHP_SESSION_NONE) {
             }
 
             // Select query
-            $select_query = "SELECT * FROM skiliften";
+            $select_query = "SELECT * FROM Skiliften";
             $result = mysqli_query($connection, $select_query);
 
             echo "<table>";
