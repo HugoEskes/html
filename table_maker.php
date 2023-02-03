@@ -93,7 +93,7 @@ if (isset($_GET['availability_date'])) {
         background-color: #382424;
         border: 1px;
         border-color: #DA9F5B;
-        border-collapse: collapse;
+        border-collapse: separate;
         align-items: center;
         margin: 0 auto;
         height: 100%;
