@@ -248,7 +248,7 @@ if (isset($_POST['submit'])) {
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <div class="date_" name="date" id="date" type="date" data-target-input="nearest">
+                                    <div name="date" id="date" type="date" data-target-input="nearest">
                                         <input type="text" name="date" id="date" class="form-control bg-transparent border-primary p-4 datetimepicker-input" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
                                     </div>
                                 </div>
