@@ -291,6 +291,11 @@ if (isset($_POST['submit'])) {
         };
         xhr.send();
     });
+
+    $('#date').datetimepicker({
+    minDate: new Date(),
+
+});
     </script>
 
 </body>
