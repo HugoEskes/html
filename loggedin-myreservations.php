@@ -102,7 +102,9 @@ echo "<h2 style='text-align: center;'>Upcoming reservations</h2>";
 
 // Select query
 $select_query = "SELECT * 
-                FROM reserveringen 
+                FROM reserveringen '
+                JOIN Skiliften 
+                ON reserveringen.skiliftID = skiliften.skiliftID 
                 WHERE gebruikerID=$user_id and reserveringen.datum >= NOW()
                 ORDER BY reserveringen.datum ASC";
 $result = mysqli_query($connection, $select_query);
@@ -116,7 +118,7 @@ echo "<tr><th>Skilift</th><th>Date</th><th>Time</th><th>Persons</th><th>Delete</
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
   echo "<td>" . $row['skilift_naam'] . "</td>";
-  echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
+  echo "<td>" . date("d-m-Y", strtotime($row['naam'])) . "</td>";
   echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
   echo "<td>";
