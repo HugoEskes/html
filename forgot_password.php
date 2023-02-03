@@ -6,6 +6,7 @@ if(isset($_POST['submit'])) {
     // Check if the email exists in the database
     $sql = "SELECT * FROM gebruikers WHERE email = '$email'";
     $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($result);
     if(mysqli_num_rows($result) > 0) {
        $firstname = $row['voornaam'];
        $lastname = $row['achternaam'];
