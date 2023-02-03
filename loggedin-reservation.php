@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
             if ($new_availability >= 0) {
                 $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot' and skiliftID='$skiliftID'";
                 mysqli_query($connection, $sql_availability_update);
-                $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
+                $sql_reserveringen = "INSERT INTO reserveringen (datum, skiliftID, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skiliftID', '$timeslot', '$username', '$user_ID', '$people')";
                 mysqli_query($connection, $sql_reserveringen);
                 // Get the email of the user
                 $sql = "SELECT email FROM gebruikers WHERE gebruikerID = '$user_ID'"; 
@@ -78,9 +78,9 @@ if (isset($_POST['submit'])) {
         } else {
             /* no rows returned */
             $availability = $seats - $people;
-            $sql_availability = "INSERT INTO tijden (skilift_naam, datum, tijd, beschikbare_plekken) VALUES ('$skilift', '$sqldate', '$timeslot', '$availability')";
+            $sql_availability = "INSERT INTO tijden (skiliftID, datum, tijd, beschikbare_plekken) VALUES ('$skiliftID', '$sqldate', '$timeslot', '$availability')";
             mysqli_query($connection, $sql_availability);
-            $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
+            $sql_reserveringen = "INSERT INTO reserveringen (datum, skiliftID, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skiliftID', '$timeslot', '$username', '$user_ID', '$people')";
             mysqli_query($connection, $sql_reserveringen);
             // Get the email of the user
             $sql = "SELECT email FROM gebruikers WHERE gebruikerID = '$user_ID'"; 
