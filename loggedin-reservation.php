@@ -223,7 +223,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="col-lg-6">
                         <div class="text-center p-5" style="background: rgba(51, 33, 29, .8);">
-                            <h1 class="text-white mb-4 mt-5">Book Your Skilift</h1>
+                            <h1 class="text-white mb-4 mt-5">Reserve Your Skilift</h1>
                             <form action='loggedin-reservation.php' method='post' class="mb-5">
                                 <div class="form-group">
                                     <select name="skilift" class="custom-select bg-transparent border-primary px-4" style="height: 49px;">
@@ -268,7 +268,7 @@ if (isset($_POST['submit'])) {
                                 </div>
 
                                 <div>
-                                    <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit" name="submit">Book Now</button>
+                                    <button class="btn btn-primary btn-block font-weight-bold py-3" type="submit" name="submit">Reserve Now</button>
                                 </div>
                             </form>
                         </div>
