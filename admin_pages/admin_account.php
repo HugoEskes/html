@@ -21,7 +21,7 @@
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
   
     //informatie in de database zetten
-    $sql = "INSERT INTO gebruikers (voornaam, achternaam, email, gebruikersnaam, wachtwoord) VALUES ('$firstname','$lastname', '$email', '$username', '$hashed_password')";
+    $sql = "INSERT INTO admins (naam, email, wachtwoord) VALUES ('$username', '$email', '$hashed_password')";
     mysqli_query($connection, $sql);
   
     // send an email to the user that the account has been created
@@ -231,7 +231,7 @@ email.addEventListener("input", function() {
       dataType: "html",
       success: function(data) {
         if ( data * 1 ) {
-          email.setCustomValidity("Email is already in use");
+          email.setCustomValidity("Email is already a regular user, please delete them first before making them an admin.");
         } else {
           email.setCustomValidity("");
         }
