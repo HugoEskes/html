@@ -104,13 +104,14 @@ $select_query = "SELECT *
 $result_users = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>User-ID</th><th>Reservation ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th><th>Action</th></tr>";
+echo "<tr><th>User-ID</th><th>Reservation ID</th><th>Skilift</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th><th>Action</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result_users)) {
   echo "<tr>";
   echo "<td>" . $row['gebruikerID'] . "</td>";
   echo "<td>" . $row['reservatieID'] . "</td>";
+  echo "<td>" . $row['skilift_naam'] . "</td>";
   echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
   echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
@@ -138,13 +139,14 @@ $select_query = "SELECT *
 $result_users = mysqli_query($connection, $select_query);
 
 echo "<table>";
-echo "<tr><th>User-ID</th><th>Reservation ID</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th></tr>";
+echo "<tr><th>User-ID</th><th>Reservation ID</th><th>Skilift</th><th>Date</th><th>Time</th><th>Seats</th><th>Username</th><th>Email</th></tr>";
 
 // Loop through the result set
 while ($row = mysqli_fetch_assoc($result_users)) {
   echo "<tr>";
   echo "<td>" . $row['gebruikerID'] . "</td>";
   echo "<td>" . $row['reservatieID'] . "</td>";
+  echo "<td>" . $row['skilift_naam'] . "</td>";
   echo "<td>" . date("d-m-Y", strtotime($row['datum'])) . "</td>";
   echo "<td>" . date("H:i", strtotime($row['tijdslot'])) . "</td>";
   echo "<td>" . $row['personen'] . "</td>";
