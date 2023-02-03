@@ -5,6 +5,7 @@ require_once 'php/connection.php';
 if (!$connection) {
    die("Connection failed: " . mysqli_connect_error());
 }
+
 // Select query
 if (isset($_GET['availability_date'])){
     $select_query = "SELECT * 
@@ -19,8 +20,11 @@ else {
 }
 $result = mysqli_query($connection, $select_query);
 
+$skilift_table = $_GET['skilift_table'];
+$availability_date = $_GET['availability_date'];
+
 echo("voor de query");
-$sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE skiliftID = '".$_GET['skilift_table']."'";
+$sql_skiliftseats = "SELECT max_personen FROM Skiliften WHERE skiliftID = '$skilift_table'";
 $seats_result = $connection->query($sql_skiliftseats);
 $seats_row = $seats_result->fetch_assoc();
 $seats = $seats_row['max_personen'];
@@ -42,7 +46,7 @@ function insert_availability($basic_array, $data){
 
 $basic_array1 = insert_availability($basic_array1, $result);
 
-if (isset($_GET['availability_date'])) {
+
     echo "<table id='availability-table'>";
     echo "<tr><th>Time</th><th>Places</th></tr>";
 
@@ -56,11 +60,11 @@ if (isset($_GET['availability_date'])) {
     }
 
     echo "</table>";
-}
+
 
 $basic_array2 = insert_availability($basic_array2, $result);
 
-if (isset($_GET['availability_date'])) {
+
     echo "<table id='availability-table'>";
     echo "<tr><th>Time</th><th>Places</th></tr>";
 
@@ -74,11 +78,11 @@ if (isset($_GET['availability_date'])) {
     }
 
     echo "</table>";
-}
+
 
 $basic_array3 = insert_availability($basic_array3, $result);
 
-if (isset($_GET['availability_date'])) {
+
     echo "<table id='availability-table'>";
     echo "<tr><th>Time</th><th>Places</th></tr>";
 
@@ -92,7 +96,7 @@ if (isset($_GET['availability_date'])) {
     }
 
     echo "</table>";
-}
+
 
 ?>
     <style>
