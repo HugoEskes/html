@@ -224,7 +224,7 @@ if (isset($_POST['submit'])) {
                                     ?>
                                     </select>
                                 <input type="date" id="availability_date" name="availability_date">
-                                <input type="submit" id="submit_table" name="submit_table" value="Submit">
+                                <input type="submit" value="Submit">
                                 </form>
                             <div id="table-container"></div>
                             </div>
