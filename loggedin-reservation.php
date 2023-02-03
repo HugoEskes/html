@@ -50,6 +50,7 @@ if (isset($_POST['submit'])) {
         $availability = 30 - $people;
         $sql_availability = "INSERT INTO tijden (skilift_naam, datum, tijd, beschikbare_plekken) VALUES ('$skilift', '$sqldate', '$timeslot', '$availability')";
         mysqli_query($connection, $sql_availability);
+        $sql_reserveringen = "INSERT INTO reserveringen (datum, skilift_naam, tijdslot, gebruikersnaam, gebruikerID, personen) VALUES ('$sqldate', '$skilift', '$timeslot', '$username', '$user_ID', '$people')";
     }
 
     if ($connection->query($sql_reserveringen) === TRUE) {
