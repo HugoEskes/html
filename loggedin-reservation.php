@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
         $_availability_row = $availability_result->fetch_assoc();
         $previous_availability = $availability_row["gebruikerID"];
         $new_availability = $previous_availability - $people;
-        $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$date' and tijd='$timeslot'";
+        $sql_availability_update = "UPDATE tijden SET beschikbare_plekken='$new_availability' WHERE datum='$sqldate' and tijd='$timeslot'";
         mysqli_query($connection, $sql_availability_update);
     } else {
         /* no rows returned */
