@@ -89,7 +89,7 @@
 </div>
 <!-- Page Header End -->
 
-<p class="m-0 text-white">If you want to delete a user, please click 'delete'. All reservations made by this user are also deleted.</p>
+<h5 class="mb-3">If you want to delete a user, please click 'delete'. All reservations made by this user are also deleted.</h5>
 <?php
 
 require_once '../php/connection.php';
