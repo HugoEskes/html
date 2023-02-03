@@ -77,7 +77,7 @@ mysqli_close($connection);
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
                     <a href="index.php" class="nav-item nav-link">Home</a>
-                    <a href="reservation.php" class="nav-item nav-link">Reserve</a>
+                    <a href="reservation.php" class="nav-item nav-link">Availability</a>
                     <a href="about.php" class="nav-item nav-link">About</a>
                     <a href="login.php" class="nav-item nav-link">Log In</a>
                     <a href="signup.php" class="nav-item nav-link">Sign Up</a>
